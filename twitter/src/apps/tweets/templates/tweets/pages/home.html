@@ -1,0 +1,25 @@
+{% extends "base/pages/base.html" %}
+
+{% block title %}Twitter{% endblock title %}
+
+{% block content %}
+    <h2>Bem-vindo ao Tweets!</h2>
+    <p>
+        Olá, {{user.username}}!
+    </p>
+    <ul class="home">
+        {% for tweet in tweets  %}
+            <li>
+                <article>
+                    <h3>{{tweet.author}}</h3>
+                    <p>
+                        {{tweet.content}}
+                    </p>
+                    <p>
+                        {{tweet.created_at}}
+                    </p>
+                </article>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

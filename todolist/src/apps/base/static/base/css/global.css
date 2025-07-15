@@ -1,0 +1,24 @@
+:root {
+  --azul-claro: #59b2d8;
+  --cinza-claro: #f1eded;
+  --roxo-escuro: #6840a0;
+  --azul-medio: #4484d2;
+  --cinza-escuro: #66605d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(
+    to bottom,
+    var(--azul-claro) 0%,
+    var(--azul-medio) 100%
+  );
+}

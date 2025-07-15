@@ -1,0 +1,18 @@
+{% extends 'base/pages/base.html' %}
+
+{% block title %}Deseja Sair{% endblock title %}
+
+
+{% block content %}
+    <ul class="logout">
+        <li>
+            <a href="{% url "home" %}" class="btn">Home</a>
+        </li>
+        <li>
+            <form method="post" action="{% url 'logged_out' %}" style="display:inline">
+                {% csrf_token %}
+                <button type="submit" class="btn">Sair</button>
+            </form>
+        </li>
+    </ul>
+{% endblock %}

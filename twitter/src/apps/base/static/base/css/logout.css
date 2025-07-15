@@ -1,0 +1,12 @@
+ul.logout {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+ul li button.btn {
+    background-color: red;
+    color: var(--twitter-white);
+    font-size: 1rem;
+    border: none;
+}
