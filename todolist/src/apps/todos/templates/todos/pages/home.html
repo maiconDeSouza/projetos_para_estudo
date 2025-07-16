@@ -3,5 +3,57 @@
 {% block title %}{% endblock title %}
 
 {% block content %}
-    <h1>Olá Tudo List 2</h1>
+    <div class="todo-area">
+        <div class="todo-box">
+            <header>
+                <h1>Todo<span>List</span></h1>
+            </header>
+            <main>
+                <section class="new-todo">
+                    <form action="">
+                        <input type="text" placeholder="Add sua nova tarefa!">
+                        <button type="submit">
+                            <i class="bi bi-plus-circle"></i>
+                        </button>
+                    </form>
+                </section>
+                <section class="task-areas">
+                    <ul>
+                        <li>
+                            <p>
+                                Lorem ipsum dolor sit amet.
+                            </p>
+                            <button>
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <p>
+                                Lorem ipsum dolor sit amet.
+                            </p>
+                            <button>
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </li>
+                        <li>
+                            <p>
+                                Lorem ipsum dolor sit amet.
+                            </p>
+                            <button>
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+            <footer>
+                <p>
+                    Lorem ipsum 4x dolor sit.
+                </p>
+                <button>
+                    Limpar todos
+                </button>
+            </footer>
+        </div>
+    </div>
 {% endblock content %}
