@@ -16,6 +16,11 @@
                             <i class="bi bi-plus-circle"></i>
                         </button>
                     </form>
+                    {% if messages %}
+                        {% for msg in messages  %}
+                            <p>{{msg}}</p>
+                        {% endfor %}
+                    {% endif %}
                 </section>
                 <section class="task-areas">
                     <ul>
@@ -29,9 +34,11 @@
                 <p>
                     Você tem {{count}} tarefas pendentes.
                 </p>
-                <button>
-                    Limpar Concluídos
-                </button>
+                <form action="{% url "clear" %}" method="POST">{% csrf_token %}
+                    <button>
+                        Limpar Concluídos
+                    </button>
+                </form>
             </footer>
         </div>
     </div>

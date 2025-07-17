@@ -157,7 +157,7 @@ body {
   align-items: center;
 }
 
-.todo-area .todo-box footer button {
+.todo-area .todo-box footer form button {
   padding: 1rem;
   border: none;
   border-radius: 5px;
