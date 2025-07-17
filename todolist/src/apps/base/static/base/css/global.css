@@ -4,6 +4,9 @@
   --roxo-escuro: #6840a0;
   --azul-medio: #4484d2;
   --cinza-escuro: #66605d;
+  --verde-suave: #6dbf7b;
+  --branco: #fff;
+  --vermelho-suave: #d75b5b;
 }
 
 * {
@@ -39,7 +42,7 @@ body {
   gap: 1rem;
   width: 29rem;
   max-width: 90%;
-  background-color: var(--cinza-claro);
+  background-color: var(--branco);
   border-radius: 8px;
   padding: 2rem;
 }
@@ -69,13 +72,98 @@ body {
 
 .todo-area .todo-box main .new-todo form input {
   width: 80%;
+  background-color: var(--cinza-claro);
   padding: 1rem;
   border-radius: 5px;
   border: none;
+}
+
+.todo-area .todo-box main .new-todo form button {
+  width: 15%;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--roxo-escuro);
+  cursor: pointer;
+}
+
+.todo-area .todo-box main .new-todo form button i {
+  font-size: 1.5rem;
+  color: var(--branco);
 }
 
 .todo-area .todo-box main .task-areas ul {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.todo-area .todo-box main .task-areas ul li {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--cinza-claro);
+}
+
+.todo-area .todo-box main .task-areas ul li.completed {
+  border: 1px solid var(--verde-suave);
+}
+
+.todo-area .todo-box main .task-areas ul li p {
+  margin: 1rem;
+}
+
+.todo-area .todo-box main .task-areas ul li form {
+  display: flex;
+}
+
+.todo-area .todo-box main .task-areas ul li form button {
+  height: 100%;
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.todo-area .todo-box main .task-areas ul li form button i {
+  font-size: 1rem;
+  color: var(--branco);
+}
+
+.todo-area .todo-box main .task-areas ul li form button:nth-of-type(1) {
+  background-color: var(--verde-suave);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.todo-area .todo-box main .task-areas ul li:hover form button:nth-of-type(1) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.todo-area .todo-box main .task-areas ul li form button:nth-of-type(2) {
+  background-color: var(--vermelho-suave);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.todo-area .todo-box main .task-areas ul li:hover form button:nth-of-type(2) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.todo-area .todo-box footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-area .todo-box footer button {
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--roxo-escuro);
+  color: var(--branco);
+  text-transform: uppercase;
+  font-weight: 900;
+  cursor: pointer;
 }

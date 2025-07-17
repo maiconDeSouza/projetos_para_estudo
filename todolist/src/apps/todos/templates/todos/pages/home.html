@@ -10,8 +10,8 @@
             </header>
             <main>
                 <section class="new-todo">
-                    <form action="">
-                        <input type="text" placeholder="Add sua nova tarefa!">
+                    <form action="{% url "create_task" %}" method="POST">{% csrf_token %}
+                        <input type="text" placeholder="Add sua nova tarefa!" name="task">
                         <button type="submit">
                             <i class="bi bi-plus-circle"></i>
                         </button>
@@ -19,39 +19,18 @@
                 </section>
                 <section class="task-areas">
                     <ul>
-                        <li>
-                            <p>
-                                Lorem ipsum dolor sit amet.
-                            </p>
-                            <button>
-                                <i class="bi bi-trash-fill"></i>
-                            </button>
-                        </li>
-                        <li>
-                            <p>
-                                Lorem ipsum dolor sit amet.
-                            </p>
-                            <button>
-                                <i class="bi bi-trash-fill"></i>
-                            </button>
-                        </li>
-                        <li>
-                            <p>
-                                Lorem ipsum dolor sit amet.
-                            </p>
-                            <button>
-                                <i class="bi bi-trash-fill"></i>
-                            </button>
-                        </li>
+                       {% for task in tasks  %}
+                        {% include "todos/partials/list_tasks.html" %}
+                       {% endfor %}
                     </ul>
                 </section>
             </main>
             <footer>
                 <p>
-                    Lorem ipsum 4x dolor sit.
+                    Você tem {{count}} tarefas pendentes.
                 </p>
                 <button>
-                    Limpar todos
+                    Limpar Concluídos
                 </button>
             </footer>
         </div>
