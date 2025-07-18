@@ -21,6 +21,13 @@ class Post(models.Model):
         blank=True,
         help_text='Identificador único baseado no título.',
     )
+    cover = models.ImageField(
+        upload_to='covers/%Y/%m/%d/',
+        verbose_name='Imagem de Capa',
+        blank=True,
+        null=True,
+        help_text='Faça upload da imagem de capa aqui.',
+    )
     body = CKEditor5Field('Conteúdo', config_name='default')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     tags = models.ManyToManyField(
