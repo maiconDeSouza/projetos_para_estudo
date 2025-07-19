@@ -1,0 +1,28 @@
+{% extends "base/pages/base.html" %}
+
+{% block title %}MicroBolg{% endblock title %}
+
+{% block content %}
+    <div class="list-posts">
+        <h2>Nossos Posts</h2>
+        <ul>
+            {% for post in posts  %}
+                <li>
+                    <article class="card-post">
+                        <section class="title-content">
+                            <h3>
+                                {{post.title}}
+                            </h3>
+                            <p>
+                                {{ post.body|truncatechars:200|safe }}
+                            </p>
+                        </section>
+                        <section class="cover">
+                            <img src="{{post.cover.url}}" alt="" width="160px">
+                        </section>
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}

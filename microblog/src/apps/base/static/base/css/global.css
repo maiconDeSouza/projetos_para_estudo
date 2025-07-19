@@ -1,0 +1,41 @@
+:root {
+  /* Fundo e textos */
+  --color-bg:        #ffffff; /* branco */
+  --color-text:      #2C3E50; /* azul‑grafite escuro para leitura */
+
+  /* Cores principais */
+  --color-primary:   #3498DB; /* azul vívido (links, destaques) */
+  --color-secondary: #2ECC71; /* verde claro (botões, labels) */
+
+  /* Cores de apoio */
+  --color-accent:    #E67E22; /* laranja forte (ações, alertas leves) */
+  --color-muted:     #7F8C8D; /* cinza médio (textos secundários) */
+
+  /* Cores de status */
+  --color-success:   #27AE60; /* verde escuro (sucesso) */
+  --color-warning:   #F1C40F; /* amarelo (aviso) */
+  --color-error:     #E74C3C; /* vermelho (erros) */
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 12rem 1fr 4rem;
+    gap: 2rem;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+a {
+    display: block;
+}
