@@ -1,0 +1,37 @@
+{% extends "base/pages/base.html" %}
+
+{% block title %}Registre-se{% endblock title %}
+
+{% block content %}
+    <section class="signup">
+        <form method="POST" action="{% url "accounts:signup" %}">{% csrf_token %}
+            <div>
+                <label for="id_username">Nome de usuário:</label>
+                {{form.username}}
+            </div>
+            <div>
+                <label for="id_password1">Digite sua senha:</label>
+                {{form.password1}}
+            </div>
+            <div>
+                <label for="d_password1">Repita sua senha:</label>
+                {{form.password2}}
+            </div>
+            <button type="submit">Registrar-se</button>
+        </form>
+        <div class="errors">
+            {% if form.errors %}
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}

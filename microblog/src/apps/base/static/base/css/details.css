@@ -8,11 +8,19 @@ main .details {
     gap: 2rem;
 }
 
+main .details h1 {
+    color: var(--color-primary);
+}
+
 main .details .author-tags {
     align-self: flex-start;
     display: flex;
     flex-direction: column;
     gap: .5rem;
+}
+
+main .details .author-tags b {
+    color: var(--color-primary);
 }
 
 main .details .author-tags a {

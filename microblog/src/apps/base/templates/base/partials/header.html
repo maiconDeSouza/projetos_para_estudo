@@ -1,9 +1,36 @@
 <header>
     <section class="logo">
         <p>Micro<strong>Blog</strong></p>
-        <button>
-            <i class="bi bi-search"></i>
-        </button>
+        <ul>
+            {% if user.is_authenticated %}
+                <li>
+                    <span>Olá, {{user.username}}!</span>
+                </li>
+                <li>
+                    <form action="{% url "accounts:logout" %}" method="post">{% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+                <li>
+                    <button>
+                        <i class="bi bi-search"></i>
+                    </button>
+                </li>
+            {% else %}
+                <li>
+                    <a href="">Login</a>
+                </li>
+                <li>
+                    <a href="{% url "accounts:signup" %}">Registrar-se</a>
+                </li>
+                <li>
+                    <button>
+                        <i class="bi bi-search"></i>
+                    </button>
+                </li>
+            {% endif %}
+            
+        </ul>
     </section>
     <nav>
         <ul>
