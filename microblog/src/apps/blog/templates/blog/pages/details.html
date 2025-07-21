@@ -29,4 +29,24 @@
         {{post.body|safe}}
     </section>
 </div>
+<div class="comment">
+    <h3>Comentários</h3>
+    {% if user.is_authenticated %}
+        <form  method="POST">{% csrf_token %}
+            <label for="id_text">Seu Comentário:</label>
+            {{forms.text}}
+            <button type="submit">Enviar</button>
+    </form>
+    {% endif %}
+    <ul>
+        {% for comment in comments  %}
+            <li>
+                <span>{{comment.author}}</span>
+                <p>
+                    {{comment.text}}
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock content %}

@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="{% static "base/css/header.css" %}">
     <link rel="stylesheet" href="{% static "base/css/list-posts.css" %}">
     <link rel="stylesheet" href="{% static "base/css/details.css" %}">
+    <link rel="stylesheet" href="{% static "base/css/login.css" %}">
     <link rel="stylesheet" href="{% static "base/css/signup.css" %}">
     <link rel="stylesheet" href="{% static "base/css/footer.css" %}">
+    <script src="{% static "base/js/script.js" %}" defer></script>
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
@@ -24,5 +26,22 @@
     <footer>
         © 2025 MicroBlog
     </footer>
+    <dialog>
+        <header>
+            <p>Procure por um Post</p>
+        </header>
+        <main>
+            <form action="" method="POST">
+                <input type="search" name="q" placeholder="Digite sua pesquisa...">
+                <button type="submit">Buscar</button>
+            </form>
+            <section>
+                posts
+            </section>
+        </main>
+        <footer>
+            <button id="close">Sair</button>
+        </footer>
+    </dialog>
 </body>
 </html>
