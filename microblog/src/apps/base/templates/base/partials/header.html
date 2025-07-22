@@ -12,7 +12,7 @@
                     </form>
                 </li>
                 <li>
-                    <button>
+                    <button id="search">
                         <i class="bi bi-search"></i>
                     </button>
                 </li>
@@ -38,7 +38,7 @@
                 <a href="{% url "blog:post_list_view" %}">Início</a>
             </li>
             <li>
-                <a href="">Sobre</a>
+                <a href="{% url "blog:about" %}">Sobre</a>
             </li>
         </ul>
     </nav>

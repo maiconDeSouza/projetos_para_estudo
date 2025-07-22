@@ -60,3 +60,21 @@ class PostDetails(View):
             'blog/pages/details.html',
             {'post': post, 'comments': comments, 'forms': forms},
         )
+
+
+class PostsSearch(View):
+    def get(self, request):
+        q = request.GET.get('q', '').strip()
+        posts = Post.objects.filter(title__icontains=q).order_by(
+            '-published_at'
+        )
+        return render(
+            request,
+            'blog/pages/home.html',
+            {'posts': posts},
+        )
+
+
+class AboutView(View):
+    def get(self, request):
+        return render(request, 'blog/pages/about.html')

@@ -4,8 +4,10 @@ const buttonClose = document.querySelector('#close')
 
 buttonSearch.addEventListener('click', e => {
     dialog.showModal()
+    dialog.classList.toggle('hidden')
 })
 
 buttonClose.addEventListener('click', e => {
     dialog.close()
+    dialog.classList.toggle('hidden')
 })

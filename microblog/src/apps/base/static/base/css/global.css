@@ -40,9 +40,6 @@ a {
     display: inline-block;
 }
 
-dialog::backdrop form {
-    width: 80%;
-}
 
 dialog {
     width: 80%;
@@ -58,6 +55,10 @@ dialog {
     gap: 2rem;
     border-radius: 8px;
     position: relative;
+}
+
+dialog.hidden {
+    display: none;
 }
 
 dialog::backdrop {
