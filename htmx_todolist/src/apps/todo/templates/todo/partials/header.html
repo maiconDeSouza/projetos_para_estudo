@@ -1,0 +1,30 @@
+<header>
+    <form 
+        hx-post="{% url "crud:add" %}" 
+        hx-target="#task-list" 
+        hx-swap="beforeend"
+        hx-on="htmx:afterRequest: this.reset()"
+        >
+        
+        {% csrf_token %}
+        <div class="search">
+            <input type="text" name="task" placeholder="Digite uma nova tarefa...">
+            <button type="submit">
+                <i class="bi bi-plus-lg"></i>
+            </button>
+        </div>
+    </form>
+    <div class="task-filter">
+        <ul>
+            <li>
+                <button class="active">Todas</button>
+            </li>
+            <li>
+                <button>Completas</button>
+            </li>
+            <li>
+                <button>Pendentes</button>
+            </li>
+        </ul>
+    </div>
+</header>

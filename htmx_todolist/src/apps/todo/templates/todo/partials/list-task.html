@@ -1,0 +1,37 @@
+<li>
+    <div class="task">
+        <input 
+            type="checkbox" 
+            name="" 
+            id=""  
+            {% if todo.completed %}checked{% endif %}
+            hx-get="{% url "crud:completed" todo.pk %}"
+            hx-target="closest li"
+            hx-swap="outerHTML"
+            hx-trigger="change"
+        >
+        <p>
+            {{todo.task}}
+        </p>
+    </div>
+    <div class="edit-del">
+        <button
+            hx-get="{% url "crud:edit" todo.pk %}"
+            hx-target="closest li"
+            hx-swap="outerHTML"
+            hx-trigger="click"
+            type="button"
+        >
+            <i class="bi bi-pencil"></i>
+        </button>
+        <button
+            hx-delete="{% url "crud:del" todo.pk %}"
+            hx-target="closest li"
+            hx-swap="outerHTML"
+            hx-trigger="click"
+            type="button"
+        >
+            <i class="bi bi-trash3"></i>
+        </button>
+    </div>
+</li>

@@ -1,0 +1,13 @@
+<li>
+    <form
+        class="edit-task" 
+        hx-put="{% url "crud:edition" todo.pk %}"
+        hx-target="closest li"
+        hx-swap="outerHTML"
+    >{% csrf_token %}
+        <input type="text" name="new-task" id="" value="{{todo.task}}">
+        <button type="submit">
+            <i class="bi bi-check"></i>
+        </button>
+    </form>
+</li>

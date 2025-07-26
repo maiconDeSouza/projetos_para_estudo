@@ -1,0 +1,7 @@
+<main>
+    <ul id="task-list">
+        {% for todo in todos  %}
+            {% include "todo/partials/list-task.html" %}
+        {% endfor %}
+    </ul>
+</main>
