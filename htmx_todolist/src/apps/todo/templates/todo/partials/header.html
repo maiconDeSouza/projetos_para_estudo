@@ -14,16 +14,37 @@
             </button>
         </div>
     </form>
-    <div class="task-filter">
+    <div id="task-filter">
         <ul>
             <li>
-                <button class="active">Todas</button>
+                <button 
+                    class="active"
+                    hx-get="{% url 'crud:filter' 'all' %}"
+                    hx-target="none"
+                    hx-swap="none"
+                >
+                    Todas
+                </button>
             </li>
             <li>
-                <button>Completas</button>
+                <button
+                    hx-get="{% url 'crud:filter' 'completed' %}"
+                    hx-target="none"
+                    hx-swap="none"
+                    hx-trigger="click"
+                    type="button"
+                >
+                    Completas
+                </button>
             </li>
             <li>
-                <button>Pendentes</button>
+                <button
+                    hx-get="{% url 'crud:filter' 'pending' %}"
+                    hx-target="none"
+                    hx-swap="none"
+                >
+                    Pendentes
+                </button>
             </li>
         </ul>
     </div>

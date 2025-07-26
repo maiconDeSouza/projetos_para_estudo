@@ -1,6 +1,6 @@
 from urllib.parse import parse_qs
 
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -45,3 +45,21 @@ class Completed(View):
         todo.completed = not todo.completed
         todo.save()
         return render(request, 'todo/partials/list-task.html', {'todo': todo})
+
+
+class FilterTasks(View):
+    def get(self, request, filter_type):
+        if filter_type == 'completed':
+            todo = Todo.objects.filter(completed=True)
+        elif filter_type == 'pending':
+            todo = Todo.objects.filter(completed=False)
+        elif filter_type == 'all':
+            todo = Todo.objects.all()
+        else:
+            return redirect('todo:home')
+
+        return render(
+            request,
+            'todo/partials/filter-response.html',
+            {'todo': todo, 'filter_type': filter_type},
+        )

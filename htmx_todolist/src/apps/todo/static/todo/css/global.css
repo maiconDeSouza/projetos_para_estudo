@@ -58,18 +58,18 @@ header form .search button i {
     font-size: 1.1rem;
 }
 
-header .task-filter ul {
+header #task-filter ul {
     height: 50px;
     display: flex;
     justify-content: space-around;
     gap: 1rem;
 }
 
-header .task-filter ul li {
+header #task-filter ul li {
     flex: 1;
 }
 
-header .task-filter ul li button {
+header #task-filter ul li button {
     width: 100%;
     padding: .3rem;
     border: 1px solid var(--color-gray-one);
@@ -80,7 +80,7 @@ header .task-filter ul li button {
     color: var(--color-gray-two);
 }
 
-header .task-filter ul li button.active {
+header #task-filter ul li button.active {
     background-color: var(--color-gray-two);
     color: var(--color-primary);
 }

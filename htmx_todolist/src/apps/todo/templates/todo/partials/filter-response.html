@@ -1,0 +1,30 @@
+<div id="task-filter" hx-swap-oob="outerHTML">
+  <button
+    class="{% if filter_type == 'all' %}active{% endif %}"
+    hx-get="{% url 'crud:filter' 'all' %}"
+    hx-target="none" hx-swap="none"
+  >
+    Todas
+</button>
+
+  <button
+    class="{% if filter_type == 'completed' %}active{% endif %}"
+    hx-get="{% url 'crud:filter' 'completed' %}"
+    hx-target="none" hx-swap="none"
+  >
+    Completas
+</button>
+
+  <button
+    class="{% if filter_type == 'pending' %}active{% endif %}"
+    hx-get="{% url 'crud:filter' 'pending' %}"
+    hx-target="none" hx-swap="none"
+  >
+    Pendentes
+</button>
+</div>
+
+
+<ul id="task-list" hx-swap-oob="innerHTML">
+  {% include 'todo/partials/list-task-list.html' with tasks=tasks %}
+</ul>
