@@ -1,3 +1,5 @@
+const filterButtons = document.querySelectorAll('#task-filter button')
+
 document.addEventListener('htmx:afterRequest', function (evt) {
     const form = evt.target;
     if (form.tagName === "FORM") {
@@ -5,9 +7,6 @@ document.addEventListener('htmx:afterRequest', function (evt) {
     }
 })
 
-
-
-const filterButtons = document.querySelectorAll('#task-filter button')
 
 filterButtons.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -23,3 +22,4 @@ document.body.addEventListener('htmx:configRequest', e => {
   const token = document.querySelector('meta[name="csrf-token"]').content;
   e.detail.headers['X-CSRFToken'] = token;
 })
+
