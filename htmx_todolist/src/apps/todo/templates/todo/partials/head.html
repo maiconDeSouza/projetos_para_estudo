@@ -6,6 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 {% load static %}
 <link rel="stylesheet" href="{% static "todo/css/global.css" %}">
+<meta name="csrf-token" content="{{ csrf_token }}">
 <script src="{% static "htmx/js/htmx.js" %}" defer></script>
 <script src="{% static "htmx/js/script.js" %}" defer></script>
 <title>Todo List + HTMX</title>

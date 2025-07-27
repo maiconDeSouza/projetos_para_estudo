@@ -2,14 +2,11 @@ from urllib.parse import parse_qs
 
 from django.shortcuts import render, HttpResponse
 from django.shortcuts import get_object_or_404
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 from django.views import View
 
 from apps.todo.models import Todo
 
 
-@method_decorator(csrf_exempt, name='dispatch')
 class CRUD(View):
     def post(self, request):
         task = request.POST.get('task')
