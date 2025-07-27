@@ -20,8 +20,9 @@
                 <button 
                     class="active"
                     hx-get="{% url 'crud:filter' 'all' %}"
-                    hx-target="none"
-                    hx-swap="none"
+                    hx-target="#task-list"
+                    hx-swap="outerHTML"
+                    type="button"
                 >
                     Todas
                 </button>
@@ -29,9 +30,8 @@
             <li>
                 <button
                     hx-get="{% url 'crud:filter' 'completed' %}"
-                    hx-target="none"
-                    hx-swap="none"
-                    hx-trigger="click"
+                    hx-target="#task-list"
+                    hx-swap="outerHTML"
                     type="button"
                 >
                     Completas
@@ -40,8 +40,9 @@
             <li>
                 <button
                     hx-get="{% url 'crud:filter' 'pending' %}"
-                    hx-target="none"
-                    hx-swap="none"
+                    hx-target="#task-list"
+                    hx-swap="outerHTML"
+                    type="button"
                 >
                     Pendentes
                 </button>
