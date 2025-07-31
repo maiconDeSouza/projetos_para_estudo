@@ -1,0 +1,78 @@
+{% extends "register/pages/base.html" %}
+
+{% block title %}
+    Registrar‑se
+{% endblock title %}
+
+{% block h1 %}
+    Registrar‑se
+{% endblock h1 %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+
+    {# erros gerais #}
+    {% if forms.non_field_errors %}
+      <ul class="errorlist nonfield">
+        {% for err in forms.non_field_errors %}
+          <li>{{ err }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <div>
+      {{forms.name.label_tag}}
+      {{forms.name}}
+      {% if forms.name.errors %}
+        <ul class="errorlist">
+          {% for err in forms.name.errors %}
+            <li>{{ err }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <div>
+      {{forms.email.label_tag}}
+      {{forms.email}}
+      {% if forms.email.errors %}
+        <ul class="errorlist">
+          {% for err in forms.email.errors %}
+            <li>{{ err }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <div>
+      {{forms.password1.label_tag}}
+      {{forms.password1}}
+      {% if forms.password1.errors %}
+        <ul class="errorlist">
+          {% for err in forms.password1.errors %}
+            <li>{{ err }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <div>
+      {{forms.password2.label_tag}}
+      {{forms.password2}}
+      {% if forms.password2.errors %}
+        <ul class="errorlist">
+          {% for err in forms.password2.errors %}
+            <li>{{ err }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <button type="submit">Registrar</button>
+
+    <p class="register-link">
+      Já tem uma conta? <a href="">Entrar</a>
+    </p>
+</form>
+{% endblock content %}

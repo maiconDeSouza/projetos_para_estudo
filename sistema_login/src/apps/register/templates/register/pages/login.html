@@ -1,0 +1,56 @@
+{% extends "register/pages/base.html" %}
+
+{% block title %}
+    Seja bem vindo!
+{% endblock title %}
+
+{% block h1 %}
+    Seu Sistema
+{% endblock h1 %}
+
+{% block content %}
+<form action="" method="post">
+     {% csrf_token %}
+
+     <!-- Espaço para erros gerais -->
+     {% if forms.non_field_errors %}
+       <ul class="errorlist nonfield">
+         {% for err in forms.non_field_errors %}
+           <li>{{ err }}</li>
+         {% endfor %}
+       </ul>
+     {% endif %}
+
+     <div>
+       {{ forms.email.label_tag }}
+       {{ forms.email }}
+       <!-- Erros do email -->
+       {% if forms.email.errors %}
+         <ul class="errorlist">
+           {% for err in forms.email.errors %}
+             <li>{{ err }}</li>
+           {% endfor %}
+         </ul>
+       {% endif %}
+     </div>
+
+     <div>
+       {{ forms.password.label_tag }}
+       {{ forms.password }}
+       <!-- Erros da senha -->
+       {% if forms.password.errors %}
+         <ul class="errorlist">
+           {% for err in forms.password.errors %}
+             <li>{{ err }}</li>
+           {% endfor %}
+         </ul>
+       {% endif %}
+     </div>
+
+     <button type="submit">Logar</button>
+
+     <p class="register-link">
+       Não tem uma conta? <a href="{% url "register:register" %}">Registrar‑se</a>
+     </p>
+   </form>
+{% endblock content %}
