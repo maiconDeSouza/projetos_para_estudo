@@ -1,6 +1,27 @@
-.index ul {
+header .nav-index  {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.form-index {
+    height: 100%;
+    padding-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: var(--gap);
+}
+
+.form-index .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-index .form-group input {
+    width: 25rem;
+    padding: var(--gap);
+    border-radius: var(--cell-radius);
+    border: 2px solid var(--accent);
+    outline: none;
 }
