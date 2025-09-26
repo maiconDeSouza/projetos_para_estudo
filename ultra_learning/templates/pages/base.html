@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    {% include "partials/fonts-icons.html" %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include "partials/static.html" %}
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <header class="wrap">
+        {% block header %}{% endblock header %}
+    </header>
+    <main class="wrap">
+        1
+        {% block main %}{% endblock main %}
+    </main>
+    <footer class="wrap">
+        {% block footer %}{% endblock footer %}
+    </footer>
+</body>
+</html>
+
+{% comment %} <select name="" id="">
+    {% for project in projects %}
+        <option value="{{ project.name }}">{{ project.name }}</option>
+    {% empty %}
+        <option value="---">---</option>
+    {% endfor %}
+    </select> {% endcomment %}
