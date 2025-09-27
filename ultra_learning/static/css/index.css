@@ -6,6 +6,8 @@ header .nav-index  {
 
 .form-index {
     height: 100%;
+    width: 35rem;
+    margin: 0 auto;
     padding-top: 10rem;
     display: flex;
     flex-direction: column;
@@ -14,14 +16,41 @@ header .nav-index  {
 }
 
 .form-index .form-group {
+    width: 100%;
+    padding: var(--gap);
     display: flex;
     flex-direction: column;
+    gap: var(--gap);
 }
 
 .form-index .form-group input {
-    width: 25rem;
+    width: 100%;
     padding: var(--gap);
     border-radius: var(--cell-radius);
     border: 2px solid var(--accent);
     outline: none;
+}
+
+.form-index .form-button {
+    width: 100%;
+    padding: var(--gap);
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-index .form-button button {
+    width: 10rem;
+    padding: var(--gap);
+    border: none;
+    border-radius: var(--cell-radius);
+    background-color: var(--accent);
+    color: var(--card);
+    font-weight: 900;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.form-index .form-button button:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow);
 }

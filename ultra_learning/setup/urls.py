@@ -6,4 +6,5 @@ from apps.core import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Index.as_view(), name='index'),
+    path('home/', views.Home.as_view(), name='home'),
 ]

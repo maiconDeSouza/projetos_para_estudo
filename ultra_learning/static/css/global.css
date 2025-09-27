@@ -10,8 +10,10 @@
     --red-border: #e05a5a;
     --pending: #f3f6fa;
     --accent: #6b46c1;
+    --accent-2: #ab8eee;
     --muted: #6b7280;
     --shadow: 0 6px 18px rgba(13,18,30,0.06);
+    --transition: all ease-in-out 300ms;
 }
 
 * {

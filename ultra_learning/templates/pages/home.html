@@ -1,0 +1,53 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Faça seu login{% endblock title %}
+
+{% block header %}
+    <div class="header-home">
+        <div class="home-title">
+            <h1>
+                {{project.name}} - {{project.days}} dias
+            </h1>
+            <span>
+                Meta: {{total_goal_hours}} Horas • Restam: {{hours_remaining}} Horas
+            </span>
+        </div>
+        <div class="home-progress">
+            <div class="home-bar-progress">
+                <span class="home-bar"></span>
+            </div>
+            <div class="home-progress-result">
+                <span>{{hours_studied}}h / {{total_goal_hours}}h</span>
+            </div>
+        </div>
+        <div class="home-time">
+            <div class="time">
+                <span>00:00</span>
+            </div>
+            <button type="button" class="button-init">Iniciar</button>
+            <button type="button" data-today="{{today}}" class="button-stop">Parar</button>
+        </div>
+    </div>
+{% endblock header %}
+{% block main %}
+    <ul class="home-grid-card">
+        {% for study_session in study_sessions %}
+            <li {% if study_session.date == today  %}class="today"{% endif %}>
+                <article>
+                    <header>
+                        <h3>
+                            <span>Dia</span>
+                            <span>{{ study_session.day }}</span>
+                        </h3>
+                        <p>{{ study_session.date }}</p>
+                    </header>
+                    <footer>
+                        {{ study_session.duration_study_session }} min.
+                    </footer>
+                </article>
+            </li>
+        {% empty %}
+            <li>Nenhuma sessão de estudo ainda.</li>
+        {% endfor %}
+    </ul>
+{% endblock main %}

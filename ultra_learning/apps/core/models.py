@@ -16,10 +16,12 @@ class Project(models.Model):
         verbose_name='Data de término do Projeto', null=True, blank=True
     )
     days = models.PositiveIntegerField(
-        verbose_name='Quantidade de dias do projeto'
+        verbose_name='Quantidade de dias do projeto',
+        default=0,
     )
     total_goal_minutes = models.PositiveIntegerField(
-        verbose_name='Tempo de estudo em minutos'
+        verbose_name='Tempo de estudo em minutos',
+        default=0,
     )
 
     def save(self, *args, **kwargs):
@@ -38,6 +40,12 @@ class StudySession(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     day = models.PositiveIntegerField(null=True, blank=True)
     date = models.DateField(null=True, blank=True)
+    duration_study_session = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        verbose_name='Duração do estudo no dia',
+        default=0,
+    )
     name = models.CharField(max_length=100, null=True, blank=True)
     description = models.CharField(max_length=500, null=True, blank=True)
 
