@@ -8,13 +8,25 @@
             <h1>
                 {{project.name}} - {{project.days}} dias
             </h1>
-            <span>
+            <span
+                id="meta"
+                hx-get="{% url "meta" %}"
+                hx-trigger="click" 
+                hx-swap="outerHTML" 
+            >
                 Meta: {{total_goal_hours}} Horas • Restam: {{hours_remaining}} Horas
             </span>
         </div>
         <div class="home-progress">
             <div class="home-bar-progress">
-                <span class="home-bar"></span>
+                <span
+                    id="progress-bar"
+                    hx-get="{% url "progress" %}"
+                    hx-trigger="click" 
+                    hx-swap="outerHTML" 
+                    class="home-bar" 
+                    style="width: {{percentage_completed}}%;"
+                ></span>
             </div>
             <div class="home-progress-result">
                 <span>{{hours_studied}}h / {{total_goal_hours}}h</span>

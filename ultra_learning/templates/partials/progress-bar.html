@@ -1,0 +1,8 @@
+<span
+    id="progress-bar"
+    hx-get="{% url "progress" %}"
+    hx-trigger="click" 
+    hx-swap="outerHTML"
+    class="home-bar" 
+    style="width: {{percentage_completed}}%;"
+></span>

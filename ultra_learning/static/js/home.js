@@ -32,4 +32,9 @@ stopBtn.addEventListener('click', e => {
     input.setAttribute('value', elapsed)
     htmx.trigger(form, 'submit')
     input.removeAttribute('value')
+
+    const progressBar = document.querySelector('#progress-bar')
+    const meta = document.querySelector('#meta')
+    progressBar.click()
+    meta.click()
 })
