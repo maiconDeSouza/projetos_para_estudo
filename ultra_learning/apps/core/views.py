@@ -40,11 +40,13 @@ class Home(LoginRequiredMixin, View):
         add_up_the_hours_studied = 0
 
         for study_session in study_sessions:
-            add_up_the_hours_studied += study_session.duration_study_session
+            add_up_the_hours_studied += (
+                study_session.duration_study_session // 60
+            )
 
         total_goal_hours = project.total_goal_minutes // 60
         hours_remaining = (
-            project.total_goal_minutes - add_up_the_hours_studied
+            project.total_goal_minutes - (add_up_the_hours_studied // 60)
         ) // 60
 
         hours_studies = add_up_the_hours_studied // 60
@@ -61,6 +63,28 @@ class Home(LoginRequiredMixin, View):
         }
 
         return render(request, 'pages/home.html', context)
+
+
+class UpDurationStudySession(View):
+    def post(self, request):
+        study_sessions_id = request.POST.get('study-session-id')
+        study_session_duration = request.POST.get('study-session-duration')
+
+        study_session = StudySession.objects.get(id=study_sessions_id)
+        current = study_session.duration_study_session
+        total = current + int(study_session_duration)
+        study_session.duration_study_session = total
+
+        study_session.save()
+
+        today = timezone.localdate()
+
+        context = {
+            'study_session': study_session,
+            'today': today,
+        }
+
+        return render(request, 'partials/li.html', context)
 
 
 # projects = Project.objects.filter(owner=request.user)

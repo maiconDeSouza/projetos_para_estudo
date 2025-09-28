@@ -1,0 +1,27 @@
+<li id="session-{{study_session.id}}" {% if study_session.date == today  %}class="today"{% endif %}>
+    <article>
+        <header>
+            <h3>
+                <span>Dia</span>
+                <span>{{ study_session.day }}</span>
+            </h3>
+            <p>{{ study_session.date }}</p>
+        </header>
+        <footer>
+            <span>
+                {{ study_session.duration_mm_ss }}
+            </span>
+        </footer>
+    </article>
+    <form 
+        class="session-{{study_session.id}}" 
+        method="post"
+        hx-post="{% url "duration" %}"
+        hx-swap="outerHTML"
+        hx-target="#session-{{study_session.id}}"
+        style="display:none;"
+    >{% csrf_token %}
+        <input type="text" name="study-session-id" value="{{study_session.id}}">
+        <input type="text" name="study-session-duration" class="study-session-duration">
+    </form>
+</li>

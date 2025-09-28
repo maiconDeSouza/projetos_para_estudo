@@ -25,6 +25,11 @@ startBtn.addEventListener('click', e => {
 stopBtn.addEventListener('click', e => {
     clearInterval(rafId)
     timeDisplay.textContent = "00:00"
-    console.log(e.currentTarget.dataset.today)
-    console.log(elapsed / 60)
+    const li = document.querySelector('.today')
+    const form = li.querySelector('form')
+    const input = form.querySelector(".study-session-duration")
+
+    input.setAttribute('value', elapsed)
+    htmx.trigger(form, 'submit')
+    input.removeAttribute('value')
 })

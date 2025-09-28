@@ -49,5 +49,10 @@ class StudySession(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     description = models.CharField(max_length=500, null=True, blank=True)
 
+    def duration_mm_ss(self) -> str:
+        minutes = self.duration_study_session // 60
+        seconds = self.duration_study_session % 60
+        return f'{minutes} Min. {seconds:02d} Seg.'
+
     def __str__(self):
         return f'Dia {self.day} | {self.date} | {self.project}'
