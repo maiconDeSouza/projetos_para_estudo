@@ -1,6 +1,6 @@
 {% extends "pages/base.html" %}
 
-{% block title %}Faça seu login{% endblock title %}
+{% block title %}{{project.name}} - {{project.days}}{% endblock title %}
 
 {% block header %}
     <div class="header-home">
@@ -59,11 +59,6 @@
                         <p>{{ study_session.date }}</p>
                     </header>
                     <main>
-                        <h3>
-                            {% if study_session.name %}
-                                {{study_session.name}}
-                            {% endif %}
-                        </h3>
                         <p>
                             {% if study_session.description %}
                                 {{study_session.description}}
@@ -93,3 +88,10 @@
         {% endfor %}
     </ul>
 {% endblock main %}
+{% block footer %}
+    <div class="footer-frame">
+        <p>
+            {{project.description}}
+        </p>
+    </div>
+{% endblock footer %}

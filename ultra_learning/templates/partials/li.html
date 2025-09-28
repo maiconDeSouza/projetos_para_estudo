@@ -7,6 +7,13 @@
             </h3>
             <p>{{ study_session.date }}</p>
         </header>
+        <main>
+            <p>
+                {% if study_session.description %}
+                    {{study_session.description}}
+                {% endif %}
+            </p>
+        </main>
         <footer>
             <span>
                 {{ study_session.duration_mm_ss }}
