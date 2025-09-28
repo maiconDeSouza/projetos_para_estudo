@@ -10,7 +10,7 @@ class ProjectAdmin(admin.ModelAdmin):
 
 
 class StudySessionAdmin(admin.ModelAdmin):
-    list_display = ('project', 'user', 'name')
+    list_display = ('project', 'day', 'user', 'name')
 
 
 admin.site.register(Project, ProjectAdmin)

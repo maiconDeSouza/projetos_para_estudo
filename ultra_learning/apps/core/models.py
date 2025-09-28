@@ -46,8 +46,8 @@ class StudySession(models.Model):
         verbose_name='Duração do estudo no dia',
         default=0,
     )
-    name = models.CharField(max_length=100, null=True, blank=True)
-    description = models.CharField(max_length=500, null=True, blank=True)
+    name = models.CharField(max_length=10, null=True, blank=True)
+    description = models.CharField(max_length=38, null=True, blank=True)
 
     def duration_mm_ss(self) -> str:
         minutes = self.duration_study_session // 60
