@@ -28,7 +28,12 @@
                     style="width: {{percentage_completed}}%;"
                 ></span>
             </div>
-            <div class="home-progress-result">
+            <div 
+                class="home-progress-result"
+                hx-get="{% url "result" %}"
+                hx-trigger="click" 
+                hx-swap="outerHTML"
+            >
                 <span>{{hours_studied}}h / {{total_goal_hours}}h</span>
             </div>
         </div>

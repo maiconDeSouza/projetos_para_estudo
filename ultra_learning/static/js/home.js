@@ -35,6 +35,8 @@ stopBtn.addEventListener('click', e => {
 
     const progressBar = document.querySelector('#progress-bar')
     const meta = document.querySelector('#meta')
+    const result = document.querySelector('.home-progress-result')
     progressBar.click()
     meta.click()
+    result.click()
 })

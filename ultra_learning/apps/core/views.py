@@ -144,3 +144,30 @@ class MetaProject(View):
         }
 
         return render(request, 'partials/meta.html', context)
+
+
+class ProgressResult(View):
+    def get(self, request):
+        project = Project.objects.filter(owner=request.user).latest(
+            'start_date'
+        )
+
+        study_sessions = StudySession.objects.filter(project=project)
+
+        add_up_the_hours_studied = 0
+
+        for study_session in study_sessions:
+            add_up_the_hours_studied += (
+                study_session.duration_study_session // 60
+            )
+
+        total_goal_hours = project.total_goal_minutes // 60
+
+        hours_studies = add_up_the_hours_studied // 60
+
+        context = {
+            'total_goal_hours': total_goal_hours,
+            'hours_studies': hours_studies,
+        }
+
+        return render(request, 'partials/progress-result.html', context)
