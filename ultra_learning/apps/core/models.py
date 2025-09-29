@@ -49,6 +49,9 @@ class StudySession(models.Model):
     description = models.CharField(max_length=50, null=True, blank=True)
     important_date = models.BooleanField(default=False)
 
+    landmark = models.CharField(max_length=50, null=True, blank=True)
+    landmark_to_register = models.BooleanField(default=False)
+
     def duration_mm_ss(self) -> str:
         minutes = self.duration_study_session // 60
         seconds = self.duration_study_session % 60
