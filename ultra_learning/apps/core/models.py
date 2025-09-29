@@ -47,6 +47,7 @@ class StudySession(models.Model):
         default=0,
     )
     description = models.CharField(max_length=50, null=True, blank=True)
+    important_date = models.BooleanField(default=False)
 
     def duration_mm_ss(self) -> str:
         minutes = self.duration_study_session // 60

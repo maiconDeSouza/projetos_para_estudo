@@ -136,6 +136,10 @@
     font-size: .7rem;
 }
 
+.home-grid-card li article main p.important {
+    color: var(--red-border);
+    font-weight: 900;
+}
 
 .home-grid-card li article footer span {
     font-size: 1rem;
