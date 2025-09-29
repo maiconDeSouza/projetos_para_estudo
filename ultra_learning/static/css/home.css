@@ -84,7 +84,7 @@
 }
 
 .home-grid-card li {
-    height: 10rem;
+    height: 15rem;
     min-height:var(--cell-min-h);
     padding: var(--gap);
     background-color: var(--card);
@@ -131,6 +131,11 @@
     font-weight: 300;
 }
 
+.home-grid-card li article main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
 
 .home-grid-card li article main p {
     font-size: .7rem;

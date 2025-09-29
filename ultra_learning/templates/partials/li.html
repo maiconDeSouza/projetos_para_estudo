@@ -8,14 +8,14 @@
             <p>{{ study_session.date }}</p>
         </header>
         <main>
-            {% if study_session.description %}
-                <p {% if study_session.important_date %}class="important"{% endif %}>
-                    {{study_session.description}}
-                </p>
-            {% endif %}
             {% if study_session.landmark %}
                 <p {% if study_session.landmark_to_register %}class="landmark"{% endif %}>
                     {{study_session.landmark}}
+                </p>
+            {% endif %}
+            {% if study_session.description %}
+                <p {% if study_session.important_date %}class="important"{% endif %}>
+                    {{study_session.description}}
                 </p>
             {% endif %}
         </main>
