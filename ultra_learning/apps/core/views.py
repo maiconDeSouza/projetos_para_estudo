@@ -163,11 +163,11 @@ class ProgressResult(View):
 
         total_goal_hours = project.total_goal_minutes // 60
 
-        hours_studies = add_up_the_hours_studied // 60
+        hours_studied = add_up_the_hours_studied // 60
 
         context = {
             'total_goal_hours': total_goal_hours,
-            'hours_studies': hours_studies,
+            'hours_studied': hours_studied,
         }
 
         return render(request, 'partials/progress-result.html', context)
