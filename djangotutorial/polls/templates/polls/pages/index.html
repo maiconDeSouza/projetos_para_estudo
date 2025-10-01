@@ -1,20 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% include "polls/partials/fonts.html" %}
-    {% include "polls/partials/css.html" %}
-    <title>Document</title>
-</head>
-<body>
-    <div class="wrap">
-        <header>
-            {% include "polls/partials/header.html" %}
-        </header>
-        <main></main>
-        <footer></footer>
+{% extends "polls/pages/base.html" %}
+
+{% block title %}Enquetes{% endblock title %}
+
+{% block main %}
+    <div class="container">
+        <div class="index-title">
+            <h2>
+                Enquentes
+            </h2>
+        </div>
+        <div class="index-polls">
+            {% if questions %}
+                <ul>
+                    {% for question in questions %}
+                        <li class="card">
+                            <a href="{{question.id}}">
+                                <span>{{question.question_text}}</span>
+                                <span>Total de votos : <span class="badge">{{question.total_votes_property}}</span></span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Não há enquetes disponíveis.</p>
+            {% endif %}
+        </div>
     </div>
-    {% include "polls/partials/js.html" %}
-</body>
-</html>
+{% endblock main %}

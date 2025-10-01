@@ -4,5 +4,9 @@ from .models import Choice, Question
 # Register your models here.
 
 
-admin.site.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'question_text')
+
+
+admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice)

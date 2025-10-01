@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include "polls/partials/fonts.html" %}
+    {% include "polls/partials/css.html" %}
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            {% include "polls/partials/header.html" %}
+        </header>
+        <main>
+            {% block main %}{% endblock main %}
+        </main>
+        <footer></footer>
+    </div>
+    {% include "polls/partials/js.html" %}
+</body>
+</html>
