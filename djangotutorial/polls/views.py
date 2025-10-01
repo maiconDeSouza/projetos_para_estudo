@@ -1,6 +1,8 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import render
+from django.views import View
 
 
 # Create your views here.
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+class Index(View):
+    def get(self, request):
+        return render(request, 'polls/pages/index.html')

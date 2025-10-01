@@ -1,0 +1,162 @@
+:root{
+  /* Fontes (nomes usados nas variáveis) */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-serif: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-mono: "Fira Code", "Courier New", monospace;
+
+  /* ---------- CORES (semanticamente nomeadas) ---------- */
+  --color-bg: #f7fafc;              /* fundo da página */
+  --color-surface: #ffffff;         /* cards / superfície */
+  --color-primary: #2563eb;         /* azul - ações primárias */
+  --color-primary-600: #1e40af;
+  --color-secondary: #06b6d4;       /* ciano para destaques */
+  --color-accent: #f59e0b;          /* acento (ex.: votos, badges) */
+  --color-success: #16a34a;
+  --color-danger: #ef4444;
+  --color-border: #e6e9ef;
+  --color-muted: #6b7280;           /* textos secundários */
+  --color-text: #0f172a;            /* texto principal */
+  --color-on-primary: #ffffff;      /* texto em botões primários */
+
+  /* ---------- TIPOGRAFIA / ESCALAS ---------- */  
+  --fs-base: 16px;            
+  --fs-sm: 0.875rem;                /* pequenos */
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.25rem;
+  --lh-base: 1.5;
+
+  /* ---------- ESPAÇAMENTOS ---------- */
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+
+  /* ---------- RAIOS / SOMBRA / BORDAS ---------- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 2px rgba(15,23,42,0.06);
+  --shadow-md: 0 6px 18px rgba(15,23,42,0.08);
+
+
+  /* ---------- TRANSIÇÃO / FOCUS ---------- */
+  --transition: all 300ms ease-in-out;
+  --focus-ring: 3px; /* usado com outline/box-shadow para acessibilidade */
+
+  /* ---------- Tamanhos úteis para UI de polls ---------- */
+  --btn-height: 40px;               /* altura padrão dos botões */
+  --control-min-touch: 44px;        /* alvo mínimo para toque */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 70rem;
+  padding: var(--space-4);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--btn-height);
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+  font-size: var(--fs-md);
+}
+
+.btn-primary:hover { transform: translateY(-1px); }
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring) rgba(37,99,235,0.18);
+}
+
+/* Input / Select */
+.input, textarea, select {
+  width: 100%;
+  padding: calc(var(--space-3)) calc(var(--space-3));
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--fs-md);
+  box-shadow: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 var(--focus-ring) rgba(37,99,235,0.12);
+  outline: none;
+}
+
+/* Card de enquete (poll) */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+/* Badge de votos */
+.badge {
+  display: inline-block;
+  padding: 0 var(--space-2);
+  height: 24px;
+  line-height: 24px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--fs-base);
+  font-size: var(--font-sans);
+  line-height: var(--lh-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.wrap {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: 4.5rem 1fr 3.5rem;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+footer {
+  background-color: var(--color-primary-600);
+}
