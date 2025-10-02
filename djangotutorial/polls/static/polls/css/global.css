@@ -44,6 +44,7 @@
 
   /* ---------- TRANSIÇÃO / FOCUS ---------- */
   --transition: all 300ms ease-in-out;
+  --transition-2: all 600ms ease-in-out;
   --focus-ring: 3px; /* usado com outline/box-shadow para acessibilidade */
 
   /* ---------- Tamanhos úteis para UI de polls ---------- */
@@ -81,6 +82,12 @@
   box-shadow: var(--shadow-sm);
   font-weight: 600;
   font-size: var(--fs-md);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  transition: var(--transition);
 }
 
 .btn-primary:hover { transform: translateY(-1px); }
