@@ -1,8 +1,0 @@
-main .about {
-    width: 37.5rem;
-    max-width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
