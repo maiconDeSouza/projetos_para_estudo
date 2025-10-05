@@ -1,12 +1,11 @@
 [project]
-name = "web"
+name = "my-blog-pro"
 version = "0.1.0"
 requires-python = ">=3.13"
 dependencies = [
     "django>=5.2.7",
-    "dotenv>=0.9.9",
     "psycopg2-binary>=2.9.10",
-    "uvicorn>=0.37.0",
+    "python-dotenv>=1.1.1",
 ]
 
 [dependency-groups]
