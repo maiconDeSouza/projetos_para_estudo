@@ -11,10 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,17 +22,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY ')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') == 'True'
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config(
+    'ALLOWED_HOSTS', cast=Csv(), default='localhost,127.0.0.1'
+)
 
 
 # Application definition
 
-DJANGO_APPS = [
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,13 +42,6 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
-MY_BLOG_PRO_APPS = [
-    'apps.posts.apps.PostsConfig',
-]
-
-INSTALLED_APPS = DJANGO_APPS + MY_BLOG_PRO_APPS
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,11 +79,11 @@ WSGI_APPLICATION = 'setup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('POSTGRES_HOST'),
-        'PORT': os.environ.get('POSTGRES_PORT'),
+        'NAME': config('POSTGRES_DB'),
+        'USER': config('POSTGRES_USER'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'PORT': config('PORT'),
+        'HOST': config('HOST'),
     }
 }
 
@@ -100,20 +93,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib'
-        '.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.'
+        'auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib'
-        '.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.'
+        'auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib'
-        '.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.'
+        'auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib'
-        '.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.'
+        'auth.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -121,9 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
