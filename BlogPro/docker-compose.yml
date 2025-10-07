@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: blogpro_postgres
+    environment:
+      # O PostgreSQL usa essas variáveis padrão para configurar a DB inicial
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      # Garante que os dados do banco persistam no seu disco, mesmo se o container for deletado.
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      # Mapeia a porta 5432 do container para a porta 5430 da sua máquina local.
+      - "${PORT}:5432"
+    restart: always
+    # O user/pass/db serão lidos do arquivo .env
+
+volumes:
+  # Definição do volume que será usado pelo serviço 'db' acima.
+  postgres_data:
