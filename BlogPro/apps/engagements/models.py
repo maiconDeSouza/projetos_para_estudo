@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.db.models import UniqueConstraint
 
 from apps.posts.models import Post
 from apps.comments.models import Comment
@@ -13,10 +14,11 @@ class LikePost(models.Model):
         Post, on_delete=models.CASCADE, related_name='likes'
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    total = models.PositiveIntegerField(default=0, editable=False)
 
-    def __str__(self):
-        return f'{self.post.title} - {self.total}'
+    class Meta:
+        constraints = [
+            UniqueConstraint(fields=['post', 'user'], name='unique_post_like')
+        ]
 
 
 class LikeComment(models.Model):
@@ -24,7 +26,10 @@ class LikeComment(models.Model):
         Comment, on_delete=models.CASCADE, related_name='likes'
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    total = models.PositiveIntegerField(default=0, editable=False)
 
-    def __str__(self):
-        return f'{self.total}'
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=['comment', 'user'], name='unique_comment_like'
+            )
+        ]

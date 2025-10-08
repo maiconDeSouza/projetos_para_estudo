@@ -9,15 +9,13 @@ User = get_user_model()
 
 # Create your models here.
 class Post(models.Model):
-    author = models.ForeignKey(
-        User, on_delete=models.SET_DEFAULT, default='Anônimo'
-    )
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=300, unique=True)
     cover = models.ImageField(upload_to='cover/%Y/%m/%d/')
     content = models.TextField()  # será um editor de texto
     published = models.BooleanField(default=False)
-    tags = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
+    tags = models.ManyToManyField(Tag)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
