@@ -41,7 +41,11 @@ DJANGO_APPS = [
 ]
 
 BLOG_PRO_APPS = [
+    'apps.accounts.apps.AccountsConfig',
+    'apps.comments.apps.CommentsConfig',
     'apps.posts.apps.PostsConfig',
+    'apps.tags.apps.TagsConfig',
+    'apps.engagements.apps.EngagementsConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + BLOG_PRO_APPS
