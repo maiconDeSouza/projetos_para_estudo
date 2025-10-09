@@ -12,3 +12,5 @@ class Home(View):
         context = {
             'posts': posts,
         }
+
+        return render(request, 'posts/pages/index.html', context)
