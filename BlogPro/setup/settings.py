@@ -41,17 +41,20 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
+THIRD_PARTIES_APPS = [
+    'allauth',
+    'allauth.account',
+]
+
 BLOG_PRO_APPS = [
     'apps.accounts.apps.AccountsConfig',
     'apps.comments.apps.CommentsConfig',
     'apps.posts.apps.PostsConfig',
     'apps.tags.apps.TagsConfig',
     'apps.engagements.apps.EngagementsConfig',
-    'allauth',
-    'allauth.account',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + BLOG_PRO_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTIES_APPS + BLOG_PRO_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,7 +71,9 @@ ROOT_URLCONF = 'setup.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
