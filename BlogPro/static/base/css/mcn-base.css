@@ -1,0 +1,52 @@
+/* --- coloque depois do bootstrap.css --- */
+
+/* reset / segurança */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* grid base (mobile-first) */
+.row.mcn-grid-card {
+  display: block; /* neutraliza .row apenas para esse wrapper */
+  margin-block: 2rem;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+}
+
+.row.mcn-grid-card > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* comportamento padrão */
+  align-items: start;
+}
+
+/* garante que cada li e card não estourem */
+.row.mcn-grid-card > ul > li { margin: 0; padding: 0; }
+.row.mcn-grid-card .card { height: 100%; display:flex; flex-direction:column; }
+.row.mcn-grid-card .card-img-top { width:100%; height:160px; object-fit:cover; display:block; }
+
+/* === aqui forçamos NO MÁXIMO 3 colunas em telas grandes (>= 992px) === */
+@media (min-width: 992px) {
+  .row.mcn-grid-card > ul {
+    grid-template-columns: repeat(3, 1fr); /* exatamente 3 colunas iguais */
+  }
+}
+
+/* opcional: se quiser 2 colunas em tamanhos médios (tablet) */
+/*
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .row.mcn-grid-card > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+*/
+
+/* ajuste para telas muito estreitas */
+@media (max-width: 360px) {
+  .row.mcn-grid-card > ul { grid-template-columns: 1fr; gap: .75rem; }
+  .row.mcn-grid-card .card-img-top { height: 140px; }
+}

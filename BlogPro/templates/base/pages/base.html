@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% include "base/partials/statics.html" %}
-    <title>Document</title>
+    <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-    <header>
-        {% include "base/partials/nav.html" %}
-    </header>
+    {% include "base/partials/nav.html" %}
     <main>
-
+        {% block content %}{% endblock content %}
     </main>
-    <footer>
-
-    </footer>
+    {% include "base/partials/footer.html" %}
 </body>
 </html>

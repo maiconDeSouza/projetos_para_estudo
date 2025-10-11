@@ -1,1 +1,75 @@
 {% extends "base/pages/base.html" %}
+
+{% block title %}Bem-vindo ao BlogPro{% endblock title %}
+
+{% block content %}
+<div class="container text-center">
+    <div class="row mcn-grid-card">
+        <ul>
+            {% for post in posts %}
+                {% include "posts/partials/li-posts.html" %}
+            {% endfor %}
+        </ul>
+    </div>
+    <nav aria-label="Navegação de páginas" class="mt-4">
+    <ul class="pagination justify-content-center align-items-center">
+        {# botão anterior #}
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
+            <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link" aria-hidden="true">&laquo;</span>
+        </li>
+        {% endif %}
+
+        {# numerações com reticências inteligente #}
+        {% for num in page_obj.paginator.page_range %}
+        {# sempre mostra primeira e última página #}
+        {% if num == 1 or num == page_obj.paginator.num_pages %}
+            {% if num == page_obj.number %}
+            <li class="page-item active" aria-current="page"><span class="page-link">{{ num }}</span></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% else %}
+            {# mostra páginas próximas à página atual (range de -2 a +2) #}
+            {% if num >= page_obj.number|add:'-2' and num <= page_obj.number|add:'2' %}
+            {% if num == page_obj.number %}
+                <li class="page-item active" aria-current="page"><span class="page-link">{{ num }}</span></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+            {% else %}
+            {# adiciona reticência somente uma vez antes/depois do bloco visível #}
+            {% if num == page_obj.number|add:'-3' or num == page_obj.number|add:'3' %}
+                <li class="page-item disabled"><span class="page-link">…</span></li>
+            {% endif %}
+            {% endif %}
+        {% endif %}
+        {% endfor %}
+
+        {# botão próxima #}
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Próxima">
+            <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link" aria-hidden="true">&raquo;</span>
+        </li>
+        {% endif %}
+    </ul>
+
+    <div class="text-center mt-2 small text-muted">
+        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+    </div>
+</nav>
+
+</div>
+{% endblock content %}

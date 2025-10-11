@@ -1,0 +1,70 @@
+<footer class="bg-dark text-light pt-5">
+  <div class="container">
+    <div class="row gy-4">
+      <!-- Marca / Sobre -->
+      <div class="col-12 col-md-4">
+        <a href="/" class="d-inline-block mb-2 text-decoration-none">
+          <h4 class="text-white mb-0">BlogPro</h4>
+        </a>
+        <p class="small text-muted mt-2">
+          Uma frase curta sobre a empresa — missão, serviços ou slogan. 
+        </p>
+
+        <div class="d-flex gap-2 mt-3">
+          <a class="btn btn-outline-light btn-sm" href="#" aria-label="Facebook">FB</a>
+          <a class="btn btn-outline-light btn-sm" href="#" aria-label="Instagram">IG</a>
+          <a class="btn btn-outline-light btn-sm" href="#" aria-label="LinkedIn">IN</a>
+        </div>
+      </div>
+
+      <!-- Links rápidos -->
+      <div class="col-6 col-md-2">
+        <h6 class="text-white">Links</h6>
+        <ul class="list-unstyled small">
+          <li><a class="text-decoration-none text-primary" href="#">Serviços</a></li>
+          <li><a class="text-decoration-none text-primary" href="#">Produtos</a></li>
+          <li><a class="text-decoration-none text-primary" href="#">Sobre</a></li>
+          <li><a class="text-decoration-none text-primary" href="#">Contato</a></li>
+        </ul>
+      </div>
+
+      <!-- Recursos -->
+      <div class="col-6 col-md-3">
+        <h6 class="text-white">Recursos</h6>
+        <ul class="list-unstyled small">
+          <li><a class="text-decoration-none text-primary" href="#">Blog</a></li>
+          <li><a class="text-decoration-none text-primary" href="#">Ajuda</a></li>
+          <li><a class="text-decoration-none text-primary" href="#">FAQ</a></li>
+          <li><a class="text-decoration-none text-primary" href="#">Termos</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter / ação -->
+      <div class="col-12 col-md-3">
+        <h6 class="text-light">Receba novidades</h6>
+        <p class="small text-light">Assine nossa newsletter para promoções e novidades.</p>
+
+        <form class="d-flex" role="search" onsubmit="event.preventDefault(); /*substitua por envio real*/">
+          <label for="footer-email" class="visually-hidden">Email</label>
+          <input id="footer-email" type="email" class="form-control form-control-sm me-2" placeholder="seu@exemplo.com" required>
+          <button class="btn btn-primary btn-sm" type="submit">Enviar</button>
+        </form>
+      </div>
+    </div>
+
+    <hr class="border-top border-secondary mt-4">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pb-3">
+      <small class="text-light">© <span id="ano-atual"></span> BlogPro. Todos os direitos reservados.</small>
+      <div class="mt-2 mt-md-0">
+        <a class="text-light text-decoration-none me-3 small" href="#">Política de Privacidade</a>
+        <a class="text-light text-decoration-none small" href="#">Mapa do site</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Script opcional para mostrar o ano atual (cole antes do fechamento do body) -->
+<script>
+  document.getElementById('ano-atual').textContent = new Date().getFullYear();
+</script>
