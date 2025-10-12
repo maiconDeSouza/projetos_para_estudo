@@ -21,7 +21,7 @@ class Home(ListView):
     model = Post
     template_name = 'posts/pages/index.html'
     context_object_name = 'posts'
-    paginate_by = 10
+    paginate_by = 9
 
     def get_queryset(self):
         return Post.objects.filter(published=True)
