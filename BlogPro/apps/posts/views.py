@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.views.generic import ListView
 
@@ -25,3 +25,14 @@ class Home(ListView):
 
     def get_queryset(self):
         return Post.objects.filter(published=True)
+
+
+class PostDetail(View):
+    def get(self, request, slug):
+        post = get_object_or_404(Post, slug=slug)
+
+        context = {
+            'post': post,
+        }
+
+        return render(request, 'posts/pages/details.html', context)
