@@ -24,6 +24,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('apps.posts.urls')),
+    path(
+        '/engagements',
+        include('apps.engagements.urls', namespace='engagements'),
+    ),
 ]
 
 if settings.DEBUG:

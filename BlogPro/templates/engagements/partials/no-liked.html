@@ -1,0 +1,15 @@
+<form 
+    method="post"
+    hx-post="{% url "engagements:liked" %}"
+    hx-swap="outerHTML"
+>{% csrf_token %}
+    <button 
+        type="submit" 
+        class="btn btn-primary btn-sm d-flex align-items-center"
+        name="post-link"
+        value="{{post.pk}}"
+    >
+        <i class="bi {% if liked %}bi-hand-thumbs-up-fill{% else %}bi-hand-thumbs-up{% endif %}"></i>
+        <span class="badge bg-white text-primary ms-2">{{likes}}</span>
+    </button>
+</form>
