@@ -1,0 +1,16 @@
+main #home {
+    display: flex;
+    min-height: calc(100vh - 92.8px);
+
+    .cta {
+        margin-top: 5%;
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+
+        h1 {
+            font-size: 4rem;
+        }
+    }
+}
