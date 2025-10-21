@@ -71,3 +71,32 @@ main #home {
     }
 }
 
+@media screen and (max-width: 1170px) {
+    main #home {
+        .cta {
+            width: 100%;
+            align-items: center;
+
+            h1 {
+                text-align: center;
+                font-size: 3rem;
+            }
+
+            p {
+                text-align: center;
+            }
+
+            .list-cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        .banner {
+            display: none;
+        }
+
+        .shape {
+            display: none;
+        }
+    }
+}
