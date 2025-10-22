@@ -1,0 +1,16 @@
+#menu {
+    min-height: calc(100vh - 92.8px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.75rem;
+
+    .list-dishes {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+        gap: 1rem;                
+        padding: 0.5rem;
+    }
+}

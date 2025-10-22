@@ -27,6 +27,15 @@ section {
     padding: 1.75rem 8%;
 }
 
+.section_title {
+    color: var(--color-primary);
+    font-size: 1.563rem;
+}
+
+.section_description {
+    font-size: 1.875rem;
+}
+
 .btn_default {
     padding: 0.25rem 0.875rem;
     background-color: var(--color-bg-button-default);
