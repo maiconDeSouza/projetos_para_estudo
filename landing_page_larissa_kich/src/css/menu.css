@@ -9,8 +9,27 @@
     .list-dishes {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
-        gap: 1rem;                
-        padding: 0.5rem;
+        grid-template-columns: repeat(auto-fit,minmax(min(18rem, 100%), 1fr));
+        align-items: start;              
+        justify-items: center;
+        gap: 1rem;
+
+        .dishe {
+            background-color: #fff;
+            border: 2px solid var(--color-cta-text);
+            border-radius: 12px;
+            padding: .5rem;
+
+            article {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+
+                h3, p {
+                    text-align: center;
+                }
+            }
+        }
     }
 }
