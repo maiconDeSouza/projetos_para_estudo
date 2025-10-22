@@ -15,10 +15,12 @@
         gap: 1rem;
 
         .dishe {
+            position: relative;
             background-color: #fff;
-            border: 2px solid var(--color-cta-text);
             border-radius: 12px;
             padding: .5rem;
+            box-shadow: 0px 0px 14px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
 
             article {
                 display: flex;
@@ -28,6 +30,23 @@
 
                 h3, p {
                     text-align: center;
+                }
+
+                .dishe-heart {
+                    position: absolute;
+                    top: -10px;
+                    right: -10px;
+                    width: 4.3rem;
+                    height: 4.3rem;
+                    background-color: var(--color-primary);
+                    color: #fff;
+                    font-size: 1.635rem;
+                    border-radius: 0 37.5px 0 42.5px;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    
                 }
             }
         }
