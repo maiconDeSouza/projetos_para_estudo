@@ -1,6 +1,10 @@
 header {
     width: 100%;
     padding: 1.75rem 8%;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background-color: var(--color-bg);
 
     #id-navbar {
         width: 100%;
