@@ -1,5 +1,43 @@
 #hero {
+    background-color: var(--color-secondary);
     .hero--nav {
+        padding: var(--spacing-md);
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+            width: 10rem;
+        }
+
+        .hero--list-desktop {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+
+            a {
+                display: block;
+                padding: var(--spacing-sm) var(--spacing-md);
+                color: var(--color-neutral-white);
+                font-weight: 900;
+                border-bottom: 3px solid transparent;
+                transition: all var(--transition-medium);
+
+                &:hover {
+                    color: var(--color-primary);
+                    border-bottom-color: var(--color-primary);
+                }
+            }
+        }
+
+        .hero--button-mobile {
+            display: none;
+            background-color: transparent;
+            border: none;
+        }
+
+        .hero--list-mobile {
+            display: none;
+        }
     }
 }

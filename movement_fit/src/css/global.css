@@ -31,6 +31,12 @@
    /* Border radius */
    --border-radius-default: 8px;
 
+   /* espaçamento */
+   --spacing-sm: 0.5rem;   /* Tamanho pequeno (ex: 8px, se a fonte base for 16px) */
+   --spacing-md: 1rem;     /* Tamanho médio (o que você já usa, ex: 16px) */
+   --spacing-lg: 1.5rem;   /* Tamanho grande (ex: 24px) */
+   --spacing-xl: 2rem;     /* Tamanho extra grande (ex: 32px) */
+
    /* Media Queries*/
    --breakpoint-tablet-down: 1023px; /* Limite superior do Tablet (e-ou Desktop pequeno) */
    --breakpoint-mobile-down: 599px;  /* Limite superior do Mobile */
@@ -50,6 +56,10 @@
 }
 
 body {
+    min-height: 100dvh;
+    display: grid;
+    row-gap: var(--spacing-xl);
+    grid-template-rows: auto 1fr auto;
     background-color: var(--color-neutral-light);
 }
 

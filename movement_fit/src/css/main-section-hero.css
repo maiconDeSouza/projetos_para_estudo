@@ -1,0 +1,24 @@
+.section-hero {
+    height: 25rem;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    
+    .title-hero {
+        width: 50%;
+
+        h2 {
+            font-size: 3rem;
+            color: var(--color-primary);
+        }
+    }
+
+    .img-hero {
+        width: 50%;
+        height: 100%;
+        background-image: url('../image/cover-hero.webp');
+        background-size: cover;
+        border-radius: var(--border-radius-default);
+    }
+
+}
