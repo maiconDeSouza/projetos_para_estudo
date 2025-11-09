@@ -31,6 +31,10 @@
    /* Border radius */
    --border-radius-default: 8px;
 
+   /* Media Queries*/
+   --breakpoint-tablet-down: 1023px; /* Limite superior do Tablet (e-ou Desktop pequeno) */
+   --breakpoint-mobile-down: 599px;  /* Limite superior do Mobile */
+
 }
 
 * {
