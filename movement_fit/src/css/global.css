@@ -21,7 +21,7 @@
   /* Sombras geralmente usam a cor do fundo ou a cor primária com opacidade */
   --shadow-small: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --shadow-large: 0 8px 24px rgba(30, 30, 47, 0.2); /* Usando a cor primária com opacidade */
+  --shadow-large: 8px 8px 24px rgba(30, 30, 47, 0.2); /* Usando a cor primária com opacidade */
 
   /* Variáveis para Transições (Transitions) */
   --transition-fast: 0.2s ease-in-out;
@@ -67,4 +67,23 @@ body {
     width: 90%;
     max-width: 75rem;
     margin: 0 auto;
+    padding: var(--spacing-sm);
+}
+
+.btn {
+    display: block;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius-default);  
+}
+
+.btn-action {
+    background-color: var(--color-secondary);
+    color: var(--color-neutral-white);
+    font-weight: 900;
+    transition: all var(--transition-medium);
+
+    &:hover {
+        background-color: var(--color-secondary-hover);
+        transform: scale(1.1);
+    }
 }

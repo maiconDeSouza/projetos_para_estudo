@@ -1,0 +1,36 @@
+#abount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    background-color: var(--color-neutral-medium);
+
+    .title-abount {
+        width: 50%;
+
+        h3 {
+            font-size: 2rem;
+        }
+
+        p {
+            line-height: 2;
+
+            strong {
+                color: var(--color-secondary);
+            }
+
+            em {
+                color: var(--color-neutral-dark);
+            }
+        }
+    }
+
+    .img-abount {
+        width: 50%;
+    }
+
+    .img-abount img {
+        width: 100%;
+        border-radius: var(--border-radius-default);
+    }
+}

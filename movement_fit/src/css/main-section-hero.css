@@ -10,6 +10,10 @@
         h2 {
             font-size: 3rem;
             color: var(--color-primary);
+
+            span {
+                color: var(--color-secondary);
+            }
         }
     }
 
