@@ -21,7 +21,7 @@
   /* Sombras geralmente usam a cor do fundo ou a cor primária com opacidade */
   --shadow-small: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --shadow-large: 8px 8px 24px rgba(30, 30, 47, 0.2); /* Usando a cor primária com opacidade */
+  --shadow-large: 8px 8px 24px 10px rgba(30, 30, 47, 0.2); /* Usando a cor primária com opacidade */
 
   /* Variáveis para Transições (Transitions) */
   --transition-fast: 0.2s ease-in-out;
