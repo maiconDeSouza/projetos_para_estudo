@@ -1,0 +1,57 @@
+.header-major {
+    display: grid;
+    place-items: center;
+
+    height: 12.5rem;
+    background-color: var(--gray-700);
+    position: relative;
+}
+
+.form-search {
+    width: 46rem;
+    
+
+    display: flex;
+    gap: .5rem;
+
+    position: absolute;
+    bottom: -1.6875rem;
+
+    
+
+
+    input {
+        flex: 1;
+        height: 3.375rem;
+        padding: 1rem;
+        background-color: var(--gray-500);
+        border: none;
+        border-radius: var(--border-radius);
+        outline: 1px solid var(--gray-700);
+        color: var(--gray-100);
+        font-size: var(--font-normal);
+        transition: var(--transition-all);
+
+        &:placeholder-shown {
+            color: var(--gray-300);
+        }
+
+        &:focus {
+            outline: 1px solid var(--purple-dark);
+        }
+    }
+
+    button {
+        background-color: var(--blue-dark);
+        color: var(--gray-100);
+        padding: 1rem;
+        border: none;
+        border-radius: var(--border-radius);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+        cursor: pointer;
+    }
+}

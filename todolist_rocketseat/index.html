@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <title>Tudo List</title>
+</head>
+<body>
+    <header class="header-major">
+        <img src="./src/images/logo.svg" alt="logo do todo list com foguete">
+        <form action="" class="form-search">
+            <input 
+                type="text" 
+                name="new-task" 
+                id="new-task" 
+                aria-label="new task"
+                placeholder="adicione uma nova tarefa"
+                aria-placeholder="adicione uma nova tarefa"
+            >
+            <button type="button">
+                <span>Criar</span>
+                <img src="./src/images/plus.svg" alt="icone de plus">
+            </button>
+        </form>
+    </header>
+    <main>
+        <div class="completed-tasks">
+            <p>
+                tarefas criadas <span>0</span>
+            </p>
+            <p>
+                concluídas <span>0</span>
+            </p>
+        </div>
+        <ul class="list-taks">
+            <li>
+                <article>
+                    <form class="form-checkbox">
+                        <input type="checkbox" name="check" id="check" aria-label="checkbox de tarefa concluida">
+                    </form>
+                    <p class="text-task">
+                        Integer urna interdum massa libero auctor neque turpis 
+                        turpis semper. Duis vel sed fames integer.
+                    </p>
+                    <div class="trash">
+                        <button type="button" aria-label="lixeira parara apagar">
+                            <img src="./src/images/trash.svg" alt="lixeira parara apagar">
+                        </button>
+                    </div>
+                </article>
+            </li>
+        </ul>
+    </main>
+</body>
+</html>
