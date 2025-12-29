@@ -10,42 +10,46 @@
     <header id="header">
         <div class="container">
             <img src="./src/images/logo-branco-1.png" alt="logo" class="header__logo">
-            <nav class="header__nav">
-                <ul>
+            <nav class="header__nav" aria-label="menu principal que está no topo da pagina">
+                <ul aria-label="lista de links do menu principal">
                     <li>
-                        <a href="#">Programação</a>
+                        <a href="#" aria-label="link para acessar as promoções">Programação</a>
                     </li>
                     <li>
-                        <a href="#">Categorias</a>
+                        <a href="#" aria-label="link para acessar categorias">Categorias</a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="#" aria-label="link para acessar para escolher seu local">
                             <i class="bi bi-geo-alt-fill"></i>
                             Seu local
                         </a>
                     </li>
                 </ul>
             </nav>
-            <form class="header__form">
-                <label aria-label="search">
-                    <input type="search" placeholder="O que você procura?">
-                    <i class="bi bi-search"></i>
+            <form class="header__form" aria-label="formulário de pesquisa no site">
+                <label aria-label="area de pesquisa">
+                    <input 
+                        type="search" 
+                        placeholder="O que você procura?" 
+                        aria-placeholder="input de pesquisa com o texto O que você procura?"
+                    >
+                    <i class="bi bi-search" aria-label="icone de pesquisa"></i>
                 </label>
             </form>
         </div>
     </header>
     <main id="main">
-        <section class="gallery container">
-            <img src="./src/images/Banner1@2x.webp" alt="Banner 1" class="main__gallery_banner1">
-            <img src="./src/images/Banner2@2x.webp" alt="Banner 2" class="main__gallery_banner2">
-            <img src="./src/images/Banner3@2x.webp" alt="Banner 3" class="main__gallery_banner3">
-            <img src="./src/images/Banner4@2x.webp" alt="Banner 4" class="main__gallery_banner4">
+        <section class="gallery container" aria-label="seção com fotos dos eventos">
+            <img src="./src/images/Banner1@2x.webp" alt="Banner 1 foto de balé" class="main__gallery_banner1">
+            <img src="./src/images/Banner2@2x.webp" alt="Banner 2 foto de luzes de festa" class="main__gallery_banner2">
+            <img src="./src/images/Banner3@2x.webp" alt="Banner 3 foto pessoa em performace" class="main__gallery_banner3">
+            <img src="./src/images/Banner4@2x.webp" alt="Banner 4 foto teatro" class="main__gallery_banner4">
         </section>
-        <section class="category container">
+        <section class="category container" aria-label="seção nossas categorias de eventos">
             <div class="category_container">
                 <div class="category_category_container_section">
                     <h2>Categorias</h2>
-                    <ul>
+                    <ul aria-label="lista com nossos eventos">
                         <li>
                             <article>Show</article>
                         </li>
@@ -74,17 +78,25 @@
                 </div>
                 <div class="category_category_container_emphasis">
                     <h2>Destaque</h2>
-                    <img src="./src/images/destaque.png" alt="foto de destaque de capoeristas lutando">
+                    <img 
+                        src="./src/images/destaque.png" 
+                        alt="foto de destaque de capoeristas lutando" 
+                        aria-label="evento em destaque"
+                    >
                 </div>
             </div>
         </section>
-        <section class="upcoming-events container">
+        <section class="upcoming-events container" aria-label="seção dos proximos eventos">
             <h2>Proximos eventos</h2>
-            <ul>
+            <ul aria-label="lista com os proximos eventos">
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/Card1@2x.webp" alt="Card evento em São Paulo">
+                            <img 
+                                src="./src/images/Card1@2x.webp" 
+                                alt="Card evento em São Paulo"
+                                aria-label="imagem com foto do proxímo evento espetaculo XYZ"
+                            >
                         </header>
                         <div class="upcoming-events_content">
                             <h3>Espetáculo Nome XYZ</h3>
@@ -92,7 +104,13 @@
                             <footer>
                                 <div class="upcoming-events_location">
                                     <p>São Paulo | SP</p>
-                                    <a href="#" class="btn">Ver</a>
+                                    <a 
+                                        href="#" 
+                                        class="btn"
+                                        aria-label="link para acessar o espetaculo XYZ"
+                                    >
+                                        Ver
+                                    </a>
                                 </div>
                             </footer>
                         </div>
@@ -101,7 +119,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/Card2@2x.webp" alt="Card evento latino ">
+                            <img 
+                                src="./src/images/Card2@2x.webp" 
+                                alt="Card evento latino"
+                                aria-label="imagem do evento latino"
+                            >
                         </header>
                         <div class="upcoming-events_content">
                             <h3>Festival Latina</h3>
@@ -109,7 +131,13 @@
                             <footer>
                                 <div class="upcoming-events_location">
                                     <p>São Paulo | SP</p>
-                                    <a href="#" class="btn">Ver</a>
+                                    <a 
+                                        href="#" 
+                                        class="btn"
+                                        aria-label="link para acessar evento latino"
+                                    >
+                                        Ver
+                                    </a>
                                 </div>
                             </footer>
                         </div>
@@ -118,7 +146,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/Card3@2x.webp" alt="Card festival de cinema">
+                            <img 
+                                src="./src/images/Card3@2x.webp" 
+                                alt="Card festival de cinema"
+                                aria-label="imagem do evento de cinema"
+                            >
                         </header>
                         <div class="upcoming-events_content">
                             <h3>Festival de Cinema</h3>
@@ -126,7 +158,13 @@
                             <footer>
                                 <div class="upcoming-events_location">
                                     <p>São Paulo | SP</p>
-                                    <a href="#" class="btn">Ver</a>
+                                    <a 
+                                        href="#" 
+                                        class="btn"
+                                        aria-label="link para acessar a seção de cinema"
+                                    >
+                                        Ver
+                                    </a>
                                 </div>
                             </footer>
                         </div>
@@ -135,7 +173,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/Card4@2x.webp" alt="Card festival de cinema">
+                            <img 
+                                src="./src/images/Card4@2x.webp" 
+                                alt="Card corrida da saúde"
+                                aria-label="imagem da corrida pela saúde"
+                            >
                         </header>
                         <div class="upcoming-events_content">
                             <h3>Corrida da saúde</h3>
@@ -143,7 +185,13 @@
                             <footer>
                                 <div class="upcoming-events_location">
                                     <p>São Paulo | SP</p>
-                                    <a href="#" class="btn">Ver</a>
+                                    <a 
+                                        href="#" 
+                                        class="btn"
+                                        aria-label="link para acessar o evento corrida pela saúde"
+                                    >
+                                        Ver
+                                    </a>
                                 </div>
                             </footer>
                         </div>
@@ -152,7 +200,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/Card5@2x.webp" alt="Card feira de animes">
+                            <img 
+                                src="./src/images/Card5@2x.webp" 
+                                alt="Card feira de animes"
+                                aria-label="imagem do evento feira de animes"
+                            >
                         </header>
                         <div class="upcoming-events_content">
                             <h3>Feira de animes</h3>
@@ -160,7 +212,13 @@
                             <footer>
                                 <div class="upcoming-events_location">
                                     <p>São Paulo | SP</p>
-                                    <a href="#" class="btn">Ver</a>
+                                    <a 
+                                        href="#" 
+                                        class="btn"
+                                        aria-label="link para acessar o evento feira de animes"
+                                    >
+                                        Ver
+                                    </a>
                                 </div>
                             </footer>
                         </div>
@@ -169,7 +227,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/Card7@2x.webp" alt="Card festa multicores">
+                            <img 
+                                src="./src/images/Card7@2x.webp" 
+                                alt="Card festa multicores"
+                                aria-label="imagem do evento festa multicores"
+                            >
                         </header>
                         <div class="upcoming-events_content">
                             <h3>Festa multicores</h3>
@@ -177,7 +239,13 @@
                             <footer>
                                 <div class="upcoming-events_location">
                                     <p>São Paulo | SP</p>
-                                    <a href="#" class="btn">Ver</a>
+                                    <a 
+                                        href="#" 
+                                        class="btn"
+                                        aria-label="link para acessar evento festa multicores"
+                                    >
+                                        Ver
+                                    </a>
                                 </div>
                             </footer>
                         </div>
@@ -186,7 +254,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/Card6@2x.webp" alt="Card dia do balonismo">
+                            <img 
+                                src="./src/images/Card6@2x.webp" 
+                                alt="Card dia do balonismo"
+                                aria-label="imagem do evento de balonismo"
+                            >
                         </header>
                         <div class="upcoming-events_content">
                             <h3>Dia do balonismo</h3>
@@ -194,7 +266,13 @@
                             <footer>
                                 <div class="upcoming-events_location">
                                     <p>São Paulo | SP</p>
-                                    <a href="#" class="btn">Ver</a>
+                                    <a 
+                                        href="#" 
+                                        class="btn"
+                                        aria-label="link para acessar o evento de balonismo"
+                                    >
+                                        Ver
+                                    </a>
                                 </div>
                             </footer>
                         </div>
@@ -203,7 +281,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/Card8@2x.webp" alt="Card quinta 3D">
+                            <img 
+                                src="./src/images/Card8@2x.webp" 
+                                alt="Card quinta 3D"
+                                aria-label="imagem do evento do cinema 3D"
+                            >
                         </header>
                         <div class="upcoming-events_content">
                             <h3>Quinta 3D</h3>
@@ -211,7 +293,13 @@
                             <footer>
                                 <div class="upcoming-events_location">
                                     <p>São Paulo | SP</p>
-                                    <a href="#" class="btn">Ver</a>
+                                    <a 
+                                        href="#" 
+                                        class="btn"
+                                        aria-label="link para acessar evento de cinema 3D"
+                                    >
+                                        Ver
+                                    </a>
                                 </div>
                             </footer>
                         </div>
@@ -221,11 +309,15 @@
         </section>
         <section class="agenda container">
             <h2>Coloque na sua agenda!</h2>
-            <ul>
+            <ul aria-label="lista da nossa agenda para os proxímos eventos">
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/bn1@2x.webp" alt="banner quinta 3d">
+                            <img 
+                                src="./src/images/bn1@2x.webp" 
+                                alt="banner quinta 3d"
+                                aria-label="imagem do evento cinema 3D"
+                            >
                         </header>
                         <footer>
                             <div class="agenda_date">
@@ -236,7 +328,13 @@
                             </div>
                             <div class="agenda_action">
                                 <strong>Quinta 3D</strong>
-                                <a href="#" class="btn">Avisa-me</a>
+                                <a 
+                                    href="#" 
+                                    class="btn"
+                                    aria-label="link para ser avisado do proximo evento cinema 3D"
+                                >
+                                    Avisa-me
+                                </a>
                             </div>
                         </footer>
                     </article>
@@ -244,7 +342,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/bn2@2x.webp" alt="banner festival">
+                            <img 
+                                src="./src/images/bn2@2x.webp" 
+                                alt="banner festival"
+                                aria-label="imagem do festival"
+                            >
                         </header>
                         <footer>
                             <div class="agenda_date">
@@ -255,7 +357,13 @@
                             </div>
                             <div class="agenda_action">
                                 <strong>Festival</strong>
-                                <a href="#" class="btn">Avisa-me</a>
+                                <a 
+                                    href="#" 
+                                    class="btn"
+                                    aria-label="link para ser avisado do proxímo festival"
+                                >
+                                    Avisa-me
+                                </a>
                             </div>
                         </footer>
                     </article>
@@ -263,7 +371,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/bn3@2x.webp" alt="banner festival">
+                            <img 
+                                src="./src/images/bn3@2x.webp" 
+                                alt="banner balonismo"
+                                aria-label="imagem do evento de balonismo"
+                            >
                         </header>
                         <footer>
                             <div class="agenda_date">
@@ -274,7 +386,13 @@
                             </div>
                             <div class="agenda_action">
                                 <strong>Dia do balonismo</strong>
-                                <a href="#" class="btn">Avisa-me</a>
+                                <a 
+                                    href="#" 
+                                    class="btn"
+                                    aria-label="link para ser avisado do proxímo evento de balonismo"
+                                >
+                                    Avisa-me
+                                </a>
                             </div>
                         </footer>
                     </article>
@@ -282,7 +400,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/bn4@2x.webp" alt="banner hard rockers">
+                            <img 
+                                src="./src/images/bn4@2x.webp" 
+                                alt="banner hard rockers"
+                                aria-label="imagem do evento hard rocker"
+                            >
                         </header>
                         <footer>
                             <div class="agenda_date">
@@ -293,7 +415,13 @@
                             </div>
                             <div class="agenda_action">
                                 <strong>Hard Rockers</strong>
-                                <a href="#" class="btn">Avisa-me</a>
+                                <a 
+                                    href="#" 
+                                    class="btn"
+                                    aria-label="link para ser avisado do proxímo evento hard rocker"
+                                >
+                                    Avisa-me
+                                </a>
                             </div>
                         </footer>
                     </article>
@@ -301,7 +429,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/bn5@2x.webp" alt="banner balé municipal">
+                            <img 
+                                src="./src/images/bn5@2x.webp" 
+                                alt="banner balé municipal"
+                                aria-label="imagem do evento de balé do teatro municipal"
+                            >
                         </header>
                         <footer>
                             <div class="agenda_date">
@@ -312,7 +444,13 @@
                             </div>
                             <div class="agenda_action">
                                 <strong>Balé Municipal</strong>
-                                <a href="#" class="btn">Avisa-me</a>
+                                <a 
+                                    href="#" 
+                                    class="btn"
+                                    aria-label="link para ser avisado do proxímo evento de balé no teatro muncipal"
+                                >
+                                    Avisa-me
+                                </a>
                             </div>
                         </footer>
                     </article>
@@ -320,7 +458,11 @@
                 <li>
                     <article>
                         <header>
-                            <img src="./src/images/bn6@2x.webp" alt="banner festival multicores">
+                            <img 
+                                src="./src/images/bn6@2x.webp" 
+                                alt="banner festival multicores"
+                                aria-label="imagem do festival multicores"
+                            >
                         </header>
                         <footer>
                             <div class="agenda_date">
@@ -331,7 +473,13 @@
                             </div>
                             <div class="agenda_action">
                                 <strong>Festival Multicores</strong>
-                                <a href="#" class="btn">Avisa-me</a>
+                                <a 
+                                    href="#" 
+                                    class="btn"
+                                    aria-label="link para ser avisado do proxímo festival multicores"
+                                >
+                                    Avisa-me
+                                </a>
                             </div>
                         </footer>
                     </article>
@@ -339,8 +487,114 @@
             </ul>
         </section>
     </main>
-    <footer>
-        footer
+    <footer id="footer">
+        <nav class="footer__nav-footer" aria-label="Menu do rodape da pagina">
+            <ul class="container" aria-label="lista com todas as lista de links para o site no rodapé">
+                <li>
+                    <h4>Encontre eventos</h4>
+                    <ul aria-label="lista com links para encontrar os proxímos eventos">
+                        <li>
+                            <a href="#">Esta semana</a>
+                        </li>
+                        <li>
+                            <a href="#">Este fim de semana</a>
+                        </li>
+                        <li>
+                            <a href="#">Este mês</a>
+                        </li>
+                        <li>
+                            <a href="#">Este trimestre</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Cidades</h4>
+                    <ul aria-label="lista com os links das cidades onde temos eventos">
+                        <li>
+                            <a href="#">São Paulo</a>
+                        </li>
+                        <li>
+                            <a href="#">Rio de Janeiro</a>
+                        </li>
+                        <li>
+                            <a href="#">Porto Alegre</a>
+                        </li>
+                        <li>
+                            <a href="#">Salvador</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Categorias</h4>
+                    <ul aria-label="lista com os links das nossas categorias">
+                        <li>
+                            <a href="#">Shows</a>
+                        </li>
+                        <li>
+                            <a href="#">Arte</a>
+                        </li>
+                        <li>
+                            <a href="#">Teatro</a>
+                        </li>
+                        <li>
+                            <a href="#">Fotografia</a>
+                        </li>
+                        <li>
+                            <a href="#">Festivais</a>
+                        </li>
+                        <li>
+                            <a href="#">Design</a>
+                        </li>
+                        <li>
+                            <a href="#">Cinema</a>
+                        </li>
+                        <li>
+                            <a href="#">Tecnologia</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Sobre nós</h4>
+                    <ul aria-label="lista com os links para nos conhecer melhor e entrar em contato com a gente">
+                        <li>
+                            <a href="#">Carreiras</a>
+                        </li>
+                        <li>
+                            <a href="#">Histórias</a>
+                        </li>
+                        <li>
+                            <a href="#">Contato</a>
+                        </li>
+                        <li>
+                            <a href="#">Localização</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Anuncie seu evento</h4>
+                    <ul aria-label="lista com links para você anunciar seus eventos">
+                        <li>
+                            <a href="#">Música e festas</a>
+                        </li>
+                        <li>
+                            <a href="#">Cursos Workshops</a>
+                        </li>
+                        <li>
+                            <a href="#">Esportivo</a>
+                        </li>
+                        <li>
+                            <a href="#">Congresso</a>
+                        </li>
+                        <li>
+                            <a href="#">Religioso</a>
+                        </li>
+                        <li>
+                            <a href="#">Online</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     </footer>
 </body>
 </html>

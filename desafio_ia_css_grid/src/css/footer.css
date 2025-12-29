@@ -1,0 +1,57 @@
+#footer {
+    background-color: var(--primary-black);
+    position: relative;
+}
+
+#footer::after {
+    content: '';
+    display: block;
+    width: 112px;
+    height: 105px;
+    background-image: url('../images/logo-branco-1.png');
+
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+#footer ul {
+    padding: var(--space-sm);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+}
+
+#footer ul li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+#footer ul li h4 {
+    font-weight: 900;
+    color: var(--secondary-orange);
+}
+
+#footer ul li ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fs-text-md);
+}
+
+#footer ul li ul li a {
+    display: block;
+    color: var(--tertiary-white);
+}
+
+@media (45rem <= width <= 64rem) {
+    #footer ul {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (width > 64rem) {
+    #footer ul {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
