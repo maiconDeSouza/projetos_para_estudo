@@ -1,0 +1,50 @@
+.gallery {
+    padding-inline: var(--space-md);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: var(--space-md);
+    grid-template-areas: 
+    "banner1 banner1"
+    "banner2 banner4"
+    "banner3 banner4"
+    ;
+}
+
+.gallery img {
+    width: 100%;
+}
+
+.gallery .main__gallery_banner1 {
+    grid-area: banner1;
+}
+
+.gallery .main__gallery_banner2 {
+    grid-area: banner2;
+}
+
+.gallery .main__gallery_banner3 {
+    grid-area: banner3;
+}
+
+.gallery .main__gallery_banner4 {
+    grid-area: banner4;
+}
+
+@media (width >= 45rem) {
+    .gallery {
+        padding-inline: 0;
+        grid-template-columns: repeat(4, auto);
+        grid-template-rows: repeat(2, auto);
+        grid-template-areas: 
+        "banner1 banner1 banner2 banner4"
+        "banner1 banner1 banner3 banner4"
+        ;
+    }
+}
+
+@media (45rem <= width <= 64rem) {
+    .gallery {
+        padding-inline: var(--space-md);
+    }
+}
