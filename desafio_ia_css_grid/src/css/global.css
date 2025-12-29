@@ -58,3 +58,9 @@ body {
     max-width: 64rem;
     margin: 0 auto;
 }
+
+.btn {
+    background-color: var(--primary-black);
+    color: var(--tertiary-white);
+    padding: var(--space-sm) var(--space-lg);
+}

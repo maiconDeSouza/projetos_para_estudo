@@ -1,0 +1,36 @@
+.upcoming-events {
+    padding-inline: var(--space-md);
+}
+
+.upcoming-events ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14.5rem, 1fr));
+    gap: var(--space-md);
+}
+
+.upcoming-events ul li article {
+    background-color: var(--tertiary-gray-clear);
+}
+
+.upcoming-events ul li article img {
+    width: 100%;
+}
+
+.upcoming-events ul li article .upcoming-events_content {
+    padding: var(--fs-text-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.upcoming-events ul li article .upcoming-events_content .upcoming-events_location {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (45rem <= width <= 64rem) {
+    .upcoming-events ul {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
