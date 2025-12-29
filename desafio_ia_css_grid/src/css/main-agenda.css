@@ -62,6 +62,10 @@
     background-color: var(--tertiary-gray-clear);
 }
 
+.agenda ul li article .agenda_action strong {
+    flex: 1;
+}
+
 @media (45rem <= width <= 64rem) {
     .agenda ul {
         grid-template-columns: repeat(2, 1fr);
