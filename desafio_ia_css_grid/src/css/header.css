@@ -85,6 +85,11 @@
         width: 100%;
         max-width: 40rem;
     }
+
+    #header button {
+        border: none;
+        background-color: transparent;
+    }
 }
 
 @media (width > 64rem) {

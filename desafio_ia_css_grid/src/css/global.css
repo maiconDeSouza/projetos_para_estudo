@@ -70,3 +70,9 @@ body {
 .btn:hover {
     background-color: var(--secondary-orange);
 }
+
+:focus {
+  outline: 3px solid rgba(6,182,212,.9);
+  outline-offset: 3px;
+}
+a, button, input, [tabindex] { outline-offset: 3px; }
