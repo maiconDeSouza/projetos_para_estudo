@@ -1,1 +1,1 @@
-const apiKey = ''
+const apiKeyWeather = ''

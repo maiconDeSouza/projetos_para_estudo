@@ -1,0 +1,35 @@
+#header {
+    /* padding: .2rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#header label {
+    width: 18.75rem;
+    padding: 0.5rem 1rem;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    border-radius: 100px;
+}
+
+#header label button {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+
+#header label button svg {
+    fill: white;
+}
+
+#header label input {
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    outline: none;
+}

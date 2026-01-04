@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <script type="module" src="./src/js/main.js"></script>
+    <title>Weather Music APP</title>
+</head>
+<body>
+    <video id="video" muted autoplay loop>
+        <source src="./src/videos/video10.mp4" type="video/mp4">
+    </video>
+    <div class="container">
+        <header id="header">
+            <label for="search">
+                <button type="button" title="botão icone de pesquisa">
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="14" 
+                        height="14" 
+                        fill="currentColor" 
+                        class="bi bi-search" 
+                        viewBox="0 0 16 16">
+                            <path 
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+                            />
+                    </svg>
+                </button>
+                <input 
+                    type="search" 
+                    name="search" 
+                    id="search" 
+                    title="area de pesquisa" 
+                    placeholder="pesquise uma cidade..."
+                >
+            </label>
+        </header>
+        <main id="main">
+            <article class="main__weather card">
+                <header class="main__weather_header">
+                    <img src="./src/images/01d.png" alt="">
+                </header>
+                <section class="main__weather_content">
+                    <h2>Carregando</h2>
+                    <h3>...</h3>
+                </section>
+                <footer class="main__weather_footer">
+                    <p>carregando</p>
+                    <p>carregando</p>
+                </footer>
+            </article>
+            <article class="main__music card">
+                <header class="main__music_header">
+                    <img src="./src/images/musica.png" alt="">
+                </header>
+                <section class="main__music_content">
+                    <h2>Playlist</h2>
+                    <ul>
+                        <li>
+                            <button type="button">
+                                <img src="./src/images/image_3.png" alt="">
+                                <p>carregando</p>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button">
+                                <img src="./src/images/image_3.png" alt="">
+                                <p>carregando</p>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button">
+                                <img src="./src/images/image_3.png" alt="">
+                                <p>carregando</p>
+                            </button>
+                        </li>
+                    </ul>
+                    
+                </section>
+            </article>
+        </main>
+        <footer id="footer">
+            <div class="footer__player">
+                <iframe 
+                    width="100%" 
+                    height="80" 
+                    src="https://www.youtube.com/embed/gDZ4P5AZUPk?autoplay=1" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media"
+                    title="Videos do youtube" 
+                >
+                </iframe>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
