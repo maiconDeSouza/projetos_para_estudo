@@ -5,7 +5,7 @@ const dados = {
       }
 
 const server = Bun.serve({
-    port: 1992,
+    port: 1993,
     routes: {
         "/": () => Response.json(dados)
     }
