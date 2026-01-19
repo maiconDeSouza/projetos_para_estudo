@@ -1,0 +1,153 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+  /* Cores de Fundo e Container */
+  --bg-body: #f4f7f6;        /* Fundo da página (cinza muito claro) */
+  --bg-container: #ffffff;   /* Fundo do container da lista */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  /* Elementos de Input e Botão de Inclusão */
+  --input-bg: #fdfdfd;       /* Fundo do campo de texto */
+  --input-border: #e0e0e0;   /* Borda do input */
+  --btn-add: #59ce8f;        /* Verde vibrante para adicionar */
+  --btn-add-hover: #48b87d;
+
+  /* Itens da Lista */
+  --task-item-bg: #ffffff;   /* Fundo de cada tarefa */
+  --task-text: #333333;      /* Cor do texto da tarefa */
+  --task-border: #f0f0f0;    /* Divisor entre tarefas */
+
+  /* Estados e Ações */
+  --task-done: #beef00;      /* Verde limão/claro para tarefa concluída */
+  --task-done-text: #7d8a00; /* Texto para tarefa concluída */
+  --btn-delete: #ff1d58;     /* Vermelho moderno para excluir */
+  --btn-delete-hover: #e61a4f;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Lato", sans-serif;
+}
+
+button {
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    color: var(--task-item-bg);
+    font-size: 1.5rem;
+}
+
+body {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    background-color: var(--bg-body);
+}
+
+.container {
+    width: 90%;
+    max-width: 42.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 2rem;
+    background-color: var(--bg-container);
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px var(--shadow-color);
+}
+
+.form-tasks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.form-tasks input {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid var(--task-border);
+}
+
+.form-tasks .button-add-task {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--btn-add);
+    color: var(--task-item-bg);
+    transition: all .3 ease-in-out;
+}
+
+.form-tasks .button-add-task:hover {
+    background-color: var(--btn-add-hover);
+}
+
+.list-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.list-tasks li {
+    padding: 1rem;
+    width: 100%;
+    background-color: var(--task-item-bg);
+    color: var(--task-text);
+    border: 1px solid var(--task-border);
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 2px 2px 5px var(--shadow-color);
+    transition: all .3 ease-in-out;
+}
+
+.list-tasks li.check {
+    background-color: var(--btn-add);
+}
+
+.list-tasks li button {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 50%;
+    color: var(--task-item-bg);
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: all .3s ease-in-out;
+}
+
+.list-tasks li:hover button {
+    opacity: 1;
+}
+
+.list-tasks li .button-check {
+    background-color: var(--task-done);
+}
+
+.list-tasks li .button-check:hover {
+    background-color: var(--btn-add-hover);
+}
+
+.list-tasks li .button-trash {
+    background-color: var(--btn-delete);
+}
+
+.list-tasks li .button-trash:hover {
+    background-color: var(--btn-delete-hover);
+}
+
+.list-tasks li button i {
+    pointer-events: none;
+}
