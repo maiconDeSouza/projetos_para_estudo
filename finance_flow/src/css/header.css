@@ -1,0 +1,64 @@
+.header {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.header__finance-flow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.header__finance-flow article {
+    padding: var(--spacing-md);
+    width: 12.5rem;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    box-shadow: var(--shadow-strong);
+}
+
+.header__finance-flow_entries {
+    background-color: var(--color-income);
+}
+
+.header__finance-flow_total {
+    background-color: var(--color-total);
+}
+
+.header__finance-flow_out {
+    background-color: var(--color-expense);
+}
+
+.header__finance-flow article h3, .header__finance-flow article output b {
+    color: var(--text-light);
+}
+
+.header__action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.header__action button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.header__action_button-entries svg {
+    fill: var(--color-income);
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+}
+
+.header__action_button-out svg {
+    fill: var(--color-expense);
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+}

@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&family=Montserrat:ital,wght@0,700;1,700&display=swap');
+:root {
+    /* --- Cores de Fundo e Interface --- */
+    --bg-body: #f0f2f5;          /* Cinza bem claro, padrão de apps modernos */
+    --bg-card: #ffffff;          /* Branco puro para os cards */
+    --bg-modal: #ffffff;
+    --bg-item-list: #ffffff;
+    
+    /* --- Cores Semânticas (Valores) --- */
+    --color-income: #2ecc71;     /* Verde esmeralda para entradas */
+    --color-expense: #e74c3c;    /* Vermelho suave para saídas */
+    --color-total: #363f5f;      /* Azul marinho escuro para o saldo total */
+    --color-edit: #FFDB58;       /* Amarelo edição */
+
+    /* --- Cores de Texto --- */
+    --text-title: #363f5f;       /* Títulos e destaques */
+    --text-body: #969cb2;        /* Textos secundários e descrições */
+    --text-light: #ffffff;       /* Texto sobre fundos coloridos */
+
+    /* --- Espaçamentos (Spacings) --- */
+    --spacing-sm: 0.5rem;        /* 8px */
+    --spacing-md: 1.5rem;        /* 24px */
+    --spacing-lg: 3rem;          /* 48px */
+
+    /* --- Tamanhos de Fonte --- */
+    --font-sm: 0.875rem;         /* 14px - Labels e datas */
+    --font-md: 1rem;             /* 16px - Texto base */
+    --font-lg: 2rem;             /* 32px - Valores e Títulos */
+
+    /* --- Sombras (Box Shadows) --- */
+    --shadow-soft: 0 2px 4px rgba(0, 0, 0, 0.05);     /* Para itens da lista */
+    --shadow-medium: 0 8px 15px rgba(0, 0, 0, 0.1);   /* Para os cards do topo */
+    --shadow-strong: 0 15px 30px rgba(0, 0, 0, 0.2);  /* Para o Modal */
+
+    /* --- Transições --- */
+    --tr-fast: 0.2s ease;                             /* Hover de botões */
+    --tr-medium: 0.4s ease-in-out;                    /* Abrir modal ou fechar */
+    --tr-smooth: 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Entrada de elementos na lista */
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--text-body);
+    font-family: "Lato", sans-serif;
+    list-style: none;
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-title);
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    height: 100dvh;
+    background-color: var(--bg-body);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.container {
+    width: 90%;
+    max-width: 45rem;
+    margin: 0 auto;
+}
+
+.entries {
+    color: var(--color-income);
+}
+
+.out {
+    color: var(--color-expense);
+}
