@@ -1,0 +1,33 @@
+.add-tasks {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.add-tasks > input {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 8px;
+    border: none;
+    outline: 1px solid var(--border);
+}
+
+.add-tasks > button {
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--primary);
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+
+.add-tasks > button:hover {
+    background-color: var(--primary-hover);
+}
+
+.add-tasks > button > svg {
+    fill: var(--text-on-primary);
+}

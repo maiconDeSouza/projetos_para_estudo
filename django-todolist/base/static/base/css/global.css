@@ -1,0 +1,54 @@
+:root {
+  /* Cores Principais */
+  --primary: #6366f1;         /* Indigo vibrante para botões e foco */
+  --primary-hover: #4f46e5;
+  
+  /* Estados de Tarefas */
+  --success: #22c55e;         /* Verde para tarefas concluídas */
+  --pending: #f59e0b;         /* Amarelo/Laranja para tarefas em espera */
+  --danger: #ef4444;          /* Vermelho para eliminar ou tarefas atrasadas */
+  
+  /* Interface e Background */
+  --bg-app: #f8fafc;          /* Fundo suave da aplicação */
+  --bg-card: #ffffff;         /* Fundo branco para os itens da lista */
+  --border: #e2e8f0;          /* Cor de bordas e divisores */
+  
+  /* Tipografia */
+  --text-main: #1e293b;       /* Cinza escuro para texto legível */
+  --text-muted: #64748b;      /* Texto secundário ou datas */
+  --text-on-primary: #ffffff; /* Texto dentro de botões coloridos */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: 5rem 1fr 5rem;
+    background-color: var(--bg-app);
+}
+
+.container {
+    width: 90%;
+    max-width: 45rem;
+    margin: 0 auto;
+}
+
+header, footer {
+    background-color: var(--primary);
+}
+
+header {
+    display: grid;
+    place-items: center;
+}
+
+h1 {
+    color: var(--text-on-primary);
+}
