@@ -15,6 +15,18 @@
     background-color: var(--bg-card);
 }
 
+.list-tasks > li > article.pending {
+    border-color: var(--pending);
+}
+
+.list-tasks > li > article.success {
+    border-color: var(--success);
+}
+
+.list-tasks > li > article.danger {
+    border-color: var(--danger);
+}
+
 .list-tasks > li > article > p {
     flex: 1;
 }
@@ -23,10 +35,16 @@
     padding: .5rem 1rem;
     border-radius: 8px;
     border: none;
+    cursor: pointer;
 }
 
 .list-tasks > li > article > button > svg {
     fill: var(--text-on-primary);
+    pointer-events: none;
+}
+
+.list-tasks > li > article > button > svg > path {
+    pointer-events: none;
 }
 
 .list-tasks > li > article > button.check {
