@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  /* === Brand / Base === */
+  --color-bg: #0f172a;            /* fundo geral */
+  --color-surface: #111827;       /* cards */
+  --color-surface-alt: #1f2933;   /* hover / ativo */
+
+  --color-primary: #6366f1;       /* azul violeta */
+  --color-primary-hover: #4f46e5;
+  --color-primary-active: #4338ca;
+
+  --color-accent: #22d3ee;        /* ciano */
+  --color-accent-hover: #06b6d4;
+
+  /* === Texto === */
+  --color-text-main: #f8fafc;
+  --color-text-muted: #94a3b8;
+  --color-text-inverse: #020617;
+
+  /* === Estados === */
+  --color-success: #22c55e;
+  --color-success-bg: #14532d;
+
+  --color-error: #ef4444;
+  --color-error-bg: #7f1d1d;
+
+  --color-warning: #facc15;
+
+  /* === Interação === */
+  --color-border: #334155;
+  --color-border-hover: #475569;
+  --color-focus: #38bdf8;
+
+  /* === Desabilitado === */
+  --color-disabled-bg: #1e293b;
+  --color-disabled-text: #64748b;
+
+  /* === Space === */
+  --space-xs: 0.5rem;   /* 8px */
+  --space-md: 1rem;     /* 16px */
+  --space-xl: 2rem;     /* 32px */
+
+  /* === Border-radius === */
+  --radius-base: 8px;
+
+  /* === box-shadow === */
+  --shadow-base: 0 10px 30px rgba(0,0,0,0.45);
+
+   /* === trasition === */
+   --transition-base: all 250ms ease;
+
+   /* === font === */
+   --font-question: "Inter", sans-serif;
+   --font-option-text: "Roboto", sans-serif;
+   --font-option-label: "JetBrains Mono", monospace;
+   --font-general: "Lato", sans-serif;
+}
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: var(--font-general);
+}
+
+body {
+    background-color: var(--color-bg);
+}
