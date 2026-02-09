@@ -1,0 +1,44 @@
+.area-ranking {
+    padding: var(--space-md);
+}
+
+.area-ranking__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.area-ranking__item {
+    background-color: var(--card-bg);
+    border: 2px solid var(--card-bg);
+    border-radius: var(--radius-base);
+    transition: var(--transition-base);
+}
+
+.area-ranking__item:hover {
+    background-color: var(--card-bg-hover);
+}
+
+.area-ranking__item article {
+    padding: var(--space-md);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+main > footer {
+    
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-xl);
+}
+
+main > footer > button {
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-base);
+    border: none;
+}
+

@@ -8,8 +8,86 @@
     <title>Quiz</title>
 </head>
 <body>
-    <aside class="area-card-questions"></aside>
-    <main></main>
-    <aside class="area-raking"></aside>
+    <aside class="area-card-questions">
+        <ul class="area-card-questions__list">
+            <template>
+                <li class="area-card-questions__item" data-id="">
+                    <article>
+                        <span></span>
+                    </article>
+                </li>
+            </template>
+        </ul>
+    </aside>
+    <main>
+        <header>
+            <h1></h1>
+            <h2>Seu total de pontuasl atual é: <span>0</span> Pontos</h2>
+        </header>
+        <section class="main__main-section">
+            <section class="main__question">
+                <p class="main__text-question">
+                </p>
+                <ul class="main__list-question">
+                    <li class="main__item_answer">
+                        <article>
+                            <strong>a</strong> : <span></span>
+                        </article>
+                    </li>
+                    <li class="main__item_answer">
+                        <article>
+                            <strong>b</strong> : <span></span>
+                        </article>
+                    </li>
+                    <li class="main__item_answer">
+                        <article>
+                            <strong>c</strong> : <span></span>
+                        </article>
+                    </li>
+                    <li class="main__item_answer">
+                        <article>
+                            <strong>d</strong> : <span></span>
+                        </article>
+                    </li>
+                </ul>
+            </section>
+            <section class="main__options">
+                <button type="button">a</button>
+                <button type="button">b</button>
+                <button type="button">c</button>
+                <button type="button">d</button>
+            </section>
+        </section>
+        <footer>
+            <button type="button" class="main__button-confirm disabled">Confirme</button>
+            <button type="button" class="main__button-cancel disabled">Cancelar Resposta</button>
+            <button type="button" class="main__button-jump disabled">Pular (0/3)</button>
+        </footer>
+    </main>
+    <aside class="area-ranking">
+        <ul class="area-ranking__list">
+            <li class="area-ranking__item">
+                <article>
+                    <p class="area-ranking__name">Maicon</p>
+                    <p class="area-ranking__points">Pontos: 10 pontos</p>
+                    <p class="area-ranking__time">21 Minutos e 32 segundos</p>
+                </article>
+            </li>
+            <li class="area-ranking__item">
+                <article>
+                    <p class="area-ranking__name">Maicon</p>
+                    <p class="area-ranking__points">Pontos: 9 pontos</p>
+                    <p class="area-ranking__time">23 Minutos e 21 segundos</p>
+                </article>
+            </li>
+            <li class="area-ranking__item">
+                <article>
+                    <p class="area-ranking__name">Maicon</p>
+                    <p class="area-ranking__points">Pontos: 9 pontos</p>
+                    <p class="area-ranking__time">29 Minutos e 00 segundos</p>
+                </article>
+            </li>
+        </ul>
+    </aside>
 </body>
 </html>

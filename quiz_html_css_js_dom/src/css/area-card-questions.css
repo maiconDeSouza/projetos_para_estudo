@@ -1,0 +1,44 @@
+.area-card-questions {
+    padding: var(--space-md);
+}
+
+.area-card-questions__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+.area-card-questions__item {
+    height: 2.7rem;
+    background-color: var(--card-bg);
+    border: 2px solid var(--card-bg);
+    border-radius: var(--radius-base);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-base);
+    cursor: pointer;
+}
+
+.area-card-questions__item:hover {
+    background-color: var(--card-bg-hover);
+}
+
+.area-card-questions__item.active {
+    border-color: var(--color-primary);
+}
+
+.area-card-questions__item.disabled {
+    background-color: var(--card-bg-muted);
+    border-color: var(--color-disabled-text);
+    color: var(--color-disabled-text);
+    pointer-events: none;
+}
+
+.area-card-questions__item.remove {
+    background-color: var(--card-bg-muted);
+    border-color: var(--color-error);
+    color: var(--color-disabled-text);
+    pointer-events: none;
+}

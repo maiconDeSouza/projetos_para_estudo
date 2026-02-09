@@ -3,14 +3,25 @@
 :root {
   /* === Brand / Base === */
   --color-bg: #0f172a;            /* fundo geral */
-  --color-surface: #111827;       /* cards */
-  --color-surface-alt: #1f2933;   /* hover / ativo */
 
-  --color-primary: #6366f1;       /* azul violeta */
+  /* === Cards (AGORA SEPARADOS) === */
+  --card-bg: #1e293b;             /* card padrão */
+  --card-bg-hover: #273449;       /* hover */
+  --card-bg-active: #273449;      /* selecionado / ativo */
+
+  --card-bg-muted: #0b1220;       /* cards inativos */
+  --card-bg-disabled: #020617;    /* cards bloqueados */
+
+  /* === Superfícies genéricas === */
+  --color-surface: #111827;
+  --color-surface-alt: #1f2933;
+
+  /* === Cores principais === */
+  --color-primary: #6366f1;
   --color-primary-hover: #4f46e5;
   --color-primary-active: #4338ca;
 
-  --color-accent: #22d3ee;        /* ciano */
+  --color-accent: #22d3ee;
   --color-accent-hover: #06b6d4;
 
   /* === Texto === */
@@ -36,26 +47,27 @@
   --color-disabled-bg: #1e293b;
   --color-disabled-text: #64748b;
 
-  /* === Space === */
-  --space-xs: 0.5rem;   /* 8px */
-  --space-md: 1rem;     /* 16px */
-  --space-xl: 2rem;     /* 32px */
+  /* === Espaçamentos === */
+  --space-xs: 0.5rem;
+  --space-md: 1rem;
+  --space-xl: 2rem;
 
   /* === Border-radius === */
   --radius-base: 8px;
 
-  /* === box-shadow === */
+  /* === Box-shadow === */
   --shadow-base: 0 10px 30px rgba(0,0,0,0.45);
 
-   /* === trasition === */
-   --transition-base: all 250ms ease;
+  /* === Transition === */
+  --transition-base: all 250ms ease;
 
-   /* === font === */
-   --font-question: "Inter", sans-serif;
-   --font-option-text: "Roboto", sans-serif;
-   --font-option-label: "JetBrains Mono", monospace;
-   --font-general: "Lato", sans-serif;
+  /* === Fonts === */
+  --font-question: "Inter", sans-serif;
+  --font-option-text: "Roboto", sans-serif;
+  --font-option-label: "JetBrains Mono", monospace;
+  --font-general: "Lato", sans-serif;
 }
+
 
 *, *::after, *::before {
     margin: 0;
@@ -67,5 +79,9 @@
 }
 
 body {
+    height: 100dvh;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
     background-color: var(--color-bg);
+    color: var(--color-text-main);
 }

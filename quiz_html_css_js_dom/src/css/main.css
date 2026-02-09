@@ -1,0 +1,126 @@
+main {
+    padding: var(--space-md);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+main > header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.main__main-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.main__question {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.main__text-question {
+    font-size: 2.5rem;
+}
+
+.main__list-question {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.main__item_answer {
+    background-color: var(--card-bg);
+    border: 2px solid var(--card-bg);
+    border-radius: var(--radius-base);
+    transition: var(--transition-base);
+}
+
+.main__item_answer.active {
+    border-color: var(--color-success);
+}
+
+.main__item_answer:hover {
+    background-color: var(--card-bg-hover);
+}
+
+.main__item_answer article {
+    padding: var(--space-md);
+}
+
+.main__item_answer article strong {
+    text-transform: uppercase;
+    font-family: var(--font-question);
+}
+
+.main__options {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+}
+
+.main__options button {
+    padding: var(--space-md);
+    flex: 1;
+    border: none;
+    outline: 2px solid var(--color-accent);
+    border-radius: var(--radius-base);
+    text-transform: uppercase;
+    font-weight: 900;
+    font-family: var(--font-question);
+    cursor: pointer;
+    background-color: var(--color-accent);
+    color: var(--color-text-main);
+    transition: var(--transition-base);
+}
+
+.main__options button:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.main__button-confirm {
+    background-color: var(--color-success);
+    color: var(--color-text-main);
+    font-weight: 900;
+    transition: var(--transition-base);
+}
+
+.main__button-confirm:hover {
+    background-color: color-mix(in oklab, var(--color-success) 40%, white 30%);
+}
+
+.main__button-cancel {
+    background-color: var(--color-error);
+    color: var(--color-text-main);
+    font-weight: 900;
+    transition: var(--transition-base);
+}
+
+.main__button-cancel:hover {
+    background-color: color-mix(in oklab, var(--color-error) 40%, white 30%);
+}
+
+.main__button-jump {
+    background-color: var(--color-warning);
+    color: var(--color-text-main);
+    font-weight: 900;
+    transition: var(--transition-base);
+}
+
+.main__button-jump:hover {
+    background-color: color-mix(in oklab, var(--color-warning) 40%, white 30%);
+}
+
+main > footer > button.disabled  {
+    background-color: var(--card-bg-muted);
+    border-color: var(--color-disabled-text);
+    color: var(--color-disabled-text);
+    pointer-events: none;
+}
