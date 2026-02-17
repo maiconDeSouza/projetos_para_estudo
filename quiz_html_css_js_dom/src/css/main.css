@@ -124,3 +124,10 @@ main > footer > button.disabled  {
     color: var(--color-disabled-text);
     pointer-events: none;
 }
+
+main > footer > .main__button-jump.disable-definitive {
+    background-color: var(--card-bg-muted);
+    border-color: var(--color-disabled-text);
+    color: var(--color-disabled-text);
+    pointer-events: none;
+}

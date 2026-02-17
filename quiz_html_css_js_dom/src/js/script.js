@@ -1,4 +1,4 @@
-import { initQuestions, selectionQuest, setName, renderQuestion, setResponse } from './utils.js'
+import { initQuestions, selectionQuest, setName, renderQuestion, setResponse, score, checkResposte } from './utils.js'
 
 const ul = document.querySelector('.area-card-questions__list')
 const main = document.querySelector('main')
@@ -11,11 +11,10 @@ const name = setName(prompt('Digite seu nome:'))
 h1.textContent = `Olá, ${name}!`
 
 
-document.addEventListener('DOMContentLoaded', e => {
-    
-
-    
+document.addEventListener('DOMContentLoaded', e => {    
     initQuestions()
+    score.getLocoalstore()
+    score.renderRanking()
 })
 
 ul.addEventListener('click', e => {
@@ -46,6 +45,14 @@ buttonActions.addEventListener('click', e => {
         const li = document.querySelector('.main__item_answer.active')
         const id = e.target.closest('main').dataset.id
         setResponse('')
-        console.log(li.querySelector('span').textContent)
+        const response = li.querySelector('span').textContent
+
+        checkResposte(id, response, name)
+    }
+
+    if(e.target.closest('.main__button-jump')){
+        const id = e.target.closest('main').dataset.id
+
+        score.jumpQuestion(id)
     }
 })

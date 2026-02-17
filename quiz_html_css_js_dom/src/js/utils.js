@@ -1,5 +1,85 @@
 import { questions } from './questions.js'
 
+function sum(name){
+    const spanPoints = document.querySelector('main > header > h2 > span')
+    ++this.points
+
+    if(this.points >= 10){
+        alert('Fim de jogo você fez 10 pontos')
+        this.setLocalstore(name)
+        location.reload()
+        return
+    }
+
+    spanPoints.textContent = this.points
+}
+
+function setLocalstore(name){
+    const user = {
+        name,
+        points: this.points
+    }
+    this.ranking.push(user)
+    localStorage.setItem('ranking-quiz', JSON.stringify(this.ranking))
+}
+
+function getLocoalstore(){
+    const ranking = JSON.parse(localStorage.getItem('ranking-quiz'))
+
+    if(ranking){
+        this.ranking = ranking || []
+    }
+
+    return this.ranking
+}
+
+function renderRanking(){
+    const ul = document.querySelector('.area-ranking__list')
+    const templateRankingItem = document.querySelector('.area-ranking__list template')
+    const frag = document.createDocumentFragment()
+    const ranking = this.getLocoalstore().sort((a, b) => b.points - a.points)
+
+    ranking.forEach(item => {
+        const li = templateRankingItem.content.querySelector('.area-ranking__item').cloneNode(true)
+        li.querySelector('.area-ranking__name').textContent = item.name
+        li.querySelector('.area-ranking__points').textContent = item.points
+        frag.appendChild(li)
+    })
+
+    ul.appendChild(frag)
+}
+
+function jumpQuestion(id){
+    const buttonJump = document.querySelector('.main__button-jump')
+    const liQuestions = document.querySelectorAll('.area-card-questions__item')
+
+    ++this.jump
+
+    if(this.jump === 3){
+        buttonJump.classList.add('disable-definitive')
+    }
+
+    buttonJump.textContent = `Pular (${this.jump}/3)`
+
+    liQuestions.forEach(item => {
+        if(item.dataset.id === id){
+            item.classList.add('remove')
+        }
+    })
+    restartQuestions()
+}
+
+export const score = {
+    points: 0,
+    ranking: [],
+    jump: 0,
+    sum,
+    setLocalstore,
+    getLocoalstore,
+    renderRanking,
+    jumpQuestion,
+}
+
 export function setName(name){
     if(!name || name.length < 3 || name.length > 10){
         alert(`O nome precisa ter mais de 3 caracteres e menos que 11`)
@@ -49,6 +129,18 @@ export function selectionQuest(id){
     })
 }
 
+export function restartQuestions(){
+    const li = document.querySelectorAll('.area-card-questions__item')
+    if(!li)return
+
+    const liFilter = Array.from(li).filter(item => !item.classList.contains('remove'))
+
+    liFilter.forEach(item => {
+        item.classList.remove('active')
+        item.classList.remove('disabled')
+    })
+}
+
 export function renderQuestion(id){
     const main = document.querySelector('main')
     const p = document.querySelector('.main__text-question')
@@ -79,4 +171,24 @@ export function setResponse(letter){
     buttonsActions.forEach(item => {
         item.classList.toggle('disabled')
     })
+}
+
+export function checkResposte(id, response, name){
+    const question = questions.find(question => question.id === id)
+    const liQuestions = document.querySelectorAll('.area-card-questions__item')
+
+    if(question.answer === response){
+        score.sum(name)
+        liQuestions.forEach(item => {
+            if(item.dataset.id === id){
+                item.classList.add('remove')
+            }
+        })
+        restartQuestions()
+        return
+    }
+
+    score.setLocalstore(name)
+    alert(`Fim de jogo você acabou com ${score.points}`)
+    location.reload()
 }
