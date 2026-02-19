@@ -4,74 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/css/style.css">
-    <script defer type="module" src="./src/js/script.js"></script>
+    <script defer type="module" src="./src/js/main.js"></script>
     <title>Quiz</title>
 </head>
 <body>
-    <aside class="area-card-questions">
-        <ul class="area-card-questions__list">
-            <template>
-                <li class="area-card-questions__item" data-id="">
-                    <article>
-                        <span></span>
-                    </article>
+    <aside class="area-questions">
+        <ul class="area-questions__list">
+            <template class="area-questions__template">
+                <li class="area-questions__item">
+                    <button></button>
                 </li>
             </template>
         </ul>
     </aside>
-    <main>
-        <header>
-            <h1></h1>
-            <h2>Seu total de pontuasl atual é: <span>0</span> Pontos</h2>
+    <main class="main">
+        <header class="header">
+            <h3>Pontos: 0</h3>
+            <h1>Pergunta:</h1>
+            <h2></h2>
         </header>
-        <section class="main__main-section">
-            <section class="main__question">
-                <p class="main__text-question">
-                </p>
-                <ul class="main__list-question">
-                    <li class="main__item_answer">
-                        <article>
-                            <strong>a</strong> : <span></span>
-                        </article>
-                    </li>
-                    <li class="main__item_answer">
-                        <article>
-                            <strong>b</strong> : <span></span>
-                        </article>
-                    </li>
-                    <li class="main__item_answer">
-                        <article>
-                            <strong>c</strong> : <span></span>
-                        </article>
-                    </li>
-                    <li class="main__item_answer">
-                        <article>
-                            <strong>d</strong> : <span></span>
-                        </article>
-                    </li>
-                </ul>
-            </section>
-            <section class="main__options">
-                <button type="button">a</button>
-                <button type="button">b</button>
-                <button type="button">c</button>
-                <button type="button">d</button>
-            </section>
-        </section>
+        <ul class="main__answers-list">
+            <template class="main__answers-template">
+                <li class="main__answers-item">
+                    <b></b>
+                    <p></p>
+                </li>
+            </template>
+        </ul>
         <footer>
-            <button type="button" class="main__button-confirm disabled">Confirme</button>
-            <button type="button" class="main__button-cancel disabled">Cancelar Resposta</button>
-            <button type="button" class="main__button-jump disabled">Pular (0/3)</button>
+            <ul class="main__footer-list">
+                <li class="main__footer-item">
+                    <button type="button" class="main__footer-button-confirme" disabled>Confirmar</button>
+                </li>
+                <li class="main__footer-item">
+                    <button type="button" class="main__footer-button-cancel" disabled>Cancelar</button>
+                </li>
+                <li class="main__footer-item">
+                    <button type="button" class="main__footer-button-jump" disabled>(0/3) Pular</button>
+                </li>
+            </ul>
         </footer>
     </main>
-    <aside class="area-ranking">
-        <ul class="area-ranking__list">
-            <template>
-                <li class="area-ranking__item">
+    <aside class="ranking">
+        <ul class="ranking__list">
+            <template class="ranking__template">
+                <li class="ranking__item">
                     <article>
-                        <p class="area-ranking__name">Maicon</p>
-                        <p class="area-ranking__points">Pontos: 10 pontos</p>
-                        <p class="area-ranking__time">21 Minutos e 32 segundos</p>
+                        <p class="ranking__name"></p>
+                        <p class="ranking__points"></p>
+                        <p class="ranking__time"></p>
                     </article>
                 </li>
             </template>

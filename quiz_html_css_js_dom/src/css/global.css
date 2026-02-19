@@ -31,10 +31,10 @@
 
   /* === Estados === */
   --color-success: #22c55e;
-  --color-success-bg: #14532d;
+  
 
   --color-error: #ef4444;
-  --color-error-bg: #7f1d1d;
+  
 
   --color-warning: #facc15;
 
@@ -85,3 +85,4 @@ body {
     background-color: var(--color-bg);
     color: var(--color-text-main);
 }
+

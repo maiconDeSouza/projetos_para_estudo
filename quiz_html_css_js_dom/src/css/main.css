@@ -1,133 +1,117 @@
-main {
+.main {
     padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: var(--space-xl);
+}
 
+.header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-xl);
-}
-
-main > header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-}
-
-.main__main-section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-}
-
-.main__question {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-}
-
-.main__text-question {
-    font-size: 2.5rem;
-}
-
-.main__list-question {
-    display: flex;
-    flex-direction: column;
     gap: var(--space-xs);
 }
 
-.main__item_answer {
-    background-color: var(--card-bg);
-    border: 2px solid var(--card-bg);
-    border-radius: var(--radius-base);
-    transition: var(--transition-base);
-}
-
-.main__item_answer.active {
-    border-color: var(--color-success);
-}
-
-.main__item_answer:hover {
-    background-color: var(--card-bg-hover);
-}
-
-.main__item_answer article {
-    padding: var(--space-md);
-}
-
-.main__item_answer article strong {
-    text-transform: uppercase;
+.header h2 {
     font-family: var(--font-question);
 }
 
-.main__options {
+.main__answers-list {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     gap: var(--space-md);
 }
 
-.main__options button {
+.main__answers-item {
     padding: var(--space-md);
-    flex: 1;
-    border: none;
-    outline: 2px solid var(--color-accent);
+    background-color: var(--card-bg);
+    color: var(--color-text-main);
+    border: 3px solid var(--color-border);
     border-radius: var(--radius-base);
-    text-transform: uppercase;
-    font-weight: 900;
-    font-family: var(--font-question);
     cursor: pointer;
-    background-color: var(--color-accent);
+    transition: var(--transition-base);
+
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.main__answers-item.active {
+    border-color: var(--color-success);
+    pointer-events: none;
+}
+
+.main__answers-item.disabled {
+    opacity: .7;
+    border-color: var(--color-error);
+    pointer-events: none;
+}
+
+.main__answers-item:hover {
+    background-color: var(--card-bg-hover);
+    transform: scale(1.05);
+}
+
+.main__answers-item b {
+    text-transform: uppercase;
+    font-family: var(--font-option-label);
+}
+
+.main__answers-item p {
+    flex: 1;
+    font-family: var(--font-option-text);
+}
+
+.main__footer-list {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+.main__footer-list button {
+    width: fit-content;
+    padding: var(--space-xs);
+    border: none;
     color: var(--color-text-main);
+    font-size: 1.2rem;
+    font-weight: 700;
+    /* letter-spacing: .05rem; */
+    cursor: pointer;
+    border-radius: var(--radius-base);
     transition: var(--transition-base);
 }
 
-.main__options button:hover {
-    background-color: var(--color-accent-hover);
+.main__footer-list button:disabled {
+    pointer-events: none;
+    opacity: .7;
 }
 
-.main__button-confirm {
+.main__footer-list button:hover {
+    transform: scale(1.05);
+}
+
+.main__footer-button-confirme {
     background-color: var(--color-success);
-    color: var(--color-text-main);
-    font-weight: 900;
-    transition: var(--transition-base);
 }
 
-.main__button-confirm:hover {
-    background-color: color-mix(in oklab, var(--color-success) 40%, white 30%);
+.main__footer-button-confirme:hover {
+    background-color: color-mix(in srgb, var(--color-success)80%, white 20%);
 }
 
-.main__button-cancel {
+.main__footer-button-cancel {
     background-color: var(--color-error);
-    color: var(--color-text-main);
-    font-weight: 900;
-    transition: var(--transition-base);
 }
 
-.main__button-cancel:hover {
-    background-color: color-mix(in oklab, var(--color-error) 40%, white 30%);
+.main__footer-button-cancel:hover {
+    background-color: color-mix(in srgb, var(--color-error)80%, white 20%);
 }
 
-.main__button-jump {
+.main__footer-button-jump {
     background-color: var(--color-warning);
-    color: var(--color-text-main);
-    font-weight: 900;
-    transition: var(--transition-base);
 }
 
-.main__button-jump:hover {
-    background-color: color-mix(in oklab, var(--color-warning) 40%, white 30%);
-}
+.main__footer-button-jump:hover {
+    background-color: color-mix(in srgb, var(--color-warning)80%, white 20%);
 
-main > footer > button.disabled  {
-    background-color: var(--card-bg-muted);
-    border-color: var(--color-disabled-text);
-    color: var(--color-disabled-text);
-    pointer-events: none;
-}
-
-main > footer > .main__button-jump.disable-definitive {
-    background-color: var(--card-bg-muted);
-    border-color: var(--color-disabled-text);
-    color: var(--color-disabled-text);
-    pointer-events: none;
 }

@@ -1,0 +1,32 @@
+.ranking {
+    padding: var(--space-md);
+}
+
+.ranking__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    align-self: center;
+}
+
+.ranking__item article {
+    height: 100%;
+    width: 100%;
+    padding: var(--space-md);
+    background-color: var(--card-bg);
+    color: var(--color-text-main);
+    border: 3px solid var(--color-border);
+    border-radius: var(--radius-base);
+    transition: var(--transition-base);
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.ranking__item article:hover {
+    background-color: var(--card-bg-hover);
+    transform: scale(1.05);
+}
