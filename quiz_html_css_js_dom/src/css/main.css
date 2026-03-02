@@ -1,20 +1,32 @@
 .main {
     padding: var(--space-md);
+    width: 90%;
+    max-width: 45rem;
+    height: 75dvh;
+    background-color: var(--card-bg);
+    border-radius: var(--radius-base);
+
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: var(--space-md);
+}
+
+
+.main__section-question {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     gap: var(--space-xl);
 }
 
-.header {
+.main__section-question header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-xs);
+    gap: var(--space-md);
 }
 
-.header h2 {
-    font-family: var(--font-question);
+.main__section-question header p {
+    text-align: center;
 }
 
 .main__answers-list {
@@ -23,95 +35,102 @@
     gap: var(--space-md);
 }
 
-.main__answers-item {
+.main__answer-item {
     padding: var(--space-md);
-    background-color: var(--card-bg);
-    color: var(--color-text-main);
-    border: 3px solid var(--color-border);
+    background-color: var(--color-accent);
+    border: 3px solid var(--color-focus);
     border-radius: var(--radius-base);
-    cursor: pointer;
-    transition: var(--transition-base);
-
     display: flex;
     align-items: center;
-    gap: var(--space-md);
+    gap: var(--space-xs);
+    cursor: pointer;
+    transition: var(--transition-base);
 }
 
-.main__answers-item.active {
-    border-color: var(--color-success);
-    pointer-events: none;
-}
-
-.main__answers-item.disabled {
-    opacity: .7;
-    border-color: var(--color-error);
-    pointer-events: none;
-}
-
-.main__answers-item:hover {
-    background-color: var(--card-bg-hover);
+.main__answer-item:hover {
+    background-color: var(--color-accent-hover);
     transform: scale(1.05);
 }
 
-.main__answers-item b {
-    text-transform: uppercase;
-    font-family: var(--font-option-label);
+
+.main__answer-item.disabled {
+    pointer-events: none;
+    opacity: .7;
 }
 
-.main__answers-item p {
-    flex: 1;
+.main__answer-item.active {
+    border-color: var(--color-success);
+    background-color: var(--color-success);
+    opacity: 1;
+}
+
+.main__answer-item b {
+    font-family: var(--font-option-label);
+    text-transform: uppercase;
+}
+
+.main__answer-item p {
     font-family: var(--font-option-text);
 }
 
-.main__footer-list {
+.main__actions-list {
     display: flex;
-    justify-content: center;
-    gap: var(--space-md);
+    justify-content: space-between;
 }
 
-.main__footer-list button {
-    width: fit-content;
-    padding: var(--space-xs);
+.main__actions-list button {
+    padding: var(--space-xs) var(--space-md);
     border: none;
-    color: var(--color-text-main);
-    font-size: 1.2rem;
-    font-weight: 700;
-    /* letter-spacing: .05rem; */
-    cursor: pointer;
     border-radius: var(--radius-base);
+    font-weight: 700;
+    color: var(--color-text-main);
+    cursor: pointer;
     transition: var(--transition-base);
 }
 
-.main__footer-list button:disabled {
+.main__action-item-confirme button {
+    background-color: var(--color-success);
+}
+
+.main__action-item-confirme button:hover {
+    background-color: color-mix(in srgb, var(--color-success) 80%,white 20%);
+}
+
+.main__action-item-cancel button {
+    background-color: var(--color-error);
+}
+
+.main__action-item-cancel button:hover {
+    background-color: color-mix(in srgb, var(--color-error) 80%,white 20%);
+}
+
+.main__action-item-jump button {
+    background-color: var(--color-warning);
+}
+
+.main__action-item-jump button:hover {
+    background-color: color-mix(in srgb, var(--color-warning) 80%,white 20%);
+}
+
+.main__actions-list button:disabled {
     pointer-events: none;
     opacity: .7;
 }
 
-.main__footer-list button:hover {
+.main__ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.main__ranking-item {
+    padding: var(--space-md);
+    background-color: var(--color-accent);
+    border-radius: var(--radius-base);
+    transition: var(--transition-base);
+}
+
+.main__ranking-item:hover {
+    background-color: var(--color-accent-hover);
     transform: scale(1.05);
-}
-
-.main__footer-button-confirme {
-    background-color: var(--color-success);
-}
-
-.main__footer-button-confirme:hover {
-    background-color: color-mix(in srgb, var(--color-success)80%, white 20%);
-}
-
-.main__footer-button-cancel {
-    background-color: var(--color-error);
-}
-
-.main__footer-button-cancel:hover {
-    background-color: color-mix(in srgb, var(--color-error)80%, white 20%);
-}
-
-.main__footer-button-jump {
-    background-color: var(--color-warning);
-}
-
-.main__footer-button-jump:hover {
-    background-color: color-mix(in srgb, var(--color-warning)80%, white 20%);
-
 }

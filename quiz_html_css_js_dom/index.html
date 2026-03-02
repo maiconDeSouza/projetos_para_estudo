@@ -8,55 +8,45 @@
     <title>Quiz</title>
 </head>
 <body>
-    <aside class="area-questions">
-        <ul class="area-questions__list">
-            <template class="area-questions__template">
-                <li class="area-questions__item">
-                    <button></button>
-                </li>
-            </template>
-        </ul>
-    </aside>
     <main class="main">
-        <header class="header">
-            <h3>Pontos: 0</h3>
-            <h1>Pergunta:</h1>
-            <h2></h2>
-        </header>
-        <ul class="main__answers-list">
-            <template class="main__answers-template">
-                <li class="main__answers-item">
-                    <b></b>
-                    <p></p>
-                </li>
-            </template>
-        </ul>
-        <footer>
-            <ul class="main__footer-list">
-                <li class="main__footer-item">
-                    <button type="button" class="main__footer-button-confirme" disabled>Confirmar</button>
-                </li>
-                <li class="main__footer-item">
-                    <button type="button" class="main__footer-button-cancel" disabled>Cancelar</button>
-                </li>
-                <li class="main__footer-item">
-                    <button type="button" class="main__footer-button-jump" disabled>(0/3) Pular</button>
-                </li>
+        <section class="main__section-question">
+            <header>
+                <h1>Pontos: 0</h1>
+                <h3>Pergunta:</h3>
+                <h2>Quem descobriu o Brasil?</h2>
+            </header>
+            <ul class="main__answers-list">
+                <template class="template-answers-item">
+                    <li class="main__answer-item">
+                        <b></b>
+                        <p></p>
+                    </li>
+                </template>
             </ul>
-        </footer>
+            <footer>
+                <ul class="main__actions-list">
+                    <li class="main__action-item-confirme">
+                        <button type="button" disabled>Confirme</button>
+                    </li>
+                    <li class="main__action-item-cancel">
+                        <button type="button" disabled>Cancelar</button>
+                    </li>
+                    <li class="main__action-item-jump">
+                        <button type="button" disabled>Pular (0/3)</button>
+                    </li>
+                </ul>
+            </footer>
+        </section>
+        <section class="main__section-ranking">
+            <ul class="main__ranking-list">
+                <template class="template-ranking-item">
+                    <li class="main__ranking-item">
+                        <p class="main__ranking-item-name"></p>
+                        <p class="main__ranking-item-points"></p>
+                    </li>
+                </template>
+            </ul>
+        </section>
     </main>
-    <aside class="ranking">
-        <ul class="ranking__list">
-            <template class="ranking__template">
-                <li class="ranking__item">
-                    <article>
-                        <p class="ranking__name"></p>
-                        <p class="ranking__points"></p>
-                        <p class="ranking__time"></p>
-                    </article>
-                </li>
-            </template>
-        </ul>
-    </aside>
 </body>
 </html>
