@@ -12,3 +12,11 @@ export function shuffleArray(array) {
   
   return shuffled
 }
+
+export function topFive(arr = []){
+  const newArr = [...arr]
+
+  return newArr.sort((a, b) => b.hits - a.hits).slice(0, 5)
+}
+
+export const time = (temp) => new Promise(resolve => setTimeout(resolve, temp))

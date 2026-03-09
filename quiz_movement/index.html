@@ -18,10 +18,11 @@
     </header>
     <main>
         <aside class="total-points">
+            <p class="user"><b>Particopante:</b> <span></span></p>
             <p><b>Total de perguntas:</b></p>
-            <p class="total-questions"><span>(8/20)</span></p>
-            <p class="hits"><b>Acertos:</b> <span>7</span></p>
-            <p class="errors"><b>Erros:</b> <span>1</span></p>
+            <p class="total-questions"><span></span></p>
+            <p class="hits"><b>Acertos:</b> <span></span></p>
+            <p class="errors"><b>Erros:</b> <span></span></p>
         </aside>
         <section class="quetions">
             <div class="question">
@@ -29,28 +30,24 @@
                 <img src="" width="360px" alt="">
             </div>
             <ul class="list-answer">
-                <li>
-                    <b>a</b> <p>Resposta 1</p>
-                </li>
-                <li>
-                    <b>a</b> <p>Resposta 1</p>
-                </li>
-                <li>
-                    <b>a</b> <p>Resposta 1</p>
-                </li>
-                <li>
-                    <b>a</b> <p>Resposta 1</p>
-                </li>
+                <template>
+                    <li>
+                        <b>a</b> <p>Resposta 1</p>
+                    </li>
+                </template>
             </ul>
         </section>
         <aside class="ranking">
             <ul class="list-ranking">
-                <li>1° Fulano - pontos 23</li>
-                <li>1° Fulano - pontos 23</li>
-                <li>1° Fulano - pontos 23</li>
+                <template>
+                    <li></li>
+                </template>
             </ul>
         </aside>
     </main>
-    <footer></footer>
+    <footer>
+        <audio id="hitAnswer" src="./src/audio/acerto.mp3"></audio>
+        <audio id="errorAnswer" src="./src/audio/erro.mp3"></audio>
+    </footer>
 </body>
 </html>

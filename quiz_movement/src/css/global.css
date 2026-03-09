@@ -161,10 +161,18 @@ main .quetions .list-answer li {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    border: 3px solid var(--color-bg);
+    border: 5px solid var(--color-bg);
     border-radius: var(--radius-default);
     cursor: pointer;
     transition: var(--transition-normal);
+}
+
+main .quetions .list-answer li.active {
+    border-color: var(--color-primary);
+}
+
+main .quetions .list-answer li.fault {
+    border-color: var(--color-error);
 }
 
 main .quetions .list-answer li:hover {
