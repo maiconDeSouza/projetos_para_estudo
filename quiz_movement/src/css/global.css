@@ -125,6 +125,21 @@ main .total-points .errors {
     color: var(--color-error);
 }
 
+main .total-points .button-stop {
+    padding: var(--space-md);
+    background-color: var(--color-error);
+    color: var(--color-text);
+    font-weight: 700;
+    border-radius: var(--radius-default);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+main .total-points .button-stop:hover {
+    filter: brightness(.8);
+}
+
 main .quetions {
     padding: var(--space-md);
     display: flex;
@@ -146,6 +161,11 @@ main .quetions .question {
 
 main .quetions .question h2 {
     font-family: var(--font-family-exo2);
+}
+
+main .quetions .question h2.gameover {
+    font-family: var(--font-family-exo2);
+    font-size: var(--font-size-xl);
 }
 
 main .quetions .list-answer {

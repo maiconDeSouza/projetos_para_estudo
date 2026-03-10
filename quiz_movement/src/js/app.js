@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", e => {
     const nameUser = prompt('Digite seu nome:')
     const arr = shuffleArray(game.getQuestions())
 
+    if(!nameUser){
+        location.reload()
+        return
+    }
+
     game.setUser(nameUser)
   
     const question = arr[0]
@@ -59,11 +64,19 @@ ulAnswer.addEventListener('click', async e => {
         li.classList.add('fault')
         errorAnswer.currentTime = 0
         errorAnswer.play()
+    
+        const questionResponse = game.getQuestion(id)
+        alert(`
+${questionResponse.question}
+
+Resposta correta: ${questionResponse.answer}
+            `)
         if(game.gameOver()){
             const user = game.getUserPoints()
             ranking.setRanking(user)
-            alert(`Você fez ${game.getHits()} pontos`)
-            location.reload()
+            // alert(`Você fez ${game.getHits()} pontos`)
+            // render.renderRanking(ranking.getRanking())
+            render.renderGameOver(user)
         }
         const arr = shuffleArray(game.getQuestions())
         const question = arr[0]
@@ -84,8 +97,9 @@ ulAnswer.addEventListener('click', async e => {
     if(game.gameOver()){
         const user = game.getUserPoints()
         ranking.setRanking(user)
-        alert(`Você fez ${game.getHits()} pontos`)
-        location.reload()
+        // alert(`Você fez ${game.getHits()} pontos`)
+        // render.renderRanking(ranking.getRanking())
+        render.renderGameOver(user)
         return
     }
 

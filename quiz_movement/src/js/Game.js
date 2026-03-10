@@ -2,7 +2,7 @@ import { questions } from '../db/questions.js'
 
 export class Game{
     constructor(){
-        this.questions = questions
+        this.questions = [...questions]
         this.totalQuestions = this.questions.length
         this.questionAnswered = 0
         this.hits = 0
@@ -47,6 +47,11 @@ export class Game{
     askQuestions(id){
         const index = this.questions.findIndex(question => question.id === id)
         this.questions.splice(index, 1)
+    }
+
+    getQuestion(id){
+        const question = questions.find(question => question.id === id)
+        return question
     }
 
     getQuestions(){

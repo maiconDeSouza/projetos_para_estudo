@@ -54,4 +54,12 @@ export class Render{
         })
         this.ulRanking.appendChild(frag)
     }
+
+    renderGameOver(user){
+        const h2 = document.createElement('h2')
+        h2.classList.add('gameover')
+        h2.textContent = `${user.user}, você fez ${user.hits} pontos!`
+        this.question.textContent = ''
+        this.question.appendChild(h2)
+    }
 }
