@@ -225,3 +225,29 @@ footer {
     background-color: var(--color-bg);
 }
 
+#result {
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #333;
+    inset: 0; /* Centraliza na tela */
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+}
+
+.result-message {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.result-message div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+
+#result::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}

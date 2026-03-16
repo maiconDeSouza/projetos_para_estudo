@@ -10,6 +10,8 @@ const ranking = new RankingLocalStore()
 const ulAnswer = document.querySelector('.list-answer')
 const hitAnswer = document.getElementById('hitAnswer')
 const errorAnswer = document.getElementById('errorAnswer')
+const buttonStop = document.querySelector('.button-stop')
+
 
 document.addEventListener("DOMContentLoaded", e => {
     const nameUser = prompt('Digite seu nome:')
@@ -66,11 +68,10 @@ ulAnswer.addEventListener('click', async e => {
         errorAnswer.play()
     
         const questionResponse = game.getQuestion(id)
-        alert(`
-${questionResponse.question}
-
-Resposta correta: ${questionResponse.answer}
-            `)
+        const feedback = '❌ Errou! Tente novamente.'
+        const answer = `Resposta Certa: ${questionResponse.answer}`
+        render.renderPopover(feedback, questionResponse.question, answer)
+        
         if(game.gameOver()){
             const user = game.getUserPoints()
             ranking.setRanking(user)
@@ -94,6 +95,11 @@ Resposta correta: ${questionResponse.answer}
 
     hitAnswer.currentTime = 0
     hitAnswer.play()
+
+    const questionResponse = game.getQuestion(id)
+    const feedback = '✅ Parabéns! Você acertou. 🎉👏🏻'
+    render.renderPopover(feedback, questionResponse.question, questionResponse.answer)
+
     if(game.gameOver()){
         const user = game.getUserPoints()
         ranking.setRanking(user)
@@ -113,4 +119,10 @@ Resposta correta: ${questionResponse.answer}
     const errors = game.getUserPoints().errors
     await time(3000)
     render.renderNextQuestion(question, alternatives, options, totalQuestions, questionAnswered, hits, errors)
+})
+
+buttonStop.addEventListener('click', e => {
+    const user = game.getUserPoints()
+    ranking.setRanking(user)
+    render.renderGameOver(user)
 })

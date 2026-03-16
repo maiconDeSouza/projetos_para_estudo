@@ -1,3 +1,5 @@
+import { time } from "./utils.js"
+
 export class Render{
     constructor(){
         this.question = document.querySelector('.quetions .question')
@@ -6,6 +8,7 @@ export class Render{
         this.asideTotalPoints = document.querySelector('.total-points')
         this.ulRanking = document.querySelector('.list-ranking')
         this.templateRanking = this.ulRanking.querySelector('template')
+        this.popover = document.querySelector('#result')
     }
 
     renderQuestion(question){
@@ -61,5 +64,21 @@ export class Render{
         h2.textContent = `${user.user}, você fez ${user.hits} pontos!`
         this.question.textContent = ''
         this.question.appendChild(h2)
+    }
+
+    async renderPopover(feedback, question, answer){
+        const h3 = this.popover.querySelector('h3')
+        const p = this.popover.querySelector('p')
+        const span = this.popover.querySelector('span')
+
+        h3.textContent = feedback
+        p.textContent = question
+        span.textContent = answer
+
+        this.popover.showPopover()
+
+        //await time(10000)
+
+        // this.popover.hidePopover()
     }
 }

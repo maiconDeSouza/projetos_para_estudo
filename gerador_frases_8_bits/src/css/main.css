@@ -1,0 +1,44 @@
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+main .controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+main .controls .display {
+    width: 95%;
+    height: 12.5rem;
+    padding: 1rem;
+    background-color: var(--display-bg);
+    border: 5px solid var(--display-border);
+    border-radius: 7px;
+}
+
+main .controls .display p {
+    font-family: "Press Start 2P", system-ui;
+    color: var(--slider-track);
+}
+
+main .controls button {
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--accent-2);
+    color: var(--text-light);
+    font-weight: 900;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+main .controls button:hover {
+    background-color: var(--glow-color);
+    transform: scale(1.05);
+}

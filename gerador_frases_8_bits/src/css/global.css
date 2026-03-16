@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Press+Start+2P&display=swap');
 :root {
     /* Cores Principais - Paleta 8-bit (vibrante) */
     --primary-bg: #1a1a2e;        /* Roxo escuro (fundo principal) */
@@ -20,16 +21,31 @@
     --pixel-shadow: 4px 4px 0px #000; /* Sombra pixelada */
     --pixel-shadow-small: 2px 2px 0px #000;
 
-    /* Fontes */
-    --font-pixel: 'Press Start 2P', 'Courier New', monospace; /* Fonte clássica de jogos */
-    --font-display: 'VT323', 'Courier New', monospace;        /* Fonte para display (mais legível) */
-    
-    /* Dimensões */
-    --container-width: 600px;
-    --border-thickness: 4px;
-    --spacing-unit: 1.5rem;
+}  
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: "JetBrains Mono", monospace;
 }
 
 body {
+    height: 100dvh;
     background-color: var(--primary-bg);
+    color: var(--text-light);
+    display: grid;
+    place-items: center;
+}
+
+.container {
+    padding: 1rem;
+    background-color: var(--secondary-bg);
+    border: 5px solid var(--accent-1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
