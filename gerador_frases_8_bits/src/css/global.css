@@ -1,0 +1,35 @@
+:root {
+    /* Cores Principais - Paleta 8-bit (vibrante) */
+    --primary-bg: #1a1a2e;        /* Roxo escuro (fundo principal) */
+    --secondary-bg: #16213e;       /* Azul marinho (elementos secundários) */
+    --accent-1: #0f3460;            /* Azul médio (detalhes) */
+    --accent-2: #e94560;            /* Rosa/vermelho vibrante (botões, destaque) */
+    --text-light: #f1f1f1;          /* Branco para textos */
+    --text-dark: #0f0f0f;            /* Preto para contraste */
+    --glow-color: rgba(233, 69, 96, 0.8); /* Brilho rosa */
+
+    /* Cores para elementos específicos */
+    --display-bg: #0a0f1e;           /* Fundo do display de frase (mais escuro) */
+    --display-border: #4ecca3;       /* Verde neon para bordas */
+    --slider-track: #4ecca3;          /* Cor do slider */
+    --slider-thumb: #e94560;          /* Botão do slider */
+
+    /* Efeitos de Pixel */
+    --pixel-size: 4px;                /* Tamanho do "pixel" para bordas pixeladas */
+    --pixel-border: 4px solid #000;  /* Borda preta estilo pixel */
+    --pixel-shadow: 4px 4px 0px #000; /* Sombra pixelada */
+    --pixel-shadow-small: 2px 2px 0px #000;
+
+    /* Fontes */
+    --font-pixel: 'Press Start 2P', 'Courier New', monospace; /* Fonte clássica de jogos */
+    --font-display: 'VT323', 'Courier New', monospace;        /* Fonte para display (mais legível) */
+    
+    /* Dimensões */
+    --container-width: 600px;
+    --border-thickness: 4px;
+    --spacing-unit: 1.5rem;
+}
+
+body {
+    background-color: var(--primary-bg);
+}
