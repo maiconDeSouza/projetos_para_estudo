@@ -1,0 +1,56 @@
+main {
+    padding: var(--spacer);
+    background-color: var(--sakura);
+    border-radius: 7px;
+    box-shadow: var(--shadow-medium);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacer);
+}
+
+main .haicais p {
+    /* padding: 1rem; */
+    font-size: 1.5rem;
+    font-family: var(--font-haiku);
+    text-align: center;
+    text-transform: lowercase;
+}
+
+main .haicais p.verse1::first-letter {
+    text-transform: uppercase;
+}
+
+main .actions {
+    padding: var(--spacer);
+    align-self: center;
+
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}
+
+main .actions button {
+    height: 3rem;
+    padding: .5rem 1rem;
+    background-color: var(--plum);
+    color: var(--paper);
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .5s ease;
+}
+
+main .actions button:hover {
+    filter: brightness(80%);
+    transform: scale(1.02);
+}
+
+main .actions .button-favorite.close {
+    pointer-events: none;
+}

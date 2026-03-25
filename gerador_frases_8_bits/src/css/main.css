@@ -24,6 +24,7 @@ main .controls .display {
 main .controls .display p {
     font-family: "Press Start 2P", system-ui;
     color: var(--slider-track);
+    line-height: 1.5;
 }
 
 main .controls button {
@@ -41,4 +42,20 @@ main .controls button {
 main .controls button:hover {
     background-color: var(--glow-color);
     transform: scale(1.05);
+}
+
+main .slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+main .slider-container output {
+    color: var(--display-border);
+    font-weight: 900;
+}
+
+main .slider-container input[type="range"] {
+    accent-color: var(--display-border);
 }

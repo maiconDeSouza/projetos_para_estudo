@@ -41,6 +41,8 @@ body {
 }
 
 .container {
+    width: 90%;
+    max-width: 45rem;
     padding: 1rem;
     background-color: var(--secondary-bg);
     border: 5px solid var(--accent-1);

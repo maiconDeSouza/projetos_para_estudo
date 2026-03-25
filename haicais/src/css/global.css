@@ -1,0 +1,53 @@
+:root {
+    /* Cores suaves inspiradas na arte japonesa */
+    --sakura: #fadadd;        /* Rosa claro (cerejeira) */
+    --wasabi: #8a9b6e;         /* Verde musgo */
+    --matcha: #b7c9a0;         /* Verde chá */
+    --ink: #2b2b2b;             /* Preto suave (tinta) */
+    --paper: #faf4e8;           /* Bege claro (papel washi) */
+    --sunset: #f7c5a8;          /* Pêssego (por do sol) */
+    --plum: #7b4b5c;            /* Roxo ameixa */
+    
+    /* Tipografia */
+    --font-haiku: "Cormorant Garamond", serif;
+    --font-ui: "Inter", sans-serif;
+    
+    /* Espaçamentos */
+    --spacer: 1.5rem;
+    --border-width: 1px;
+    
+    /* Sombras */
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    list-style: none;
+    font-family: var(--font-ui);
+}
+
+body {
+    background-image: url('/src/img/Gemini_Generated_Image_ov16vgov16vgov16.png');
+    background-size: contain;
+    background-repeat: repeat-y;
+    min-height: 200dvh;
+}
+
+.container {
+    width: 90%;
+    max-width: 45rem;
+    margin: var(--spacer) auto;
+    padding: var(--spacer);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacer);
+}
+
+.border-botton {
+    border-bottom: var(--border-width) solid var(--ink);
+}

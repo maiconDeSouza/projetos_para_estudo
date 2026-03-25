@@ -1,0 +1,43 @@
+footer ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacer);
+}
+
+footer ul li {
+    background-color: var(--sakura);
+    border-radius: 7px;
+}
+
+footer ul li article {
+    padding: var(--spacer);
+    display: flex;
+    align-items: first baseline;
+}
+
+footer ul li article .text-favorite {
+    flex: 1;
+}
+
+footer ul li article .text-favorite p {
+    font-size: 1.2rem;
+    font-family: var(--font-haiku);
+    line-height: 1.5;
+    text-transform: lowercase;
+}
+
+footer ul li article .text-favorite p.verse-favorite1::first-letter {
+    text-transform: uppercase;
+}
+
+footer ul li .button-trash {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+footer ul li .button-trash svg {
+    fill: red;
+    transition: all .5s ease;
+    pointer-events: none;
+}
