@@ -1,0 +1,154 @@
+:root {
+    --primary: #2563eb;
+    --secondary: #64748b;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --gold: #fbbf24;
+    --silver: #94a3b8;
+    --bronze: #b45309;
+    --highlight: #dbeafe;
+    --border: #e2e8f0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f1f5f9;
+    color: var(--dark);
+    line-height: 1.5;
+}
+
+/* Header & Nav */
+.main-header {
+    background-color: var(--dark);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo h1 span { color: var(--primary); }
+.logo p { font-size: 0.8rem; opacity: 0.7; }
+
+.nav-tabs { display: flex; gap: 0.5rem; }
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.tab-btn:hover { background: rgba(255,255,255,0.1); }
+.tab-btn.active {
+    border-bottom-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Layout */
+main { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; min-height: 70vh; }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+}
+
+@media (max-width: 900px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+/* Cards & Sections */
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Partidas */
+.rounds-container { max-height: 800px; overflow-y: auto; padding-right: 0.5rem; }
+.round-box { margin-bottom: 2rem; }
+.match-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+}
+.match-row:hover { background: var(--light); }
+
+.team-name { flex: 1; font-weight: 600; }
+.team-name.right { text-align: right; }
+
+.score-select {
+    width: 80px;
+    padding: 0.3rem;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    text-align: center;
+    margin: 0 1rem;
+    font-weight: bold;
+}
+
+/* Ranking Table */
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: var(--light); font-weight: 600; }
+
+.top-8 { background-color: var(--highlight); }
+.qualified { color: var(--success); font-weight: bold; }
+.medals { font-size: 1.2rem; }
+
+/* Buttons */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/* Regulamento */
+.regulamento-text h2 { margin-top: 1.5rem; color: var(--primary); }
+.regulamento-text ul { margin-left: 1.5rem; margin-top: 0.5rem; }
+
+.empty-state {
+    text-align: center;
+    padding: 4rem;
+    color: var(--secondary);
+}
