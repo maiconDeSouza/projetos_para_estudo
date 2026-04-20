@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro de Produtividade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+        <section class="timer-card">
+            <h1 class="display" id="display">00:00</h1>
+            
+            <div class="controls">
+                <button id="startBtn" class="btn start">Start</button>
+                <button id="pauseBtn" class="btn pause" disabled>Pause</button>
+                <button id="stopBtn" class="btn stop" disabled>Stop</button>
+            </div>
+
+            <div id="messageArea" class="message-area"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
