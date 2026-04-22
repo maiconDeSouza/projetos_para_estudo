@@ -6,6 +6,7 @@
     --success: #22c55e;
     --warning: #f59e0b;
     --danger: #ef4444;
+    --border: #334155;
 }
 
 body {
@@ -14,62 +15,66 @@ body {
     color: var(--text-color);
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    padding: 2rem 0;
     margin: 0;
-}
-
-.container {
-    text-align: center;
 }
 
 .timer-card {
     background: var(--card-bg);
-    padding: 3rem;
+    padding: 2.5rem;
     border-radius: 1rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    min-width: 320px;
+    width: 450px;
+}
+
+.input-group { margin-bottom: 1.5rem; }
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    background: var(--bg-color);
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
 }
 
 .display {
     font-size: 5rem;
     font-variant-numeric: tabular-nums;
-    margin-bottom: 2rem;
-    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 .controls {
-    display: flex;
-    gap: 1rem;
+    display: flex; gap: 1rem;
     justify-content: center;
     margin-bottom: 1.5rem;
 }
 
 .btn {
     padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.1s;
+    border: none; border-radius: 0.5rem;
+    font-weight: 600; cursor: pointer;
 }
 
-.btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.start { background: var(--success); color: white; }
+.pause { background: var(--warning); color: white; }
+.stop { background: var(--danger); color: white; }
+
+.history-container {
+    margin-top: 2rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
 }
 
-.btn:active:not(:disabled) {
-    transform: scale(0.95);
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
 }
 
-.start { background-color: var(--success); color: white; }
-.pause { background-color: var(--warning); color: white; }
-.stop { background-color: var(--danger); color: white; }
-
-.message-area {
-    margin-top: 1rem;
-    font-size: 1.1rem;
-    color: var(--primary);
-    min-height: 1.5em;
-}
+th { text-align: left; color: var(--primary); padding: 8px; }
+td { padding: 8px; border-bottom: 1px solid var(--border); }

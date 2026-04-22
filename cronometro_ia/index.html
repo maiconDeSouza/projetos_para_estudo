@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cronômetro de Produtividade</title>
+    <title>Cronômetro de Produtividade v2</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <main class="container">
         <section class="timer-card">
+            <div class="input-group">
+                <input type="text" id="cycleNameInput" placeholder="Nome do ciclo (ex: Estudar HTML)" autocomplete="off">
+            </div>
+
             <h1 class="display" id="display">00:00</h1>
             
             <div class="controls">
@@ -19,6 +23,21 @@
             </div>
 
             <div id="messageArea" class="message-area"></div>
+
+            <div class="history-container">
+                <h3>Últimos 10 Ciclos</h3>
+                <table id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Data</th>
+                            <th>Tempo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody">
+                        </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
