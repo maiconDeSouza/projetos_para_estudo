@@ -1,19 +1,16 @@
 package main
 
 import (
-	"fmt"
-	"go-sistema-de-gestao-de-um-resort-e-spa/guests"
 	"go-sistema-de-gestao-de-um-resort-e-spa/hotel"
 )
 
 func main() {
 	h := hotel.NewHotel()
 
-	fmt.Println(h.Services[0].Name)
+	op := hotel.CheckIn(h.Name)
 
-	g := guests.RegisterGuest("Maicon", guests.Premium)
+	hotel.CheckOption(op, h.Name)
 
-	fmt.Println(g.GetTier())
-	fmt.Println(g.GetDiscount())
+	// g := guests.RegisterGuest("Maicon", guests.Premium)
 
 }

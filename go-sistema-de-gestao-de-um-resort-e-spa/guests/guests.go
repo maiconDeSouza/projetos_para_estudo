@@ -39,6 +39,11 @@ type dependents struct {
 	isAdult bool
 }
 
+type service struct {
+	name  string
+	price float64
+}
+
 type Guest struct {
 	name            string
 	tier            Tier
@@ -46,6 +51,8 @@ type Guest struct {
 	totalDependents uint
 	dependents      []dependents
 	pay             float64
+	days            uint
+	service         []service
 }
 
 func (g Guest) GetTier() string {
@@ -57,5 +64,5 @@ func (g Guest) GetDiscount() float64 {
 }
 
 func RegisterGuest(name string, tier Tier) Guest {
-	return Guest{name: name, tier: tier, discount: tier.discount(), totalDependents: 4}
+	return Guest{name: name, tier: tier, discount: tier.discount(), totalDependents: 4, days: 0}
 }
