@@ -2,14 +2,14 @@ package guests
 
 import "slices"
 
-var guestsList []guest
+var guestsList []Guest
 
-func GetGuests() []guest {
+func GetGuestsList() []Guest {
 	return guestsList
 }
 
-func NewGuests(g guest) {
-	guestsList = append(guestsList, g)
+func NewGuests(g *Guest) {
+	guestsList = append(guestsList, *g)
 }
 
 func ExitGuests(i int) {

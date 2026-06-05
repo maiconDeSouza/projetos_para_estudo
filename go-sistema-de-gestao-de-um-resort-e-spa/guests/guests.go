@@ -35,16 +35,16 @@ func (t Tier) discount() float64 {
 }
 
 type dependents struct {
-	name    string
-	isAdult bool
+	Name    string
+	IsAdult bool
 }
 
 type service struct {
-	name  string
-	price float64
+	Name  string
+	Price float64
 }
 
-type guest struct {
+type Guest struct {
 	name            string
 	tier            Tier
 	discount        float64
@@ -55,18 +55,45 @@ type guest struct {
 	service         []service
 }
 
-func (g guest) GetName() string {
+func (g Guest) GetName() string {
 	return g.name
 }
 
-func (g guest) GetTier() string {
+func (g Guest) GetTier() string {
 	return g.tier.String()
 }
 
-func (g guest) GetDiscount() float64 {
+func (g Guest) GetDiscount() float64 {
 	return g.discount
 }
 
-func RegisterGuest(name string, tier Tier) guest {
-	return guest{name: name, tier: tier, discount: tier.discount(), totalDependents: 4, days: 0}
+func (g Guest) GetDependent() []dependents {
+	return g.dependents
+}
+
+func (g *Guest) AddDependent(name string, isAdult bool) {
+	d := dependents{Name: name, IsAdult: isAdult}
+
+	g.dependents = append(g.dependents, d)
+}
+
+func (g *Guest) GetService() []service {
+	return g.service
+}
+
+func (g *Guest) AddService(name string, price float64) {
+	s := service{Name: name, Price: price}
+	g.service = append(g.service, s)
+}
+
+func (g Guest) GetDay() uint {
+	return g.days
+}
+
+func (g *Guest) AddDay() {
+	g.days = g.days + 1
+}
+
+func RegisterGuest(name string, tier Tier) Guest {
+	return Guest{name: name, tier: tier, discount: tier.discount(), totalDependents: 4, days: 0}
 }

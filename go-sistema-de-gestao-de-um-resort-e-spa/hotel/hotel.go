@@ -9,10 +9,8 @@ type room struct {
 }
 
 type service struct {
-	Name           string
-	Price          float64
-	TotalVacancies uint
-	Busy           uint
+	Name  string
+	Price float64
 }
 
 type Hotel struct {
@@ -42,12 +40,12 @@ func NewHotel() Hotel {
 	r14 := room{Room: "N", Price: 390, View: "Janela para o estacionamento", Busy: false, IsItClean: true}
 	r15 := room{Room: "O", Price: 390, View: "Janela para o estacionamento", Busy: false, IsItClean: true}
 
-	s1 := service{Name: "Massagem relaxante", Price: 237, TotalVacancies: 7, Busy: 0}
-	s2 := service{Name: "acesso à área VIP", Price: 435, TotalVacancies: 5, Busy: 0}
-	s3 := service{Name: "Jantar romântico", Price: 320, TotalVacancies: 10, Busy: 0}
-	s4 := service{Name: "Passeio de barco", Price: 580, TotalVacancies: 8, Busy: 0}
-	s5 := service{Name: "Café da manhã especial no quarto", Price: 145, TotalVacancies: 15, Busy: 0}
-	s6 := service{Name: "Aula particular de mergulho", Price: 690, TotalVacancies: 4, Busy: 0}
+	s1 := service{Name: "Massagem relaxante", Price: 237}
+	s2 := service{Name: "acesso à área VIP", Price: 435}
+	s3 := service{Name: "Jantar romântico", Price: 320}
+	s4 := service{Name: "Passeio de barco", Price: 580}
+	s5 := service{Name: "Café da manhã especial no quarto", Price: 145}
+	s6 := service{Name: "Aula particular de mergulho", Price: 690}
 
 	h := Hotel{
 		Name:     "Hotel Luxo e Lazer",
