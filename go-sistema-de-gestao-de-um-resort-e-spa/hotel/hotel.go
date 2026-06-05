@@ -21,6 +21,10 @@ type Hotel struct {
 	Services []service
 }
 
+func (h Hotel) GetRooms() []room {
+	return h.Rooms
+}
+
 func NewHotel() Hotel {
 	r1 := room{Room: "A", Price: 589, View: "Sacada para a piscina", Busy: false, IsItClean: true}
 	r2 := room{Room: "B", Price: 450, View: "Sacada para o jardim", Busy: false, IsItClean: true}

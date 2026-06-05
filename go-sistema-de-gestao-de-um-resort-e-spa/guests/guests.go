@@ -44,7 +44,7 @@ type service struct {
 	price float64
 }
 
-type Guest struct {
+type guest struct {
 	name            string
 	tier            Tier
 	discount        float64
@@ -55,14 +55,18 @@ type Guest struct {
 	service         []service
 }
 
-func (g Guest) GetTier() string {
+func (g guest) GetName() string {
+	return g.name
+}
+
+func (g guest) GetTier() string {
 	return g.tier.String()
 }
 
-func (g Guest) GetDiscount() float64 {
+func (g guest) GetDiscount() float64 {
 	return g.discount
 }
 
-func RegisterGuest(name string, tier Tier) Guest {
-	return Guest{name: name, tier: tier, discount: tier.discount(), totalDependents: 4, days: 0}
+func RegisterGuest(name string, tier Tier) guest {
+	return guest{name: name, tier: tier, discount: tier.discount(), totalDependents: 4, days: 0}
 }
