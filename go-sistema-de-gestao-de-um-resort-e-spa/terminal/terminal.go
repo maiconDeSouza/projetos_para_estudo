@@ -345,7 +345,7 @@ func nextDay() {
 }
 
 func checkout() {
-	// var err error
+	var err error
 	guestsList := guests.GetGuestsList()
 
 	for i, g := range guestsList {
@@ -366,5 +366,39 @@ func checkout() {
 		PrintMCN(fmt.Sprintf("%d) %s - total: R$%.2f", i+1, g.GetName(), total))
 		PrintMCN("---------------------")
 	}
-	utilsmcn.SleepMCN(25)
+	PrintMCN(" ")
+	PrintMCN("Digite numero do cliente que quer fazer checkou")
+	numberGuest := utilsmcn.ReadTerminal(&err)
+	if err != nil {
+		checkout()
+	}
+
+	n, errNumber := strconv.Atoi(numberGuest)
+	if errNumber != nil {
+		PrintMCN(fmt.Sprint("Erro na conversão:", errNumber))
+	}
+	if n > len(guestsList) || n < 0 {
+		PrintMCN("Cliente inexistente!!!")
+		utilsmcn.SleepMCN(2)
+		checkout()
+	}
+	n--
+	utilsmcn.Clear()
+	PrintMCN(fmt.Sprintf("Fazer o Checkout do hóspede %s?", guestsList[n].GetName()))
+	PrintMCN("Sim ou Não")
+
+	doCheckout := utilsmcn.ReadTerminal(&err)
+	if err != nil {
+		checkout()
+	}
+	if doCheckout != "Sim" {
+		PrintMCN("Ok!")
+		utilsmcn.SleepMCN(2)
+		checkout()
+	}
+
+	guests.ExitGuests(n)
+	PrintMCN("Checkout feito com Sucesso!!!")
+	utilsmcn.SleepMCN((3))
+	CheckIn()
 }

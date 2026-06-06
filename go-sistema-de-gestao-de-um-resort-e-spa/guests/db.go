@@ -13,5 +13,5 @@ func NewGuests(g *Guest) {
 }
 
 func ExitGuests(i int) {
-	slices.Delete(guestsList, i, i+1)
+	guestsList = slices.Delete(guestsList, i, i+1)
 }
