@@ -1,9 +1,16 @@
 package main
 
 import (
+	"api-library-go/internal/storage"
 	"fmt"
 	"net/http"
 )
+
+var Library = storage.Library{}
+
+func init() {
+	Library.ReadJSON()
+}
 
 func main() {
 	mux := http.NewServeMux()
