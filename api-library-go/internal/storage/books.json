@@ -1,8 +1,62 @@
 [
  {
+  "id": "6",
+  "name": "O Senhor dos Anéis: A Sociedade do Anel",
+  "author": "J.R.R. Tolkien",
+  "history": {}
+ },
+ {
+  "id": "8",
+  "name": "Duna",
+  "author": "Frank Herbert",
+  "history": {}
+ },
+ {
+  "id": "9",
+  "name": "O Nome do Vento",
+  "author": "Patrick Rothfuss",
+  "history": {}
+ },
+ {
+  "id": "2",
+  "name": "1984",
+  "author": "George Orwell",
+  "history": {}
+ },
+ {
+  "id": "3",
+  "name": "Ultra-aprendizado",
+  "author": "Scott H. Young",
+  "history": {}
+ },
+ {
+  "id": "7",
+  "name": "Hábitos Atômicos",
+  "author": "James Clear",
+  "history": {}
+ },
+ {
   "id": "1",
-  "name": "O Senhor dos Anéis",
-  "author": "J. R. R. Tolkien",
+  "name": "O Hobbit",
+  "author": "J.R.R. Tolkien",
+  "history": {}
+ },
+ {
+  "id": "11",
+  "name": "Dom Casmurro",
+  "author": "Machado de Assis",
+  "history": {}
+ },
+ {
+  "id": "5",
+  "name": "Clean Code",
+  "author": "Robert C. Martin",
+  "history": {}
+ },
+ {
+  "id": "10",
+  "name": "Entendendo Algoritmos",
+  "author": "Aditya Bhargava",
   "history": {}
  }
 ]

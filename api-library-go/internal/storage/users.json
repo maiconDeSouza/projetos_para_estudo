@@ -1,1 +1,27 @@
-null
+[
+ {
+  "id": "1",
+  "name": "João",
+  "book": {}
+ },
+ {
+  "id": "3",
+  "name": "Dante",
+  "book": {}
+ },
+ {
+  "id": "4",
+  "name": "Dona Maia",
+  "book": {}
+ },
+ {
+  "id": "5",
+  "name": "Delinha",
+  "book": {}
+ },
+ {
+  "id": "6",
+  "name": "Talu",
+  "book": {}
+ }
+]
