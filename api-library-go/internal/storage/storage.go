@@ -3,8 +3,19 @@ package storage
 import (
 	"api-library-go/internal/models"
 	"encoding/json"
+	"errors"
+	"fmt"
 	"os"
 )
+
+var L = Library{}
+
+func init() {
+	L.books = make(map[string]*models.Book)
+	L.users = make(map[string]*models.User)
+
+	L.ReadJSON()
+}
 
 var pathBooks = "./internal/storage/books.json"
 var pathUsers = "./internal/storage/users.json"
@@ -82,4 +93,35 @@ func (library *Library) ReadJSON() error {
 	}
 
 	return nil
+}
+
+func (library *Library) GetAllBooks() map[string]*models.Book {
+	return library.books
+}
+
+func (library *Library) AddBook(newBook *models.Book) {
+	id := fmt.Sprintf("%d", len(library.books)+1)
+	newBook.ID = id
+	newBook.History = make(map[string]*models.User)
+	library.books[id] = newBook
+
+	library.WriteJSON()
+}
+
+func (library *Library) UpBook(upBook *models.Book, id string) (*models.Book, error) {
+	book, exist := library.books[id]
+	if !exist {
+		return nil, errors.New("Livro não encontrado")
+	}
+
+	if upBook.Name != "" {
+		book.Name = upBook.Name
+	}
+
+	if upBook.Author != "" {
+		book.Author = upBook.Author
+	}
+
+	library.WriteJSON()
+	return book, nil
 }
