@@ -1,13 +1,24 @@
 package models
 
-type Book struct {
+type BookRequest struct {
+	Name   string `json:"name"`
+	Author string `json:"author"`
+}
+
+type BookResponse struct {
 	ID       string `json:"id"`
 	Name     string `json:"name"`
 	Author   string `json:"author"`
 	Borrowed bool   `json:"borrowed"`
 }
 
-type User struct {
+type UserRequest struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
+}
+
+type UserResponse struct {
+	ID    string `json:"id"`
+	Name  string `json:"name"`
+	books []*BookRequest
 }
