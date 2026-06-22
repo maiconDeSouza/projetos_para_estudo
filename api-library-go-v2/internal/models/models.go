@@ -18,7 +18,7 @@ type UserRequest struct {
 }
 
 type UserResponse struct {
-	ID    string `json:"id"`
-	Name  string `json:"name"`
-	books []*BookRequest
+	ID    string         `json:"id"`
+	Name  string         `json:"name"`
+	Books []*BookRequest `json:"books"`
 }
