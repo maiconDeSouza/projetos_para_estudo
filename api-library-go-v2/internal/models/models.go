@@ -6,19 +6,19 @@ type BookRequest struct {
 }
 
 type BookResponse struct {
-	ID       string `json:"id"`
+	ID       int    `json:"id"`
 	Name     string `json:"name"`
 	Author   string `json:"author"`
 	Borrowed bool   `json:"borrowed"`
 }
 
 type UserRequest struct {
-	ID   string `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
 type UserResponse struct {
-	ID    string         `json:"id"`
+	ID    int            `json:"id"`
 	Name  string         `json:"name"`
 	Books []*BookRequest `json:"books"`
 }
