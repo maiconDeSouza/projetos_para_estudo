@@ -3,6 +3,8 @@ package services
 import (
 	"api-library-go-v2/internal/models"
 	"api-library-go-v2/internal/storage"
+	"errors"
+	"strconv"
 )
 
 type Services struct {
@@ -21,4 +23,20 @@ func (s *Services) CreateBook(book *models.BookRequest) *models.BookResponse {
 
 func (s *Services) GetAllBooks() map[int]*models.BookResponse {
 	return s.storage.GetAllBooks()
+}
+
+func (s *Services) GetBook(idString string) (*models.BookResponse, error) {
+	id, err := strconv.Atoi(idString)
+	if err != nil {
+		return nil, errors.New("Parametro tem que ser númerico")
+	}
+	return s.storage.GetBook(id)
+}
+
+func (s *Services) DelBook(idString string) (*models.BookResponse, error) {
+	id, err := strconv.Atoi(idString)
+	if err != nil {
+		return nil, errors.New("Parametro tem que ser númerico")
+	}
+	return s.storage.DelBook(id)
 }

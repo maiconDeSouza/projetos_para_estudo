@@ -3,6 +3,7 @@ package storage
 import (
 	"api-library-go-v2/internal/models"
 	"encoding/json"
+	"errors"
 	"log"
 	"os"
 	"sync"
@@ -123,4 +124,32 @@ func (s *Storage) GetAllBooks() map[int]*models.BookResponse {
 	}
 
 	return books
+}
+
+func (s *Storage) GetBook(id int) (*models.BookResponse, error) {
+	mu.RLock()
+	defer mu.RUnlock()
+
+	book, ok := s.Books[id]
+	if !ok {
+		return nil, errors.New("Livro não encontrado!")
+	}
+
+	return book, nil
+}
+
+func (s *Storage) DelBook(id int) (*models.BookResponse, error) {
+	mu.Lock()
+	defer mu.Unlock()
+
+	book, ok := s.Books[id]
+	if !ok {
+		return nil, errors.New("Livro não encontrado!")
+	}
+
+	delete(s.Books, book.ID)
+
+	s.WriteJSON()
+
+	return book, nil
 }

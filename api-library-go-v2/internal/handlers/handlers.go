@@ -38,3 +38,31 @@ func (h *Handler) GetAllBooks(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(books)
 }
+
+func (h *Handler) GetBook(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+
+	book, err := h.service.GetBook(id)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(book)
+}
+
+func (h *Handler) DelBook(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+
+	book, err := h.service.GetBook(id)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(book)
+}
