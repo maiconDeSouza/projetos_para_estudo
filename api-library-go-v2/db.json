@@ -1,0 +1,25 @@
+{
+  "idBook": 3,
+  "idUser": 0,
+  "books": [
+    {
+      "id": 1,
+      "name": "Dom Casmurro",
+      "author": "Machado de Assis",
+      "borrowed": false
+    },
+    {
+      "id": 2,
+      "name": "Dom Casmurro",
+      "author": "Machado de Assis",
+      "borrowed": false
+    },
+    {
+      "id": 3,
+      "name": "Dom Casmurro",
+      "author": "Machado de Assis",
+      "borrowed": false
+    }
+  ],
+  "users": null
+}

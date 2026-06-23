@@ -11,53 +11,55 @@ import (
 var mu sync.RWMutex
 
 type Storage struct {
-	filePath string
-	idBook   int
-	idUser   int
-	books    map[int]*models.BookResponse
-	users    map[int]*models.UserResponse
+	FilePath string
+	IdBook   int
+	IdUser   int
+	Books    map[int]*models.BookResponse
+	Users    map[int]*models.UserResponse
 }
 
 type StorageJson struct {
-	idBook int
-	idUser int
-	books  []*models.BookResponse
-	users  []*models.UserResponse
+	IdBook int                    `json:"idBook"`
+	IdUser int                    `json:"idUser"`
+	Books  []*models.BookResponse `json:"books"`
+	Users  []*models.UserResponse `json:"users"`
 }
 
 func (s *Storage) WriteJSON() {
-	sj := StorageJson{}
-
-	sj.idBook = s.idBook
-	sj.idUser = s.idUser
-
-	for _, v := range s.books {
-		sj.books = append(sj.books, v)
+	sj := StorageJson{
+		IdBook: s.IdBook,
+		IdUser: s.IdUser,
 	}
 
-	for _, v := range s.users {
-		sj.users = append(sj.users, v)
+	for _, v := range s.Books {
+		sj.Books = append(sj.Books, v)
 	}
 
-	jsonSJ, err := json.MarshalIndent(sj, "", " ")
+	for _, v := range s.Users {
+		sj.Users = append(sj.Users, v)
+	}
+
+	jsonSJ, err := json.MarshalIndent(sj, "", "  ")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	err = os.WriteFile(s.filePath, jsonSJ, 0644)
+	err = os.WriteFile(s.FilePath, jsonSJ, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func (s *Storage) ReadJson() {
+func (s *Storage) ReadJSON() {
 	sj := StorageJson{}
-	jsonSJ, err := os.ReadFile(s.filePath)
+
+	jsonSJ, err := os.ReadFile(s.FilePath)
 	if err != nil {
 		if os.IsNotExist(err) {
 			s.WriteJSON()
 			return
 		}
+
 		log.Fatal(err)
 	}
 
@@ -66,47 +68,59 @@ func (s *Storage) ReadJson() {
 		log.Fatal(err)
 	}
 
-	s.idBook = sj.idBook
-	s.idUser = sj.idUser
+	s.IdBook = sj.IdBook
+	s.IdUser = sj.IdUser
 
-	for _, book := range sj.books {
-		s.books[book.ID] = book
+	for _, book := range sj.Books {
+		s.Books[book.ID] = book
 	}
 
-	for _, user := range sj.users {
-		s.users[user.ID] = user
+	for _, user := range sj.Users {
+		s.Users[user.ID] = user
 	}
 }
 
 func NewStorage() *Storage {
-	storage := Storage{
-		filePath: "./db.json",
+	storage := &Storage{
+		FilePath: "./db.json",
+		Books:    make(map[int]*models.BookResponse),
+		Users:    make(map[int]*models.UserResponse),
 	}
 
-	storage.ReadJson()
+	storage.ReadJSON()
 
-	return &storage
-
+	return storage
 }
 
 func (s *Storage) CreateNewBook(book *models.BookRequest) *models.BookResponse {
-	id := len(s.books) + 1
+	mu.Lock()
+	defer mu.Unlock()
 
-	newBook := models.BookResponse{
-		ID:       id,
+	s.IdBook++
+
+	newBook := &models.BookResponse{
+		ID:       s.IdBook,
 		Name:     book.Name,
 		Author:   book.Author,
 		Borrowed: false,
 	}
 
-	s.idBook = id
-	s.books[id] = &newBook
+	s.Books[newBook.ID] = newBook
 
 	s.WriteJSON()
 
-	return &newBook
+	return newBook
 }
 
-func (s *Storage) GetAllBooks() *map[int]*models.BookResponse {
-	return &s.books
+func (s *Storage) GetAllBooks() map[int]*models.BookResponse {
+	mu.RLock()
+	defer mu.RUnlock()
+
+	books := make(map[int]*models.BookResponse)
+
+	for k, v := range s.Books {
+		books[k] = v
+	}
+
+	return books
 }
