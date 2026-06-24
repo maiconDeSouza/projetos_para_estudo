@@ -138,6 +138,28 @@ func (s *Storage) GetBook(id int) (*models.BookResponse, error) {
 	return book, nil
 }
 
+func (s *Storage) UpBook(id int, upBook *models.BookRequest) (*models.BookResponse, error) {
+	mu.Lock()
+	defer mu.Unlock()
+
+	book, ok := s.Books[id]
+	if !ok {
+		return nil, errors.New("Livro não encontrado!")
+	}
+
+	if len(upBook.Name) > 3 {
+		book.Name = upBook.Name
+	}
+
+	if len(upBook.Author) > 3 {
+		book.Author = upBook.Author
+	}
+
+	s.WriteJSON()
+
+	return book, nil
+}
+
 func (s *Storage) DelBook(id int) (*models.BookResponse, error) {
 	mu.Lock()
 	defer mu.Unlock()

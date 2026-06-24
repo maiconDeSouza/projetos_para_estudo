@@ -1,21 +1,15 @@
 {
-  "idBook": 3,
+  "idBook": 4,
   "idUser": 0,
   "books": [
     {
       "id": 1,
-      "name": "Dom Casmurro",
-      "author": "Machado de Assis",
+      "name": "Livro2",
+      "author": "Olé",
       "borrowed": false
     },
     {
-      "id": 2,
-      "name": "Dom Casmurro",
-      "author": "Machado de Assis",
-      "borrowed": false
-    },
-    {
-      "id": 3,
+      "id": 4,
       "name": "Dom Casmurro",
       "author": "Machado de Assis",
       "borrowed": false

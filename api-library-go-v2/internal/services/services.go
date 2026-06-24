@@ -33,6 +33,14 @@ func (s *Services) GetBook(idString string) (*models.BookResponse, error) {
 	return s.storage.GetBook(id)
 }
 
+func (s *Services) UpBook(idString string, upBook *models.BookRequest) (*models.BookResponse, error) {
+	id, err := strconv.Atoi(idString)
+	if err != nil {
+		return nil, errors.New("Parametro tem que ser númerico")
+	}
+	return s.storage.UpBook(id, upBook)
+}
+
 func (s *Services) DelBook(idString string) (*models.BookResponse, error) {
 	id, err := strconv.Atoi(idString)
 	if err != nil {

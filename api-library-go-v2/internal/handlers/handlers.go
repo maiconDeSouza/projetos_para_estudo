@@ -53,10 +53,26 @@ func (h *Handler) GetBook(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(book)
 }
 
+func (h *Handler) UpBook(w http.ResponseWriter, r *http.Request) {
+	var upBook models.BookRequest
+	id := r.PathValue("id")
+
+	err := json.NewDecoder(r.Body).Decode(&upBook)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	book, err := h.service.UpBook(id, &upBook)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(book)
+}
+
 func (h *Handler) DelBook(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 
-	book, err := h.service.GetBook(id)
+	book, err := h.service.DelBook(id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

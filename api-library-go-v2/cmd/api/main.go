@@ -21,6 +21,7 @@ func main() {
 	mux.HandleFunc("POST /api/v2/library/books", handlers.CreateBook)
 	mux.HandleFunc("GET /api/v2/library/books", handlers.GetAllBooks)
 	mux.HandleFunc("GET /api/v2/library/books/{id}", handlers.GetBook)
+	mux.HandleFunc("PUT /api/v2/library/books/{id}", handlers.UpBook)
 	mux.HandleFunc("DELETE /api/v2/library/books/{id}", handlers.DelBook)
 
 	fmt.Println("servidor rodando...")
