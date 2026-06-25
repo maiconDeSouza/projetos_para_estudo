@@ -13,12 +13,11 @@ type BookResponse struct {
 }
 
 type UserRequest struct {
-	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
 type UserResponse struct {
-	ID    int            `json:"id"`
-	Name  string         `json:"name"`
-	Books []*BookRequest `json:"books"`
+	ID    int      `json:"id"`
+	Name  string   `json:"name"`
+	Books []string `json:"books"`
 }

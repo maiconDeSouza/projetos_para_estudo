@@ -175,3 +175,35 @@ func (s *Storage) DelBook(id int) (*models.BookResponse, error) {
 
 	return book, nil
 }
+
+func (s *Storage) CreateUser(user *models.UserRequest) *models.UserResponse {
+	mu.Lock()
+	defer mu.Unlock()
+
+	s.IdUser++
+
+	newUser := &models.UserResponse{
+		ID:    s.IdUser,
+		Name:  user.Name,
+		Books: make([]string, 0),
+	}
+
+	s.Users[newUser.ID] = newUser
+
+	s.WriteJSON()
+
+	return newUser
+}
+
+func (s *Storage) GetAllUsers() map[int]*models.UserResponse {
+	return s.Users
+}
+
+func (s *Storage) GetUser(id int) (*models.UserResponse, error) {
+	user, ok := s.Users[id]
+	if !ok {
+		return nil, errors.New("Usuário não encontrado!")
+	}
+
+	return user, nil
+}

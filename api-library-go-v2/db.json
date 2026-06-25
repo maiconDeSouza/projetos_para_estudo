@@ -1,11 +1,11 @@
 {
-  "idBook": 4,
-  "idUser": 0,
+  "idBook": 5,
+  "idUser": 3,
   "books": [
     {
       "id": 1,
       "name": "Livro2",
-      "author": "Olé",
+      "author": "Oléé",
       "borrowed": false
     },
     {
@@ -15,5 +15,21 @@
       "borrowed": false
     }
   ],
-  "users": null
+  "users": [
+    {
+      "id": 2,
+      "name": "Dona Maia",
+      "books": []
+    },
+    {
+      "id": 3,
+      "name": "Delinha",
+      "books": []
+    },
+    {
+      "id": 1,
+      "name": "Dante",
+      "books": []
+    }
+  ]
 }

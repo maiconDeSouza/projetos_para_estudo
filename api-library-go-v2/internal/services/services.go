@@ -48,3 +48,20 @@ func (s *Services) DelBook(idString string) (*models.BookResponse, error) {
 	}
 	return s.storage.DelBook(id)
 }
+
+func (s *Services) CreateUser(user *models.UserRequest) *models.UserResponse {
+	return s.storage.CreateUser(user)
+}
+
+func (s *Services) GetAllUsers() map[int]*models.UserResponse {
+	return s.storage.GetAllUsers()
+}
+
+func (s *Services) GetUser(idString string) (*models.UserResponse, error) {
+	id, err := strconv.Atoi(idString)
+	if err != nil {
+		return nil, errors.New("Parametro tem que ser númerico")
+	}
+
+	return s.storage.GetUser(id)
+}
