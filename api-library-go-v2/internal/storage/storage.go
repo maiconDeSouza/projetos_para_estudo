@@ -27,6 +27,21 @@ type StorageJson struct {
 	Users  []*models.UserResponse `json:"users"`
 }
 
+type BookUserRepository interface {
+	CreateNewBook(book *models.BookRequest) *models.BookResponse
+	GetAllBooks() map[int]*models.BookResponse
+	GetBook(id int) (*models.BookResponse, error)
+	UpBook(id int, upBook *models.BookRequest) (*models.BookResponse, error)
+	DelBook(id int) (*models.BookResponse, error)
+	CreateUser(user *models.UserRequest) *models.UserResponse
+	GetAllUsers() map[int]*models.UserResponse
+	GetUser(id int) (*models.UserResponse, error)
+	UpUser(id int, upUser *models.UserRequest) (*models.UserResponse, error)
+	DelUser(id int) (*models.UserResponse, error)
+	BorrowedBook(idUser, idBook int) (*models.BorrowedResponse, error)
+	ReturnBook(idBook int) (*models.BookResponse, error)
+}
+
 func (s *Storage) WriteJSON() {
 	sj := StorageJson{
 		IdBook: s.IdBook,

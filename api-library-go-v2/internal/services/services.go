@@ -8,10 +8,10 @@ import (
 )
 
 type Services struct {
-	storage *storage.Storage
+	storage storage.BookUserRepository
 }
 
-func NewServices(storage *storage.Storage) *Services {
+func NewServices(storage storage.BookUserRepository) *Services {
 	return &Services{
 		storage: storage,
 	}
