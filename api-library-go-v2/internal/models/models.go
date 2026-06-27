@@ -21,3 +21,8 @@ type UserResponse struct {
 	Name  string   `json:"name"`
 	Books []string `json:"books"`
 }
+
+type BorrowedResponse struct {
+	NameUser string
+	NameBook string
+}

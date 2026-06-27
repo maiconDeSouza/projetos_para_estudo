@@ -17,19 +17,16 @@
   ],
   "users": [
     {
-      "id": 2,
-      "name": "Dona Maia",
-      "books": []
-    },
-    {
-      "id": 3,
-      "name": "Delinha",
-      "books": []
-    },
-    {
       "id": 1,
       "name": "Dante",
       "books": []
+    },
+    {
+      "id": 2,
+      "name": "Dona Maia",
+      "books": [
+        "Dom Casmurro"
+      ]
     }
   ]
 }

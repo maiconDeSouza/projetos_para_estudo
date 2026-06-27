@@ -4,6 +4,7 @@ import (
 	"api-library-go-v2/internal/models"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"os"
 	"sync"
@@ -206,4 +207,76 @@ func (s *Storage) GetUser(id int) (*models.UserResponse, error) {
 	}
 
 	return user, nil
+}
+
+func (s *Storage) UpUser(id int, upUser *models.UserRequest) (*models.UserResponse, error) {
+	user, ok := s.Users[id]
+	if !ok {
+		return nil, errors.New("Usuário não encontrado!")
+	}
+
+	if len(upUser.Name) > 3 {
+		user.Name = upUser.Name
+	}
+
+	s.WriteJSON()
+
+	return user, nil
+}
+
+func (s *Storage) DelUser(id int) (*models.UserResponse, error) {
+	user, ok := s.Users[id]
+	if !ok {
+		return nil, errors.New("Usuário não encontrado!")
+	}
+
+	delete(s.Users, user.ID)
+
+	s.WriteJSON()
+
+	return user, nil
+}
+
+func (s *Storage) BorrowedBook(idUser, idBook int) (*models.BorrowedResponse, error) {
+	response := models.BorrowedResponse{}
+	user, ok := s.Users[idUser]
+	if !ok {
+		return nil, errors.New("Usuário não encontrado!")
+	}
+
+	book, ok := s.Books[idBook]
+	if !ok {
+		return nil, errors.New("Livro não encontrado!")
+	}
+
+	if book.Borrowed {
+		return nil, errors.New("Livro já emprestado")
+	}
+
+	response.NameUser = user.Name
+	response.NameBook = book.Name
+
+	book.Borrowed = true
+	user.Books = append(user.Books, fmt.Sprintf("%s", response.NameBook))
+
+	s.WriteJSON()
+
+	return &response, nil
+}
+
+func (s *Storage) ReturnBook(idBook int) (*models.BookResponse, error) {
+	book, ok := s.Books[idBook]
+	if !ok {
+		return nil, errors.New("Livro não encontrado!")
+	}
+
+	if !book.Borrowed {
+		return nil, errors.New("Livro já está na biblioteca!")
+	}
+
+	book.Borrowed = false
+
+	s.WriteJSON()
+
+	return book, nil
 }

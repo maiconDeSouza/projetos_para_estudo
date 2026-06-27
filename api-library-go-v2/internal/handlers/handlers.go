@@ -64,6 +64,11 @@ func (h *Handler) UpBook(w http.ResponseWriter, r *http.Request) {
 	}
 
 	book, err := h.service.UpBook(id, &upBook)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(book)
@@ -120,4 +125,69 @@ func (h *Handler) GetUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(user)
+}
+
+func (h *Handler) UpUser(w http.ResponseWriter, r *http.Request) {
+	upUser := models.UserRequest{}
+	idString := r.PathValue("id")
+
+	err := json.NewDecoder(r.Body).Decode(&upUser)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	user, err := h.service.UpUser(idString, &upUser)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(user)
+}
+
+func (h *Handler) DelUser(w http.ResponseWriter, r *http.Request) {
+	idString := r.PathValue("id")
+
+	user, err := h.service.DelUser(idString)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(user)
+
+}
+
+func (h *Handler) BorrowedBook(w http.ResponseWriter, r *http.Request) {
+	idUserString := r.PathValue("idUser")
+	idBookString := r.PathValue("idBook")
+
+	response, err := h.service.BorrowedBook(idUserString, idBookString)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(response)
+}
+
+func (h *Handler) ReturnBook(w http.ResponseWriter, r *http.Request) {
+	idBookString := r.PathValue("idBook")
+
+	book, err := h.service.ReturnBook(idBookString)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(book)
 }

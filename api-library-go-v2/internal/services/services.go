@@ -65,3 +65,44 @@ func (s *Services) GetUser(idString string) (*models.UserResponse, error) {
 
 	return s.storage.GetUser(id)
 }
+
+func (s *Services) UpUser(idString string, upUser *models.UserRequest) (*models.UserResponse, error) {
+	id, err := strconv.Atoi(idString)
+	if err != nil {
+		return nil, errors.New("Parametro tem que ser númerico")
+	}
+
+	return s.storage.UpUser(id, upUser)
+}
+
+func (s *Services) DelUser(idString string) (*models.UserResponse, error) {
+	id, err := strconv.Atoi(idString)
+	if err != nil {
+		return nil, errors.New("Parametro tem que ser númerico")
+	}
+
+	return s.storage.DelUser(id)
+}
+
+func (s *Services) BorrowedBook(idUserString, idBookString string) (*models.BorrowedResponse, error) {
+	idUser, err := strconv.Atoi(idUserString)
+	if err != nil {
+		return nil, errors.New("Parametro tem que ser númerico")
+	}
+
+	idBook, err := strconv.Atoi(idBookString)
+	if err != nil {
+		return nil, errors.New("Parametro tem que ser númerico")
+	}
+
+	return s.storage.BorrowedBook(idUser, idBook)
+}
+
+func (s *Services) ReturnBook(idBookString string) (*models.BookResponse, error) {
+	idBook, err := strconv.Atoi(idBookString)
+	if err != nil {
+		return nil, errors.New("Parametro tem que ser númerico")
+	}
+
+	return s.storage.ReturnBook(idBook)
+}

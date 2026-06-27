@@ -27,6 +27,11 @@ func main() {
 	mux.HandleFunc("POST /api/v2/library/users", handlers.CreateUser)
 	mux.HandleFunc("GET /api/v2/library/users", handlers.GetAllUsers)
 	mux.HandleFunc("GET /api/v2/library/users/{id}", handlers.GetUser)
+	mux.HandleFunc("PUT /api/v2/library/users/{id}", handlers.UpUser)
+	mux.HandleFunc("DELETE /api/v2/library/users/{id}", handlers.DelUser)
+
+	mux.HandleFunc("GET /api/v2/library/users/{idUser}/{idBook}", handlers.BorrowedBook)
+	mux.HandleFunc("GET /api/v2/library/users/return/{idBook}", handlers.ReturnBook)
 
 	fmt.Println("servidor rodando...")
 	http.ListenAndServe(":2005", mux)
