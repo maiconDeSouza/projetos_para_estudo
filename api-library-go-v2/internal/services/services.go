@@ -7,6 +7,21 @@ import (
 	"strconv"
 )
 
+type BookUserServices interface {
+	CreateBook(book *models.BookRequest) *models.BookResponse
+	GetAllBooks() map[int]*models.BookResponse
+	GetBook(idString string) (*models.BookResponse, error)
+	UpBook(idString string, upBook *models.BookRequest) (*models.BookResponse, error)
+	DelBook(idString string) (*models.BookResponse, error)
+	CreateUser(user *models.UserRequest) *models.UserResponse
+	GetAllUsers() map[int]*models.UserResponse
+	GetUser(idString string) (*models.UserResponse, error)
+	UpUser(idString string, upUser *models.UserRequest) (*models.UserResponse, error)
+	DelUser(idString string) (*models.UserResponse, error)
+	BorrowedBook(idUserString, idBookString string) (*models.BorrowedResponse, error)
+	ReturnBook(idBookString string) (*models.BookResponse, error)
+}
+
 type Services struct {
 	storage storage.BookUserRepository
 }
