@@ -212,10 +212,14 @@ func (s *Storage) CreateUser(user *models.UserRequest) *models.UserResponse {
 }
 
 func (s *Storage) GetAllUsers() map[int]*models.UserResponse {
+	mu.RLock()
+	defer mu.RUnlock()
 	return s.Users
 }
 
 func (s *Storage) GetUser(id int) (*models.UserResponse, error) {
+	mu.RLock()
+	defer mu.RUnlock()
 	user, ok := s.Users[id]
 	if !ok {
 		return nil, errors.New("Usuário não encontrado!")
@@ -225,6 +229,8 @@ func (s *Storage) GetUser(id int) (*models.UserResponse, error) {
 }
 
 func (s *Storage) UpUser(id int, upUser *models.UserRequest) (*models.UserResponse, error) {
+	mu.Lock()
+	defer mu.Unlock()
 	user, ok := s.Users[id]
 	if !ok {
 		return nil, errors.New("Usuário não encontrado!")
@@ -240,6 +246,8 @@ func (s *Storage) UpUser(id int, upUser *models.UserRequest) (*models.UserRespon
 }
 
 func (s *Storage) DelUser(id int) (*models.UserResponse, error) {
+	mu.Lock()
+	defer mu.Unlock()
 	user, ok := s.Users[id]
 	if !ok {
 		return nil, errors.New("Usuário não encontrado!")
@@ -253,6 +261,8 @@ func (s *Storage) DelUser(id int) (*models.UserResponse, error) {
 }
 
 func (s *Storage) BorrowedBook(idUser, idBook int) (*models.BorrowedResponse, error) {
+	mu.Lock()
+	defer mu.Unlock()
 	response := models.BorrowedResponse{}
 	user, ok := s.Users[idUser]
 	if !ok {
@@ -280,6 +290,8 @@ func (s *Storage) BorrowedBook(idUser, idBook int) (*models.BorrowedResponse, er
 }
 
 func (s *Storage) ReturnBook(idBook int) (*models.BookResponse, error) {
+	mu.Lock()
+	defer mu.Unlock()
 	book, ok := s.Books[idBook]
 	if !ok {
 		return nil, errors.New("Livro não encontrado!")
