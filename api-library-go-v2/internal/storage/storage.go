@@ -214,7 +214,14 @@ func (s *Storage) CreateUser(user *models.UserRequest) *models.UserResponse {
 func (s *Storage) GetAllUsers() map[int]*models.UserResponse {
 	mu.RLock()
 	defer mu.RUnlock()
-	return s.Users
+
+	users := make(map[int]*models.UserResponse)
+
+	for k, v := range s.Users {
+		users[k] = v
+	}
+
+	return users
 }
 
 func (s *Storage) GetUser(id int) (*models.UserResponse, error) {
