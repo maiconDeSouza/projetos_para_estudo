@@ -42,18 +42,18 @@ func (s *Services) CreateMedical(medical *models.MedicalRequest) (*models.Medica
 	return &newMedical, nil
 }
 
-func (s *Services) CreateAgenda(crm *models.GetMedical) error {
-	addCrm := crm.Crm
+// func (s *Services) CreateAgenda(crm *models.GetMedical) error {
+// 	addCrm := crm.Crm
 
-	medical, err := s.repositories.GetMedical(addCrm)
-	if err != nil {
-		return err
-	}
+// 	medical, err := s.repositories.GetMedical(addCrm)
+// 	if err != nil {
+// 		return err
+// 	}
 
-	medical.Agenda
+// 	medical.Agenda
 
-	return nil
-}
+// 	return nil
+// }
 
 func NewServices(repositories repositories.DBResotirories) *Services {
 	return &Services{
