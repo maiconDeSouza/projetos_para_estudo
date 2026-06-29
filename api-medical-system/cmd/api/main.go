@@ -6,6 +6,7 @@ import (
 	"api-medical-system/internal/routes"
 	"api-medical-system/internal/services"
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -17,5 +18,5 @@ func main() {
 	mux := routes.InitRoutes(handlers)
 
 	fmt.Println("Servidor rodando...")
-	http.ListenAndServe(":2005", mux)
+	log.Fatal(http.ListenAndServe(":2005", mux))
 }
