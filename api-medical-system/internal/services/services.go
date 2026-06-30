@@ -8,6 +8,8 @@ import (
 
 type ServicesInterface interface {
 	CreateMedical(medical *models.MedicalRequest) (*models.Medical, error)
+	CreateAgenda(agenda *models.MedicalAgenda) error
+	GetMedical(crm string) (*models.Medical, error)
 }
 
 type Services struct {
@@ -42,18 +44,38 @@ func (s *Services) CreateMedical(medical *models.MedicalRequest) (*models.Medica
 	return &newMedical, nil
 }
 
-// func (s *Services) CreateAgenda(crm *models.GetMedical) error {
-// 	addCrm := crm.Crm
+func (s *Services) CreateAgenda(agenda *models.MedicalAgenda) error {
+	addCrm := agenda.Crm
 
-// 	medical, err := s.repositories.GetMedical(addCrm)
-// 	if err != nil {
-// 		return err
-// 	}
+	medical, err := s.repositories.GetMedical(addCrm)
+	if err != nil {
+		return err
+	}
 
-// 	medical.Agenda
+	if len(medical.Agenda) > 0 {
+		return errors.New("Agenda de 30 dias já criada")
+	}
 
-// 	return nil
-// }
+	newAgenda := GenerateAgendaNow(agenda.Hours, agenda.Minutes)
+	medical.Agenda = append(medical.Agenda, newAgenda...)
+
+	s.repositories.WriteJson()
+
+	return nil
+}
+
+func (s *Services) GetMedical(crm string) (*models.Medical, error) {
+	if len(crm) != 6 {
+		return nil, errors.New("CRM Inválido")
+	}
+
+	medical, err := s.repositories.GetMedical(crm)
+	if err != nil {
+		return nil, err
+	}
+
+	return medical, nil
+}
 
 func NewServices(repositories repositories.DBResotirories) *Services {
 	return &Services{

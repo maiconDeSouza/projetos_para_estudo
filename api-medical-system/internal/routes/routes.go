@@ -13,6 +13,8 @@ func InitRoutes(handlers *handlers.Handlers) *http.ServeMux {
 	})
 
 	mux.HandleFunc("POST /api/v1/medical-system/medical", handlers.CreateMedical)
+	mux.HandleFunc("POST /api/v1/medical-system/medical/agenda", handlers.CreateAgenda)
+	mux.HandleFunc("POST /api/v1/medical-system/medical/{crm}", handlers.GetMediacal)
 
 	return mux
 }

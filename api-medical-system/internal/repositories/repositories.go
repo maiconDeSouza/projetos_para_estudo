@@ -10,6 +10,7 @@ import (
 )
 
 type DBResotirories interface {
+	WriteJson()
 	AddMedical(medical *models.Medical) error
 	AddAgenda(crm string, agenda []*models.Agenda) error
 	GetMedical(crm string) (*models.Medical, error)

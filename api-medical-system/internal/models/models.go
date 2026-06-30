@@ -16,6 +16,12 @@ type GetMedical struct {
 	Crm string `json:"crm"`
 }
 
+type MedicalAgenda struct {
+	Crm     string `json:"crm"`
+	Hours   int    `json:"hours"`
+	Minutes int    `json:"minutes"`
+}
+
 type Medical struct {
 	Crm       string `json:"crm"`
 	Name      string `json:"name"`
