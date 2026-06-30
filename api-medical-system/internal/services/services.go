@@ -10,6 +10,7 @@ type ServicesInterface interface {
 	CreateMedical(medical *models.MedicalRequest) (*models.Medical, error)
 	CreateAgenda(agenda *models.MedicalAgenda) error
 	GetMedical(crm string) (*models.Medical, error)
+	DeleteMedical(crm string) (*models.Medical, error)
 }
 
 type Services struct {
@@ -73,6 +74,23 @@ func (s *Services) GetMedical(crm string) (*models.Medical, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return medical, nil
+}
+
+func (s *Services) DeleteMedical(crm string) (*models.Medical, error) {
+	if len(crm) != 6 {
+		return nil, errors.New("CRM Inválido")
+	}
+
+	medical, err := s.repositories.GetMedical(crm)
+	if err != nil {
+		return nil, err
+	}
+
+	delete(s.repositories.GetDB(), medical.Crm)
+
+	s.repositories.WriteJson()
 
 	return medical, nil
 }

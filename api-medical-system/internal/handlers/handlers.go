@@ -69,6 +69,20 @@ func (h *Handlers) GetMediacal(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(medical)
 }
 
+func (h *Handlers) DeleteMedical(w http.ResponseWriter, r *http.Request) {
+	crm := r.PathValue("crm")
+
+	medical, err := h.services.GetMedical(crm)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(medical)
+}
+
 func NewHandlers(services services.ServicesInterface) *Handlers {
 	return &Handlers{
 		services: services,

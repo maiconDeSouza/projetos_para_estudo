@@ -14,6 +14,7 @@ type DBResotirories interface {
 	AddMedical(medical *models.Medical) error
 	AddAgenda(crm string, agenda []*models.Agenda) error
 	GetMedical(crm string) (*models.Medical, error)
+	GetDB() map[string]*models.Medical
 }
 
 type DB struct {
@@ -83,6 +84,10 @@ func (d *DB) GetMedical(crm string) (*models.Medical, error) {
 		return nil, errors.New("CRM não existente!")
 	}
 	return medical, nil
+}
+
+func (d *DB) GetDB() map[string]*models.Medical {
+	return d.DB
 }
 
 func (d *DB) AddAgenda(crm string, agenda []*models.Agenda) error {
