@@ -79,8 +79,8 @@ func (d *DB) AddMedical(medical *models.Medical) error {
 
 func (d *DB) GetMedical(crm string) (*models.Medical, error) {
 	medical, ok := d.DB[crm]
-	if ok {
-		return nil, errors.New("CRM já existente!")
+	if !ok {
+		return nil, errors.New("CRM não existente!")
 	}
 	return medical, nil
 }
@@ -102,6 +102,7 @@ func NewRepositories() *DB {
 		DB:       make(map[string]*models.Medical),
 	}
 
-	db.WriteJson()
+	db.ReadJson()
+
 	return db
 }
