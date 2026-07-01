@@ -7,7 +7,10 @@ import (
 	"log"
 	"maps"
 	"os"
+	"sync"
 )
+
+var gate = sync.RWMutex{}
 
 type DBResotirories interface {
 	WriteJson()
@@ -23,6 +26,8 @@ type DB struct {
 }
 
 func (d *DB) WriteJson() {
+	gate.Lock()
+	defer gate.Unlock()
 	db := DB{
 		FilePath: d.FilePath,
 		DB:       make(map[string]*models.Medical),
@@ -42,6 +47,8 @@ func (d *DB) WriteJson() {
 }
 
 func (d *DB) ReadJson() {
+	gate.RLocker()
+	defer gate.RLocker()
 	db := DB{}
 
 	jsonDB, err := os.ReadFile(d.FilePath)
@@ -62,6 +69,8 @@ func (d *DB) ReadJson() {
 }
 
 func (d *DB) AddMedical(medical *models.Medical) error {
+	gate.Lock()
+	defer gate.Unlock()
 	_, ok := d.DB[medical.Crm]
 	if ok {
 		return errors.New("CRM já existente!")
@@ -79,6 +88,8 @@ func (d *DB) AddMedical(medical *models.Medical) error {
 }
 
 func (d *DB) GetMedical(crm string) (*models.Medical, error) {
+	gate.RLock()
+	defer gate.RUnlock()
 	medical, ok := d.DB[crm]
 	if !ok {
 		return nil, errors.New("CRM não existente!")
@@ -91,6 +102,8 @@ func (d *DB) GetDB() map[string]*models.Medical {
 }
 
 func (d *DB) AddAgenda(crm string, agenda []*models.Agenda) error {
+	gate.Lock()
+	defer gate.Unlock()
 	medical, ok := d.DB[crm]
 	if !ok {
 		return errors.New("CRM Inválido")
