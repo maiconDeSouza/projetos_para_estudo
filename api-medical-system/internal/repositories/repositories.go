@@ -26,8 +26,6 @@ type DB struct {
 }
 
 func (d *DB) WriteJson() {
-	gate.Lock()
-	defer gate.Unlock()
 	db := DB{
 		FilePath: d.FilePath,
 		DB:       make(map[string]*models.Medical),
@@ -47,8 +45,6 @@ func (d *DB) WriteJson() {
 }
 
 func (d *DB) ReadJson() {
-	gate.RLocker()
-	defer gate.RLocker()
 	db := DB{}
 
 	jsonDB, err := os.ReadFile(d.FilePath)
@@ -98,6 +94,8 @@ func (d *DB) GetMedical(crm string) (*models.Medical, error) {
 }
 
 func (d *DB) GetDB() map[string]*models.Medical {
+	gate.RLock()
+	defer gate.RUnlock()
 	return d.DB
 }
 
