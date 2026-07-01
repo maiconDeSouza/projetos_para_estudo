@@ -11,6 +11,7 @@ type ServicesInterface interface {
 	CreateAgenda(agenda *models.MedicalAgenda) error
 	GetMedical(crm string) (*models.Medical, error)
 	DeleteMedical(crm string) (*models.Medical, error)
+	PatientScheduling(patient *models.PatientRequest, crm string) (*models.Scheduling, []*models.Agenda, error)
 }
 
 type Services struct {
@@ -93,6 +94,44 @@ func (s *Services) DeleteMedical(crm string) (*models.Medical, error) {
 	s.repositories.WriteJson()
 
 	return medical, nil
+}
+
+func (s *Services) PatientScheduling(patient *models.PatientRequest, crm string) (*models.Scheduling, []*models.Agenda, error) {
+	if len(crm) != 6 {
+		return nil, nil, errors.New("CRM Inválido")
+	}
+
+	medical, err := s.repositories.GetMedical(crm)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	ag := []*models.Agenda{}
+	sch := models.Scheduling{}
+
+	for _, v := range medical.Agenda {
+		if v.Data == patient.Data && v.Time == patient.Time && v.Patient == "" {
+			v.Patient = patient.Name
+			s.repositories.WriteJson()
+			sch.Data = patient.Data
+			sch.Medical = medical.Name
+			sch.Patient = patient.Name
+			sch.Time = patient.Time
+			return &sch, nil, nil
+		}
+	}
+
+	for _, v := range medical.Agenda {
+		if v.Data == patient.Data && v.Patient == "" {
+			ag = append(ag, v)
+		}
+	}
+
+	if len(ag) > 0 {
+		return nil, ag, nil
+	}
+
+	return nil, nil, errors.New("O médico não atende nesta data.")
 }
 
 func NewServices(repositories repositories.DBResotirories) *Services {

@@ -6,6 +6,13 @@ type PatientRequest struct {
 	Time string `json:"time"`
 }
 
+type Scheduling struct {
+	Patient string `json:"patient"`
+	Medical string `json:"medical"`
+	Data    string `json:"data"`
+	Time    string `json:"time"`
+}
+
 type Agenda struct {
 	Patient string `json:"patient"`
 	Data    string `json:"data"`
@@ -33,10 +40,4 @@ type MedicalRequest struct {
 	Crm       string `json:"crm"`
 	Name      string `json:"name"`
 	Specialty string `json:"specialty"`
-}
-
-type Scheduling struct {
-	Patient string `json:"patient"`
-	Medical string `json:"medical"`
-	Data    string `json:"data"`
 }

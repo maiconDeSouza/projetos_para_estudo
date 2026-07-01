@@ -72,17 +72,44 @@ func (h *Handlers) GetMediacal(w http.ResponseWriter, r *http.Request) {
 func (h *Handlers) DeleteMedical(w http.ResponseWriter, r *http.Request) {
 	crm := r.PathValue("crm")
 
-	medical, err := h.services.GetMedical(crm)
+	medical, err := h.services.DeleteMedical(crm)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(medical)
 }
 
+func (h *Handlers) PatientScheduling(w http.ResponseWriter, r *http.Request) {
+	crm := r.PathValue("crm")
+	patient := models.PatientRequest{}
+
+	err := json.NewDecoder(r.Body).Decode(&patient)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	sch, ag, err := h.services.PatientScheduling(&patient, crm)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	if sch != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(sch)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(ag)
+}
 func NewHandlers(services services.ServicesInterface) *Handlers {
 	return &Handlers{
 		services: services,
