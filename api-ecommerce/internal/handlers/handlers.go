@@ -33,6 +33,14 @@ func (h *Handlers) GetProduct(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(prod)
 }
 
+func (h *Handlers) GetSales(w http.ResponseWriter, r *http.Request) {
+	sales := h.services.GetSales()
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(sales)
+}
+
 func (h *Handlers) UpProduct(w http.ResponseWriter, r *http.Request) {
 	newProd := models.ProductResquest{}
 	id := r.PathValue("id")
