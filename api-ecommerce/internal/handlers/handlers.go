@@ -54,6 +54,27 @@ func (h *Handlers) UpProduct(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(prod)
 }
 
+func (h *Handlers) AddItem(w http.ResponseWriter, r *http.Request) {
+	amount := models.Inventory{}
+	id := r.PathValue("id")
+
+	err := json.NewDecoder(r.Body).Decode(&amount)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	prod, err := h.services.AddItem(id, amount.Amount)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(prod)
+}
+
 func NewHandlers(services services.ServicesInterface) *Handlers {
 	handlers := &Handlers{
 		services: services,
