@@ -12,6 +12,7 @@ type ServicesInterface interface {
 	UpProduct(id string, newProduct *models.ProductResquest) (*models.Product, error)
 	GetProduct(idString string) (*models.Product, error)
 	AddItem(idString string, amount uint) (*models.Product, error)
+	Order(orderRequest *models.OrderRequest) (*models.Order, error)
 }
 
 type Services struct {
@@ -53,12 +54,12 @@ func (s *Services) UpProduct(idString string, newProduct *models.ProductResquest
 	if err != nil {
 		return nil, err
 	}
-	if newProduct.Name != "" {
-		prod.Name = newProduct.Name
+	if newProduct.Name != "" && newProduct.Name != prod.Name {
+		prod = s.repo.UpdateProductName(prod, newProduct.Name)
 	}
 
 	if newProduct.Price != prod.Price && newProduct.Price > 0 {
-		prod.Price = newProduct.Price
+		prod = s.repo.UpdateProductPrice(prod, newProduct.Price)
 	}
 
 	return prod, nil
@@ -70,18 +71,22 @@ func (s *Services) AddItem(idString string, amount uint) (*models.Product, error
 		return nil, errors.New("Apenas id númericos")
 	}
 
-	if amount <= 0 {
-		return nil, errors.New("Não pode adicionar a quantidade 0")
-	}
-
-	prod, err := s.repo.GetProduct(uint(id))
+	prod, err := s.repo.AddAmount(uint(id), amount)
 	if err != nil {
 		return nil, err
 	}
 
-	prod.Amount += amount
-
 	return prod, nil
+
+}
+
+func (s *Services) Order(orderRequest *models.OrderRequest) (*models.Order, error) {
+	or, err := s.repo.Order(orderRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	return or, nil
 }
 
 func NewServices(repo repositories.ResotiroriesInterface) *Services {

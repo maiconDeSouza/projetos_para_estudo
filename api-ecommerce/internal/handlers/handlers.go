@@ -75,6 +75,26 @@ func (h *Handlers) AddItem(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(prod)
 }
 
+func (h *Handlers) Order(w http.ResponseWriter, r *http.Request) {
+	orderRequest := models.OrderRequest{}
+
+	err := json.NewDecoder(r.Body).Decode(&orderRequest)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	or, err := h.services.Order(&orderRequest)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(or)
+}
+
 func NewHandlers(services services.ServicesInterface) *Handlers {
 	handlers := &Handlers{
 		services: services,

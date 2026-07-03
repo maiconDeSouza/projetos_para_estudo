@@ -16,8 +16,15 @@ type Inventory struct {
 	Amount uint `json:"amount"`
 }
 
-type OrderRequest struct {
+type Order struct {
 	ID         uint   `json:"id"`
 	ClientName string `json:"clienteName"`
 	IdProduct  uint   `json:"idProduct"`
+	Amount     uint   `json:"amount"`
+}
+
+type OrderRequest struct {
+	ClientName string `json:"clienteName"`
+	IdProduct  uint   `json:"idProduct"`
+	Amount     uint   `json:"amount"`
 }
