@@ -50,16 +50,10 @@ func (s *Services) UpProduct(idString string, newProduct *models.ProductResquest
 	if err != nil {
 		return nil, errors.New("Apenas id númericos")
 	}
-	prod, err := s.repo.GetProduct(uint(id))
+
+	prod, err := s.repo.UpdateProduct(uint(id), newProduct)
 	if err != nil {
 		return nil, err
-	}
-	if newProduct.Name != "" && newProduct.Name != prod.Name {
-		prod = s.repo.UpdateProductName(prod, newProduct.Name)
-	}
-
-	if newProduct.Price != prod.Price && newProduct.Price > 0 {
-		prod = s.repo.UpdateProductPrice(prod, newProduct.Price)
 	}
 
 	return prod, nil

@@ -12,8 +12,7 @@ var gate sync.RWMutex
 type ResotiroriesInterface interface {
 	GetProducts() map[uint]*models.Product
 	GetProduct(id uint) (*models.Product, error)
-	UpdateProductName(prod *models.Product, newName string) *models.Product
-	UpdateProductPrice(prod *models.Product, newPrice float64) *models.Product
+	UpdateProduct(id uint, newProduct *models.ProductResquest) (*models.Product, error)
 	AddAmount(id uint, newAmount uint) (*models.Product, error)
 	DecreaseAmout(id uint, amount uint) (*models.Product, error)
 	Order(orderRequest *models.OrderRequest) (*models.Order, error)
@@ -41,31 +40,33 @@ func (db *DB) GetProduct(id uint) (*models.Product, error) {
 	return prod, nil
 }
 
-func (db *DB) UpdateProductName(prod *models.Product, newName string) *models.Product {
+func (db *DB) UpdateProduct(id uint, newProduct *models.ProductResquest) (*models.Product, error) {
 	gate.Lock()
 	defer gate.Unlock()
 
-	prod.Name = newName
+	prod, ok := db.Products[id]
+	if !ok {
+		return nil, errors.New("Produto não consta no sistema")
+	}
 
-	return prod
-}
+	if newProduct.Name != "" && newProduct.Name != prod.Name {
+		prod.Name = newProduct.Name
+	}
 
-func (db *DB) UpdateProductPrice(prod *models.Product, newPrice float64) *models.Product {
-	gate.Lock()
-	defer gate.Unlock()
+	if newProduct.Price != prod.Price && newProduct.Price > 0 {
+		prod.Price = newProduct.Price
+	}
 
-	prod.Price = newPrice
-
-	return prod
+	return prod, nil
 }
 
 func (db *DB) AddAmount(id uint, newAmount uint) (*models.Product, error) {
 	gate.Lock()
 	defer gate.Unlock()
 
-	prod, err := db.GetProduct(id)
-	if err != nil {
-		return nil, err
+	prod, ok := db.Products[id]
+	if !ok {
+		return nil, errors.New("Produto não consta no sistema")
 	}
 
 	if newAmount <= 0 {
@@ -78,12 +79,9 @@ func (db *DB) AddAmount(id uint, newAmount uint) (*models.Product, error) {
 }
 
 func (db *DB) DecreaseAmout(id uint, amount uint) (*models.Product, error) {
-	gate.Lock()
-	defer gate.Unlock()
-
-	prod, err := db.GetProduct(id)
-	if err != nil {
-		return nil, err
+	prod, ok := db.Products[id]
+	if !ok {
+		return nil, errors.New("Produto não consta no sistema")
 	}
 
 	if amount > prod.Amount {
