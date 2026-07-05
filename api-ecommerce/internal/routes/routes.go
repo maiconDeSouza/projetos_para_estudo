@@ -13,6 +13,7 @@ func InitRoutes(handlers *handlers.Handlers) *http.ServeMux {
 	mux.HandleFunc("PUT /api/v1/ecommerce/{id}", handlers.UpProduct)
 	mux.HandleFunc("PUT /api/v1/ecommerce/{id}/amount", handlers.AddItem)
 	mux.HandleFunc("POST /api/v1/ecommerce/order", handlers.Order)
+	mux.HandleFunc("GET /api/v1/ecommerce/sales", handlers.GetSales)
 
 	return mux
 }

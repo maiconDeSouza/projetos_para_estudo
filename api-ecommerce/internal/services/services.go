@@ -13,10 +13,11 @@ type ServicesInterface interface {
 	GetProduct(idString string) (*models.Product, error)
 	AddItem(idString string, amount uint) (*models.Product, error)
 	Order(orderRequest *models.OrderRequest) (*models.Order, error)
+	GetSales() []*models.Order
 }
 
 type Services struct {
-	repo repositories.ResotiroriesInterface
+	repo repositories.RepositoriesInterface
 }
 
 func (s *Services) GetAllProducts() []*models.Product {
@@ -43,6 +44,10 @@ func (s *Services) GetProduct(idString string) (*models.Product, error) {
 	}
 
 	return prod, nil
+}
+
+func (s *Services) GetSales() []*models.Order {
+	return s.repo.GetSales()
 }
 
 func (s *Services) UpProduct(idString string, newProduct *models.ProductResquest) (*models.Product, error) {
@@ -83,7 +88,7 @@ func (s *Services) Order(orderRequest *models.OrderRequest) (*models.Order, erro
 	return or, nil
 }
 
-func NewServices(repo repositories.ResotiroriesInterface) *Services {
+func NewServices(repo repositories.RepositoriesInterface) *Services {
 	services := &Services{
 		repo: repo,
 	}
