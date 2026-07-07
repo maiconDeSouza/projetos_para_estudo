@@ -1,5 +1,7 @@
 package main
 
-func main() {
+import "api-sistema/internal/database"
 
+func main() {
+	database.Connect()
 }

@@ -13,7 +13,7 @@ const (
 	Premium Category = "Prêmio"
 )
 
-type ADM struct {
+type Admin struct {
 	gorm.Model
 	NickName string
 	Password string
@@ -23,19 +23,24 @@ type User struct {
 	gorm.Model
 	NickName string
 	Password string
-	Category Category
+	Category Category `gorm:"type:varchar(20)"`
 }
 
 type Gym struct {
 	gorm.Model
 	Name     string
-	Category Category
+	Category Category `gorm:"type:varchar(20)"`
 }
 
-type CheckInCheckOut struct {
-	ID       uint
-	User     User
-	Gym      Gym
-	Checkin  time.Time
-	checkout time.Time
+type Visit struct {
+	gorm.Model
+
+	UserID uint
+	User   User
+
+	GymID uint
+	Gym   Gym
+
+	CheckIn  time.Time
+	CheckOut time.Time
 }
