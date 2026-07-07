@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	"golang.org/x/crypto/bcrypt"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -47,4 +48,35 @@ func Connect() {
 	}
 
 	log.Println("Banco conectado!")
+}
+
+func HashPassword(password string) (string, error) {
+	hash, err := bcrypt.GenerateFromPassword(
+		[]byte(password),
+		bcrypt.DefaultCost,
+	)
+
+	return string(hash), err
+}
+
+func CreateAdmin() {
+	var admin models.Admin
+
+	err := DB.Where("nick_name = ?", "admin").First(&admin).Error
+
+	if err == nil {
+		return
+	}
+
+	password, err := HashPassword("123456")
+	if err != nil {
+		panic(err)
+	}
+
+	admin = models.Admin{
+		NickName: "admin",
+		Password: password,
+	}
+
+	DB.Create(&admin)
 }
