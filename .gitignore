@@ -25,3 +25,5 @@ main
 .vscode/
 *.swp
 *.swo
+
+.env
