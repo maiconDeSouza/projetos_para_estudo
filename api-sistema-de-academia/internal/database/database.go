@@ -49,6 +49,16 @@ func (d *Database) Connect(cfg *config.ConfigEnv) error {
 	return nil
 }
 
-func NewDatabase() *Database {
-	return &Database{}
+func (d *Database) CreateUser(user *models.User) error {
+	return d.db.Create(user).Error
+}
+
+func NewDatabase(cfg *config.ConfigEnv) (*Database, error) {
+	db := &Database{}
+
+	if err := db.Connect(cfg); err != nil {
+		return nil, err
+	}
+
+	return db, nil
 }

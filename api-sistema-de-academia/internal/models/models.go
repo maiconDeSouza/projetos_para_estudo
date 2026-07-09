@@ -26,6 +26,12 @@ type User struct {
 	Category Category `gorm:"type:varchar(20)"`
 }
 
+type UserRequest struct {
+	NickName string `json:"nickname"`
+	Password string `json:"password"`
+	Category string `json:"category"`
+}
+
 type Gym struct {
 	gorm.Model
 	Name     string

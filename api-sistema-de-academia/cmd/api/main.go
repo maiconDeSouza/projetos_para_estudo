@@ -17,8 +17,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	db := database.NewDatabase()
-	err = db.Connect(cfg)
+	db, err := database.NewDatabase(cfg)
 	if err != nil {
 		log.Fatal(err)
 	}
