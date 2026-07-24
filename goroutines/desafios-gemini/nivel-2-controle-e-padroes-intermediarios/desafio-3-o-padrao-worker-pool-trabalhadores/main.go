@@ -22,17 +22,11 @@ func main() {
 	}
 	close(tasks)
 
-	wg.Go(func() {
-		worker(1, tasks)
-	})
-
-	wg.Go(func() {
-		worker(2, tasks)
-	})
-
-	wg.Go(func() {
-		worker(3, tasks)
-	})
-
+	const numWorkers = 3
+	for w := 1; w <= numWorkers; w++ {
+		wg.Go(func() {
+			worker(w, tasks)
+		})
+	}
 	wg.Wait()
 }
