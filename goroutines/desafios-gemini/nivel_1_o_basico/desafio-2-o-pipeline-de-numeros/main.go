@@ -13,15 +13,15 @@ func main() {
 		for i := 1; i <= 10; i++ {
 			ch <- i
 		}
+		close(ch)
 	})
 
-	go func() {
+	wg.Go(func() {
 		for c := range ch {
 			fmt.Println(c * 2)
 		}
-	}()
+	})
 
 	wg.Wait()
-	close(ch)
 
 }
