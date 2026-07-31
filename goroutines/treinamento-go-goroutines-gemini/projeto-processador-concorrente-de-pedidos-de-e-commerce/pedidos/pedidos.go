@@ -3,7 +3,9 @@ package pedidos
 import (
 	"context"
 	"fmt"
+	"projeto-processador-concorrente-de-pedidos-de-e-commerce/numeros"
 	"sync"
+	"time"
 )
 
 type Pedido struct {
@@ -13,12 +15,30 @@ type Pedido struct {
 }
 
 type PedidoResposta struct {
-	msg        string
-	err        error
-	quantidade uint
+	Msg        string
+	Err        error
+	Quantidade uint
 }
 
-func (p *Pedido) processarPagamentoEPedido(ctx context.Context)
+func (p *Pedido) ProcessarPagamentoEPedido(ctx context.Context, qtd uint, nome string) PedidoResposta {
+	ch := make(chan PedidoResposta, 1)
+	ps := PedidoResposta{}
+	go func() {
+		tempo := time.Duration(numeros.Aleatorios(10)) * time.Second
+		time.Sleep(tempo)
+		ps = p.Estoque.Vender(qtd, nome)
+
+		ch <- ps
+	}()
+
+	select {
+	case ps := <-ch:
+		return ps
+	case <-ctx.Done():
+		ps.Err = ctx.Err()
+		return ps
+	}
+}
 
 type Estoque struct {
 	mu         sync.RWMutex
@@ -31,25 +51,32 @@ func (e *Estoque) Vender(qdt uint, nome string) PedidoResposta {
 
 	ps := PedidoResposta{}
 
+	if e.quantidade == 0 {
+		ps.Msg = ""
+		ps.Err = fmt.Errorf("[%s] Acabou o produto", nome)
+		ps.Quantidade = e.quantidade
+		return ps
+	}
+
 	if qdt > e.quantidade {
-		ps.msg = ""
-		ps.err = fmt.Errorf("Quantidade insufiente para a compra de [%s]", nome)
-		ps.quantidade = e.quantidade
+		ps.Msg = ""
+		ps.Err = fmt.Errorf("Quantidade insufiente para a compra de [%s]", nome)
+		ps.Quantidade = e.quantidade
 		return ps
 	}
 
 	if qdt <= 0 {
-		ps.msg = ""
-		ps.err = fmt.Errorf("[%s] você não pode comprar zero itens ou menos", nome)
-		ps.quantidade = e.quantidade
+		ps.Msg = ""
+		ps.Err = fmt.Errorf("[%s] você não pode comprar zero itens ou menos", nome)
+		ps.Quantidade = e.quantidade
 		return ps
 	}
 
 	e.quantidade -= qdt
 
-	ps.msg = fmt.Sprintf("[%s] comprou %d itens", nome, qdt)
-	ps.err = nil
-	ps.quantidade = e.quantidade
+	ps.Msg = fmt.Sprintf("[%s] comprou %d itens", nome, qdt)
+	ps.Err = nil
+	ps.Quantidade = e.quantidade
 	return ps
 
 }
