@@ -41,12 +41,17 @@ func (e *Estoque) Vender(qdt uint, nome string) PedidoResposta {
 	if qdt <= 0 {
 		ps.msg = ""
 		ps.err = fmt.Errorf("[%s] você não pode comprar zero itens ou menos", nome)
+		ps.quantidade = e.quantidade
 		return ps
 	}
 
 	e.quantidade -= qdt
 
-	return fmt.Sprintf("[%s] comprou %d itens", nome, qdt), nil
+	ps.msg = fmt.Sprintf("[%s] comprou %d itens", nome, qdt)
+	ps.err = nil
+	ps.quantidade = e.quantidade
+	return ps
+
 }
 
 func (e *Estoque) Quantidade() uint {
