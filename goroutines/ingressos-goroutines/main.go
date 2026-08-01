@@ -35,6 +35,11 @@ func TicketOffice(orders <-chan *show.Order, results chan<- string, show *show.S
 			continue
 		}
 
+		if err := show.DecrementTicket(order.GetAmount()); err != nil {
+			results <- fmt.Sprintf("[%s]  [%s]", order.GetName(), err.Error())
+			continue
+		}
+
 		ctx, cancel := context.WithTimeout(context.Background(), time.Duration(300)*time.Millisecond)
 		err := Pay(ctx)
 		cancel()
@@ -42,11 +47,6 @@ func TicketOffice(orders <-chan *show.Order, results chan<- string, show *show.S
 			order.SetErr(err)
 			show.AddPedidos(order)
 			results <- fmt.Sprintf("[%s] erro no pagamento [%s]", order.GetName(), order.GetErr().Error())
-			continue
-		}
-
-		if err := show.DecrementTicket(order.GetAmount()); err != nil {
-			results <- fmt.Sprintf("[%s]  [%s]", order.GetName(), err.Error())
 			continue
 		}
 
