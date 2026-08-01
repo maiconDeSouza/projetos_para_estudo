@@ -32,6 +32,12 @@ func (o *Order) SetErr(e error) {
 	o.err = e
 }
 
+func (o *Order) GetAmount() int {
+	o.mu.RLock()
+	defer o.mu.RUnlock()
+	return o.amount
+}
+
 func NewOrder(name string, amount int) *Order {
 	if amount > 5 {
 		pedido := &Order{
@@ -71,13 +77,18 @@ func (s *Show) AddPedidos(order *Order) {
 	s.orders = append(s.orders, order)
 }
 
-func (s *Show) DecrementTicket() error {
+func (s *Show) DecrementTicket(qtd int) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
+
 	if s.tickets <= 0 {
 		return errors.New("Acabou os ingressos!!!!")
 	}
-	s.tickets--
+
+	if qtd > s.tickets {
+		return errors.New("Não temos essa quantidade de ingressos!!!!")
+	}
+	s.tickets -= qtd
 	return nil
 }
 
