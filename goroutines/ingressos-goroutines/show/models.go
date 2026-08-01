@@ -92,6 +92,12 @@ func (s *Show) DecrementTicket(qtd int) error {
 	return nil
 }
 
+func (s *Show) AddTicket(qtd int) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.tickets += qtd
+}
+
 func (s *Show) GetTotalTicket() int {
 	s.mu.RLock()
 	defer s.mu.RUnlock()

@@ -46,6 +46,7 @@ func TicketOffice(orders <-chan *show.Order, results chan<- string, show *show.S
 		if err != nil {
 			order.SetErr(err)
 			show.AddPedidos(order)
+			show.AddTicket(order.GetAmount())
 			results <- fmt.Sprintf("[%s] erro no pagamento [%s]", order.GetName(), order.GetErr().Error())
 			continue
 		}
