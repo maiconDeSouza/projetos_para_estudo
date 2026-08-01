@@ -27,9 +27,9 @@ func (p *Pedido) ProcessarPagamentoEPedido(id, wk int, ctx context.Context, qtd 
 	go func() {
 		tempo := time.Duration(numeros.Aleatorios(10)) * time.Second
 		time.Sleep(tempo)
-		ps = p.Estoque.Vender(id, wk, qtd, nome)
+		res := p.Estoque.Vender(id, wk, qtd, nome)
 
-		ch <- ps
+		ch <- res
 	}()
 
 	select {
