@@ -1,0 +1,6 @@
+mode: set
+o-desafio-banco/caixa/caixa.go:13.70,15.16 2 1
+o-desafio-banco/caixa/caixa.go:15.16,17.3 1 1
+o-desafio-banco/caixa/caixa.go:19.2,19.19 1 1
+o-desafio-banco/caixa/caixa.go:19.19,21.3 1 0
+o-desafio-banco/caixa/caixa.go:23.2,25.12 2 1
