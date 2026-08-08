@@ -2,7 +2,6 @@ package caixa
 
 import (
 	"errors"
-	"fmt"
 )
 
 type BancoService interface {
@@ -18,8 +17,6 @@ func (c *CaixaEletronico) Sacar(contaID string, valor float64) error {
 	if err != nil {
 		return err
 	}
-
-	fmt.Println(saldo, valor)
 
 	if saldo < valor {
 		return errors.New("Saldo insuficiente!")

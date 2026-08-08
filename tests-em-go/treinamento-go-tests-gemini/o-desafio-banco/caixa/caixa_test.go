@@ -42,7 +42,7 @@ func TestSacar(t *testing.T) {
 	})
 
 	t.Run("Saldo insufiente!", func(t *testing.T) {
-		mock := MockBancoService{contaID: false, saldo: 400}
+		mock := MockBancoService{contaID: true, saldo: 400}
 		caixa := CaixaEletronico{Banco: &mock}
 		saque := 500.00
 
