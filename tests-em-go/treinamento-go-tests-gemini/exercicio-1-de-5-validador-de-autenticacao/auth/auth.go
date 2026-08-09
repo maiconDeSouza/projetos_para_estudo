@@ -21,7 +21,7 @@ func (v *ValidadorSessao) Autenticar(token string) (string, error) {
 
 	valido, usuarioID, err := v.Auth.ValidarToken(token)
 
-	if !valido {
+	if !valido || err != nil {
 		return "", err
 	}
 
