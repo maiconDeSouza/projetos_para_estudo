@@ -37,21 +37,18 @@ func TestAutenticador(t *testing.T) {
 		}
 	})
 
-	t.Run("Falha na conexão com serviço", func(t *testing.T) {
-		m := MockProvedorAuth{valido: false, usuarioID: "", err: ErrFalha}
+	t.Run("Token expirado/inválido", func(t *testing.T) {
+		m := MockProvedorAuth{valido: false, usuarioID: "", err: nil}
 		v := ValidadorSessao{Auth: &m}
 
-		usuarioID, err := v.Autenticar("user1")
-		if errors.Is(err, ErrTokenAusente) {
-			t.Errorf("Era esperado o erro: [%v] - mas retornou [%v]", ErrFalha, ErrTokenAusente)
-		}
+		usuarioID, err := v.Autenticar("token_expirado")
 
 		if usuarioID != "" {
-			t.Error("Era esperado um usuárioID vazio para token vazio")
+			t.Error("Era esperado um usuárioID vazio")
 		}
 
-		if !errors.Is(err, ErrFalha) {
-			t.Errorf("Era esperado esse erro: [%v] para token vazio", ErrFalha)
+		if !errors.Is(err, ErrToken) {
+			t.Errorf("Era esperado o erro [%v], mas retornou [%v]", ErrToken, err)
 		}
 	})
 
