@@ -1,0 +1,6 @@
+mode: set
+exe-1-de-5/auth/auth.go:17.68,18.17 1 1
+exe-1-de-5/auth/auth.go:18.17,20.3 1 1
+exe-1-de-5/auth/auth.go:22.2,24.13 2 1
+exe-1-de-5/auth/auth.go:24.13,26.3 1 1
+exe-1-de-5/auth/auth.go:28.2,28.23 1 1
