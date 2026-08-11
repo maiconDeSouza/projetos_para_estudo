@@ -25,7 +25,7 @@ func (g *GerenciadorEstoque) BaixarEstoque(produtoID string, quantidadeAtual int
 
 	quantidadeAtual -= quantidadeComprada
 
-	if quantidadeAtual <= 5 {
+	if quantidadeAtual < 5 {
 		err := g.Notificador.NotificarEstoqueBaixo(produtoID, quantidadeAtual)
 		if err != nil {
 			return quantidadeAtual, err
