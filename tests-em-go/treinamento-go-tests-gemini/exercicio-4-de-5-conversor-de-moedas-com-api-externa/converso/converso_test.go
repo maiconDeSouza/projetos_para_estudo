@@ -10,12 +10,13 @@ var taxaUSDtoBRL float64 = 5.0842000
 
 type MockProvedorDeCotacao struct {
 	chamada      bool
+	err          error
 	taxaBRLtoUSD float64
 	taxaUSDtoBRL float64
 }
 
 func (m *MockProvedorDeCotacao) ObterTaxa(daMoeda, paraMoeda Moeda) (float64, error) {
-	if !m.chamada {
+	if m.err != ErrCotacao {
 		return 0.00, ErrCotacao
 	}
 
@@ -34,7 +35,7 @@ func (m *MockProvedorDeCotacao) ObterTaxa(daMoeda, paraMoeda Moeda) (float64, er
 
 func TestConverter(t *testing.T) {
 	t.Run("Valor menor ou igual a zero 🚫", func(t *testing.T) {
-		mk := MockProvedorDeCotacao{chamada: false, taxaBRLtoUSD: taxaBRLtoUSD, taxaUSDtoBRL: taxaUSDtoBRL}
+		mk := MockProvedorDeCotacao{chamada: false, err: nil, taxaBRLtoUSD: taxaBRLtoUSD, taxaUSDtoBRL: taxaUSDtoBRL}
 		con := ConversorMoedas{Provedor: &mk}
 		valor := 0.00
 
@@ -48,7 +49,7 @@ func TestConverter(t *testing.T) {
 	})
 
 	t.Run("Mesma moeda origem/destino (garantindo que a API **não** foi chamada) 🔄", func(t *testing.T) {
-		mk := MockProvedorDeCotacao{chamada: false, taxaBRLtoUSD: taxaBRLtoUSD, taxaUSDtoBRL: taxaUSDtoBRL}
+		mk := MockProvedorDeCotacao{chamada: false, err: nil, taxaBRLtoUSD: taxaBRLtoUSD, taxaUSDtoBRL: taxaUSDtoBRL}
 		con := ConversorMoedas{Provedor: &mk}
 		valor := 23.00
 
@@ -67,7 +68,7 @@ func TestConverter(t *testing.T) {
 	})
 
 	t.Run("Falha na chamada da API de cotação ⚠️", func(t *testing.T) {
-		mk := MockProvedorDeCotacao{chamada: false, taxaBRLtoUSD: taxaBRLtoUSD, taxaUSDtoBRL: taxaUSDtoBRL}
+		mk := MockProvedorDeCotacao{chamada: true, err: ErrCotacao, taxaBRLtoUSD: taxaBRLtoUSD, taxaUSDtoBRL: taxaUSDtoBRL}
 		con := ConversorMoedas{Provedor: &mk}
 		valor := 23.00
 
@@ -81,7 +82,7 @@ func TestConverter(t *testing.T) {
 	})
 
 	t.Run("Conversão realizada com sucesso 🟢", func(t *testing.T) {
-		mk := MockProvedorDeCotacao{chamada: true, taxaBRLtoUSD: taxaBRLtoUSD, taxaUSDtoBRL: taxaUSDtoBRL}
+		mk := MockProvedorDeCotacao{chamada: true, err: nil, taxaBRLtoUSD: taxaBRLtoUSD, taxaUSDtoBRL: taxaUSDtoBRL}
 		con := ConversorMoedas{Provedor: &mk}
 		valor := 23.00
 		valorEsperado := valor * taxaBRLtoUSD
