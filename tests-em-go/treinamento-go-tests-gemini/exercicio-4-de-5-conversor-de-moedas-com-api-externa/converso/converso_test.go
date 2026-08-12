@@ -20,10 +20,12 @@ func (m *MockProvedorDeCotacao) ObterTaxa(daMoeda, paraMoeda Moeda) (float64, er
 	}
 
 	if daMoeda == BRL {
+		m.chamada = true
 		return taxaBRLtoUSD, nil
 	}
 
 	if daMoeda == USD {
+		m.chamada = true
 		return taxaUSDtoBRL, nil
 	}
 
@@ -46,7 +48,7 @@ func TestConverter(t *testing.T) {
 	})
 
 	t.Run("Mesma moeda origem/destino (garantindo que a API **não** foi chamada) 🔄", func(t *testing.T) {
-		mk := MockProvedorDeCotacao{chamada: true, taxaBRLtoUSD: taxaBRLtoUSD, taxaUSDtoBRL: taxaUSDtoBRL}
+		mk := MockProvedorDeCotacao{chamada: false, taxaBRLtoUSD: taxaBRLtoUSD, taxaUSDtoBRL: taxaUSDtoBRL}
 		con := ConversorMoedas{Provedor: &mk}
 		valor := 23.00
 
@@ -57,6 +59,10 @@ func TestConverter(t *testing.T) {
 
 		if err != nil {
 			t.Errorf("O valor esperado era [%v] e recebemos [%v]", nil, err)
+		}
+
+		if mk.chamada {
+			t.Error("Algo aconteceu de errado e função ObterTaxa foi chamada")
 		}
 	})
 
