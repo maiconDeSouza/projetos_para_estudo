@@ -16,7 +16,7 @@ type MockProvedorDeCotacao struct {
 }
 
 func (m *MockProvedorDeCotacao) ObterTaxa(daMoeda, paraMoeda Moeda) (float64, error) {
-	if m.err != ErrCotacao {
+	if m.err != nil {
 		return 0.00, ErrCotacao
 	}
 
