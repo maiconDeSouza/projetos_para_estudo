@@ -16,17 +16,17 @@ type MockProvedorDeCotacao struct {
 }
 
 func (m *MockProvedorDeCotacao) ObterTaxa(daMoeda, paraMoeda Moeda) (float64, error) {
+	m.chamada = true
+
 	if m.err != nil {
 		return 0.00, ErrCotacao
 	}
 
 	if daMoeda == BRL {
-		m.chamada = true
 		return taxaBRLtoUSD, nil
 	}
 
 	if daMoeda == USD {
-		m.chamada = true
 		return taxaUSDtoBRL, nil
 	}
 
