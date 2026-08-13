@@ -36,9 +36,9 @@ func (su *ServicoUsuario) Cadastrar(nome, email, senha string) (*Usuario, error)
 		return nil, ErrCamposInvalidos
 	}
 
-	_, err := su.Repo.BuscarPorEmail(email)
-	if errors.Is(err, ErrEmailJaCadastrado) {
-		return nil, err
+	usuario, _ := su.Repo.BuscarPorEmail(email)
+	if usuario != nil {
+		return nil, ErrEmailJaCadastrado
 	}
 
 	senhaCriptografada, err := su.Hasher.GerarHash(senha)

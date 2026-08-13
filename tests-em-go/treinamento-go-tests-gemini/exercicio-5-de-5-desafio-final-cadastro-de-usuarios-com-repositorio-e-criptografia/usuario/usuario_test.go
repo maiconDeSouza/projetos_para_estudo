@@ -13,9 +13,9 @@ type MockUsuarioRepository struct {
 
 func (mr *MockUsuarioRepository) BuscarPorEmail(email string) (*Usuario, error) {
 	if email == mr.email {
-		return &mr.usuario, ErrEmailJaCadastrado
+		return &mr.usuario, nil
 	}
-	return nil, nil
+	return nil, errors.New("Erro ao procurar usuário!")
 }
 
 func (mr *MockUsuarioRepository) Salvar(usuario *Usuario) error {
