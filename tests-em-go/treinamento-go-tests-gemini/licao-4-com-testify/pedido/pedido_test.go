@@ -39,7 +39,7 @@ func TestFecharPedido(t *testing.T) {
 
 		err := p.FecharPedido(23.00)
 
-		assert.EqualValues(t, ErroPagamento, err)
+		assert.ErrorIs(t, ErroPagamento, err)
 
 		mock.AssertExpectations(t)
 	})
