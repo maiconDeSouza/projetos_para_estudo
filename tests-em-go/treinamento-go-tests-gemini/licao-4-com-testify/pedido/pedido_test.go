@@ -30,4 +30,17 @@ func TestFecharPedido(t *testing.T) {
 
 		mock.AssertExpectations(t)
 	})
+
+	t.Run("Falha", func(t *testing.T) {
+		mock := new(MockPagamento)
+		mock.On("Pagar", 23.00).Return(false)
+
+		p := ProcessadorPedido{Provedor: mock}
+
+		err := p.FecharPedido(23.00)
+
+		assert.EqualValues(t, ErroPagamento, err)
+
+		mock.AssertExpectations(t)
+	})
 }
