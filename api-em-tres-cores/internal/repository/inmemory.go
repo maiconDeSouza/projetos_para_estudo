@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"api-em-tres-cores/internal/apperr"
 	"api-em-tres-cores/internal/model"
 	"fmt"
 	"sync"
@@ -63,12 +64,18 @@ func (r *InMemoryRepository) GetByID(id uuid.UUID) (*model.Player, error) {
 	return &player, nil
 }
 
-func (r *InMemoryRepository) Create(player *model.Player) error {
+func (r *InMemoryRepository) Create(newPlayer *model.Player) error {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
-	player.ID = uuid.New()
-	r.players[player.ID] = *player
+	for _, player := range r.players {
+		if player.Number == newPlayer.Number {
+			return &apperr.ErrDuplicatePlayer{Name: player.Name, Number: player.Number}
+		}
+	}
+
+	newPlayer.ID = uuid.New()
+	r.players[newPlayer.ID] = *newPlayer
 	return nil
 }
 

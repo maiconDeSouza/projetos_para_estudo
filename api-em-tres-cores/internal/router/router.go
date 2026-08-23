@@ -15,6 +15,7 @@ func SetupRoutes(playerHandler *handler.PlayerHandler) *http.ServeMux {
 
 	mux.HandleFunc("GET /api/v1", homeHandler)
 	mux.HandleFunc("GET /api/v1/players", playerHandler.GetPlayers)
+	mux.HandleFunc("POST /api/v1/player", playerHandler.CreatePlayer)
 
 	return mux
 }
