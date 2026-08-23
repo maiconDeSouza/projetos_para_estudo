@@ -1,6 +1,10 @@
 package model
 
-import "time"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type EventType string
 
@@ -12,16 +16,16 @@ const (
 )
 
 type Event struct {
-	ID          [16]byte  `json:"id"`
+	ID          uuid.UUID `json:"id"`
 	Minute      uint      `json:"minute"`
 	EventType   EventType `json:"event_type"`
-	PlayerID    [16]byte  `json:"player_id"`
+	PlayerID    uuid.UUID `json:"player_id"`
 	GoalsSPFC   bool      `json:"goals_spfc"`
 	Description string    `json:"description"`
 }
 
 type Match struct {
-	ID            [16]byte  `json:"id"`
+	ID            uuid.UUID `json:"id"`
 	Opponent      string    `json:"opponent"`
 	Date          time.Time `json:"date"`
 	GoalsSPFC     uint      `json:"goals_spfc"`

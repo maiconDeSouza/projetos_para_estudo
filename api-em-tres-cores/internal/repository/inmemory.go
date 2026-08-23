@@ -10,14 +10,14 @@ import (
 
 type InMemoryRepository struct {
 	mu      sync.RWMutex
-	players map[[16]byte]model.Player
-	matches map[[16]byte]model.Match
+	players map[uuid.UUID]model.Player
+	matches map[uuid.UUID]model.Match
 }
 
 func NewInMemoryRepository() *InMemoryRepository {
 	repo := &InMemoryRepository{
-		players: make(map[[16]byte]model.Player),
-		matches: make(map[[16]byte]model.Match),
+		players: make(map[uuid.UUID]model.Player),
+		matches: make(map[uuid.UUID]model.Match),
 	}
 
 	repo.players[uuid.New()] = model.Player{
@@ -51,7 +51,7 @@ func (r *InMemoryRepository) GetAll() ([]model.Player, error) {
 	return list, nil
 }
 
-func (r *InMemoryRepository) GetByID(id [16]byte) (*model.Player, error) {
+func (r *InMemoryRepository) GetByID(id uuid.UUID) (*model.Player, error) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 
@@ -72,7 +72,7 @@ func (r *InMemoryRepository) Create(player *model.Player) error {
 	return nil
 }
 
-func (r *InMemoryRepository) UpdateStats(playerID [16]byte, minutes uint, eventType model.EventType) error {
+func (r *InMemoryRepository) UpdateStats(playerID uuid.UUID, minutes uint, eventType model.EventType) error {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
@@ -105,7 +105,7 @@ func (r *InMemoryRepository) SaveMatch(match *model.Match) error {
 	return nil
 }
 
-func (r *InMemoryRepository) GetMatchByID(id [16]byte) (*model.Match, error) {
+func (r *InMemoryRepository) GetMatchByID(id uuid.UUID) (*model.Match, error) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 

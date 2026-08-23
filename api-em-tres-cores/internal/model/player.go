@@ -1,11 +1,13 @@
 package model
 
+import "github.com/google/uuid"
+
 type Player struct {
-	ID       [16]byte `json:"id"`
-	Name     string   `json:"name"`
-	Position string   `json:"position"`
-	Number   uint     `json:"number"`
-	Stats    Stats    `json:"stats"`
+	ID       uuid.UUID `json:"id"`
+	Name     string    `json:"name"`
+	Position string    `json:"position"`
+	Number   uint      `json:"number"`
+	Stats    Stats     `json:"stats"`
 }
 
 type Stats struct {
