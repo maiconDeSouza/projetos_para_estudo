@@ -7,14 +7,16 @@ import (
 )
 
 type PlayerRepository interface {
-	GetByID(id uuid.UUID) (*model.Player, error)
-	GetAll() ([]model.Player, error)
-	Create(player *model.Player) error
-	UpdateStats(playerID uuid.UUID, minute uint, eventType model.EventType) error
+	GetPlayerByID(id uuid.UUID) (*model.Player, error)
+	GetAllPlayers() ([]model.Player, error)
+	CreatePlayer(player *model.Player) error
+	UpdateStatsPlayer(playerID uuid.UUID, minute uint, eventType model.EventType) error
 }
 
 type MatchRepository interface {
 	SaveMatch(match *model.Match) error
 	GetMatchByID(id uuid.UUID) (*model.Match, error)
 	GetAllMatches() ([]model.Match, error)
+	UpdateResult(matchID uuid.UUID, result model.UpdateResult) error
+	MatchEvent(matchID uuid.UUID, event model.Event) error
 }

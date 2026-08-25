@@ -12,25 +12,27 @@ import (
 type InMemoryRepository struct {
 	mu      sync.RWMutex
 	players map[uuid.UUID]model.Player
-	matches map[uuid.UUID]model.Match
+	matches map[uuid.UUID]*model.Match
 }
 
 func NewInMemoryRepository() *InMemoryRepository {
 	repo := &InMemoryRepository{
 		players: make(map[uuid.UUID]model.Player),
-		matches: make(map[uuid.UUID]model.Match),
+		matches: make(map[uuid.UUID]*model.Match),
 	}
 
-	repo.players[uuid.New()] = model.Player{
-		ID:       uuid.New(),
+	id := uuid.New()
+	repo.players[id] = model.Player{
+		ID:       id,
 		Name:     "Calleri",
 		Position: "Atacante",
 		Number:   9,
 		Stats:    model.Stats{Games: 10, MinutesPlayed: 850, Goals: 6, Assistis: 1, YellowCards: 0, RedCards: 0},
 	}
 
-	repo.players[uuid.New()] = model.Player{
-		ID:       uuid.New(),
+	id = uuid.New()
+	repo.players[id] = model.Player{
+		ID:       id,
 		Name:     "Lucas Moura",
 		Position: "Meia",
 		Number:   7,
@@ -39,7 +41,7 @@ func NewInMemoryRepository() *InMemoryRepository {
 	return repo
 }
 
-func (r *InMemoryRepository) GetAll() ([]model.Player, error) {
+func (r *InMemoryRepository) GetAllPlayers() ([]model.Player, error) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 
@@ -52,7 +54,7 @@ func (r *InMemoryRepository) GetAll() ([]model.Player, error) {
 	return list, nil
 }
 
-func (r *InMemoryRepository) GetByID(id uuid.UUID) (*model.Player, error) {
+func (r *InMemoryRepository) GetPlayerByID(id uuid.UUID) (*model.Player, error) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 
@@ -64,7 +66,7 @@ func (r *InMemoryRepository) GetByID(id uuid.UUID) (*model.Player, error) {
 	return &player, nil
 }
 
-func (r *InMemoryRepository) Create(newPlayer *model.Player) error {
+func (r *InMemoryRepository) CreatePlayer(newPlayer *model.Player) error {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
@@ -79,16 +81,14 @@ func (r *InMemoryRepository) Create(newPlayer *model.Player) error {
 	return nil
 }
 
-func (r *InMemoryRepository) UpdateStats(playerID uuid.UUID, minutes uint, eventType model.EventType) error {
+func (r *InMemoryRepository) UpdateStatsPlayer(playerID uuid.UUID, minutes uint, eventType model.EventType) error {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
 	player, exists := r.players[playerID]
 	if !exists {
-		return fmt.Errorf("jogador não encontrado")
+		return apperr.ErrNonExistentPlayer
 	}
-
-	player.Stats.MinutesPlayed += minutes
 
 	switch eventType {
 	case model.EventGoal:
@@ -97,18 +97,43 @@ func (r *InMemoryRepository) UpdateStats(playerID uuid.UUID, minutes uint, event
 		player.Stats.YellowCards++
 	case model.EventRedCard:
 		player.Stats.RedCards++
+	case model.EventPlayingTime:
+		player.Stats.MinutesPlayed += minutes
 	}
 
 	r.players[playerID] = player
 	return nil
 }
 
-func (r *InMemoryRepository) SaveMatch(match *model.Match) error {
+func (r *InMemoryRepository) SaveMatch(newMatch *model.Match) error {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
-	match.ID = uuid.New()
-	r.matches[match.ID] = *match
+	for _, match := range r.matches {
+		if newMatch.Date.Equal(match.Date) {
+			return &apperr.ErrDuplicateDate{Date: newMatch.Date}
+		}
+	}
+
+	newMatch.ID = uuid.New()
+	r.matches[newMatch.ID] = newMatch
+	return nil
+}
+
+func (r *InMemoryRepository) UpdateResult(matchID uuid.UUID, result model.UpdateResult) error {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+
+	match, exists := r.matches[matchID]
+	if !exists {
+		return apperr.ErrNonExistentMatch
+	}
+
+	match.GoalsSPFC = result.GoalsSPFC
+	match.GoalsOpponent = result.GoalsOpponent
+
+	r.matches[matchID] = match
+
 	return nil
 }
 
@@ -118,9 +143,9 @@ func (r *InMemoryRepository) GetMatchByID(id uuid.UUID) (*model.Match, error) {
 
 	match, exists := r.matches[id]
 	if !exists {
-		return nil, fmt.Errorf("partida não encontrada")
+		return nil, apperr.ErrNonExistentMatch
 	}
-	return &match, nil
+	return match, nil
 }
 
 func (r *InMemoryRepository) GetAllMatches() ([]model.Match, error) {
@@ -129,7 +154,24 @@ func (r *InMemoryRepository) GetAllMatches() ([]model.Match, error) {
 
 	var list []model.Match
 	for _, match := range r.matches {
-		list = append(list, match)
+		list = append(list, *match)
 	}
 	return list, nil
+}
+
+func (r *InMemoryRepository) MatchEvent(matchID uuid.UUID, event model.Event) error {
+	match, err := r.GetMatchByID(matchID)
+	if err != nil {
+		return err
+	}
+	event.ID = uuid.New()
+
+	err = r.UpdateStatsPlayer(event.PlayerID, event.Minute, event.EventType)
+	if err != nil {
+		return err
+	}
+
+	match.Events = append(match.Events, event)
+
+	return nil
 }

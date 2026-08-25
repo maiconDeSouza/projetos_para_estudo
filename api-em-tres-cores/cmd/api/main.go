@@ -14,7 +14,8 @@ const PORT = 2005
 func main() {
 	repo := repository.NewInMemoryRepository()
 	playerHandler := handler.NewPlayerHandler(repo)
-	mux := router.SetupRoutes(playerHandler)
+	matchHandler := handler.NewMatchHandler(repo)
+	mux := router.SetupRoutes(playerHandler, matchHandler)
 
 	fmt.Printf("Servidor rodando na porta: %d ... Bora Tricolor ⚽", PORT)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", PORT), mux))

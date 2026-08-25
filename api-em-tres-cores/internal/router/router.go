@@ -10,12 +10,19 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Welcome a API em três cores 🇾🇪")
 }
 
-func SetupRoutes(playerHandler *handler.PlayerHandler) *http.ServeMux {
+func SetupRoutes(playerHandler *handler.PlayerHandler, matchHandler *handler.MatchHeandler) *http.ServeMux {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("GET /api/v1", homeHandler)
+
 	mux.HandleFunc("GET /api/v1/players", playerHandler.GetPlayers)
 	mux.HandleFunc("POST /api/v1/player", playerHandler.CreatePlayer)
+	mux.HandleFunc("PUT /api/v1/player/minutes/{id}", playerHandler.PlayingTime)
+
+	mux.HandleFunc("GET /api/v1/matches", matchHandler.GetMatches)
+	mux.HandleFunc("POST /api/v1/matche", matchHandler.CreateMatch)
+	mux.HandleFunc("POST /api/v1/matche/event/{id}", matchHandler.NewEvent)
+	mux.HandleFunc("PUT /api/v1/matche/{id}", matchHandler.ResultMatch)
 
 	return mux
 }
