@@ -17,12 +17,14 @@ const (
 )
 
 type Event struct {
-	ID          uuid.UUID `json:"id"`
-	Minute      uint      `json:"minute"`
-	EventType   EventType `json:"event_type"`
-	PlayerID    uuid.UUID `json:"player_id"`
-	GoalsSPFC   bool      `json:"goals_spfc"`
+	ID          uuid.UUID `gorm:"type:uuid;primaryKey" json:"id"`
+	MatchID     uuid.UUID `gorm:"type:uuid;not null;index" json:"match_id"`
+	Minute      uint      `gorm:"not null" json:"minute"`
+	EventType   EventType `gorm:"type:varchar(20);not null" json:"event_type"`
+	PlayerID    uuid.UUID `gorm:"type:uuid;not null;index" json:"player_id"`
+	GoalsSPFC   bool      `gorm:"default:true" json:"goals_spfc"`
 	Description string    `json:"description"`
+	CreatedAt   time.Time `json:"created_at"`
 }
 
 type NewEvent struct {
@@ -38,12 +40,14 @@ type PlayingTime struct {
 }
 
 type Match struct {
-	ID            uuid.UUID `json:"id,omitempty"`
-	Opponent      string    `json:"opponent"`
-	Date          time.Time `json:"date"`
-	GoalsSPFC     uint      `json:"goals_spfc"`
-	GoalsOpponent uint      `json:"goals_opponent"`
-	Events        []Event   `json:"events"`
+	ID            uuid.UUID `gorm:"type:uuid;primaryKey" json:"id,omitempty"`
+	Opponent      string    `gorm:"not null" json:"opponent"`
+	Date          time.Time `gorm:"type:date;uniqueIndex;not null" json:"date"`
+	GoalsSPFC     uint      `gorm:"default:0" json:"goals_spfc"`
+	GoalsOpponent uint      `gorm:"default:0" json:"goals_opponent"`
+	Events        []Event   `gorm:"foreignKey:MatchID;constraint:OnDelete:CASCADE" json:"events"`
+	CreatedAt     time.Time `json:"created_at"`
+	UpdatedAt     time.Time `json:"updated_at"`
 }
 
 type UpdateResult struct {

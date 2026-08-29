@@ -12,15 +12,15 @@ import (
 	"github.com/google/uuid"
 )
 
-type MatchHeandler struct {
+type MatchHandler struct {
 	repo repository.MatchRepository
 }
 
-func NewMatchHandler(repo repository.MatchRepository) *MatchHeandler {
-	return &MatchHeandler{repo: repo}
+func NewMatchHandler(repo repository.MatchRepository) *MatchHandler {
+	return &MatchHandler{repo: repo}
 }
 
-func (h *MatchHeandler) GetMatches(w http.ResponseWriter, r *http.Request) {
+func (h *MatchHandler) GetMatches(w http.ResponseWriter, r *http.Request) {
 	matches, err := h.repo.GetAllMatches()
 	if err != nil {
 		http.Error(w, "Erro ao buscar partidas", http.StatusInternalServerError)
@@ -32,7 +32,7 @@ func (h *MatchHeandler) GetMatches(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(matches)
 }
 
-func (h *MatchHeandler) CreateMatch(w http.ResponseWriter, r *http.Request) {
+func (h *MatchHandler) CreateMatch(w http.ResponseWriter, r *http.Request) {
 	var req model.MatchRequest
 
 	err := json.NewDecoder(r.Body).Decode(&req)
@@ -72,7 +72,7 @@ func (h *MatchHeandler) CreateMatch(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(match)
 }
 
-func (h *MatchHeandler) ResultMatch(w http.ResponseWriter, r *http.Request) {
+func (h *MatchHandler) ResultMatch(w http.ResponseWriter, r *http.Request) {
 	idStr := r.PathValue("id")
 	id, err := uuid.Parse(idStr)
 	if err != nil {
@@ -89,7 +89,7 @@ func (h *MatchHeandler) ResultMatch(w http.ResponseWriter, r *http.Request) {
 
 	err = h.repo.UpdateResult(id, result)
 	if errors.Is(err, apperr.ErrNonExistentMatch) {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		http.Error(w, err.Error(), http.StatusNotFound)
 		return
 	}
 	if err != nil {
@@ -98,11 +98,11 @@ func (h *MatchHeandler) ResultMatch(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(result)
 }
 
-func (h *MatchHeandler) NewEvent(w http.ResponseWriter, r *http.Request) {
+func (h *MatchHandler) NewEvent(w http.ResponseWriter, r *http.Request) {
 	idStr := r.PathValue("id")
 	id, err := uuid.Parse(idStr)
 	if err != nil {
@@ -143,11 +143,11 @@ func (h *MatchHeandler) NewEvent(w http.ResponseWriter, r *http.Request) {
 
 	err = h.repo.MatchEvent(id, event)
 	if errors.Is(err, apperr.ErrNonExistentMatch) {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		http.Error(w, err.Error(), http.StatusNotFound)
 		return
 	}
 	if errors.Is(err, apperr.ErrNonExistentPlayer) {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		http.Error(w, err.Error(), http.StatusNotFound)
 		return
 	}
 	if err != nil {

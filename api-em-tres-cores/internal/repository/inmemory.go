@@ -85,6 +85,10 @@ func (r *InMemoryRepository) UpdateStatsPlayer(playerID uuid.UUID, minutes uint,
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
+	return r.updateStatsPlayerUnlocked(playerID, minutes, eventType)
+}
+
+func (r *InMemoryRepository) updateStatsPlayerUnlocked(playerID uuid.UUID, minutes uint, eventType model.EventType) error {
 	player, exists := r.players[playerID]
 	if !exists {
 		return apperr.ErrNonExistentPlayer
@@ -160,13 +164,16 @@ func (r *InMemoryRepository) GetAllMatches() ([]model.Match, error) {
 }
 
 func (r *InMemoryRepository) MatchEvent(matchID uuid.UUID, event model.Event) error {
-	match, err := r.GetMatchByID(matchID)
-	if err != nil {
-		return err
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	match, exists := r.matches[matchID]
+	if !exists {
+		return apperr.ErrNonExistentMatch
 	}
+
 	event.ID = uuid.New()
 
-	err = r.UpdateStatsPlayer(event.PlayerID, event.Minute, event.EventType)
+	err := r.updateStatsPlayerUnlocked(event.PlayerID, event.Minute, event.EventType)
 	if err != nil {
 		return err
 	}
