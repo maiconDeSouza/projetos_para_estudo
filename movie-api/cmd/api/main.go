@@ -5,7 +5,10 @@ import (
 	"log"
 	"movies-api/internal/config"
 	"movies-api/internal/database"
+	"movies-api/internal/handlers"
+	"movies-api/internal/repositories"
 	"movies-api/internal/router"
+	"movies-api/internal/services"
 	"net/http"
 	"os"
 )
@@ -20,10 +23,13 @@ func main() {
 		os.Getenv("DB_PORT"),
 	)
 
-	_ = database.ConnectDB(dsn)
+	db := database.ConnectDB(dsn)
 
 	mux := config.InitMUX()
-	router := router.NewRoutes(mux)
+	repo := repositories.NewRepo(db)
+	services := services.NewServices(repo)
+	handlers := handlers.NewHandlers(services)
+	router := router.NewRoutes(mux, handlers, os.Getenv("VERSION_API"))
 	router.InitRoutes()
 	port := os.Getenv("SERVER_PORT")
 
