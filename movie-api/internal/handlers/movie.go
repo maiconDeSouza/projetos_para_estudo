@@ -82,6 +82,7 @@ func (h *Handlers) SearchOMDB(w http.ResponseWriter, r *http.Request) {
 	list, err := h.services.SearchOMDB(q)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")

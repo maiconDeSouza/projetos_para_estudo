@@ -22,7 +22,7 @@ func main() {
 		os.Getenv("DB_NAME"),
 		os.Getenv("DB_PORT"),
 	)
-
+	fmt.Println(os.Getenv("OMD_APIKEY"))
 	db := database.ConnectDB(dsn)
 
 	mux := config.InitMUX()
