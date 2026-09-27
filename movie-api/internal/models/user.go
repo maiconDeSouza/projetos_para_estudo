@@ -31,3 +31,8 @@ type Login struct {
 type TokenJTWResponse struct {
 	Token string `json:"token"`
 }
+
+type UserMovie struct {
+	User_ID  uuid.UUID `gorm:"column:user_id"`
+	Movie_ID uuid.UUID `gorm:"column:movie_id"`
+}

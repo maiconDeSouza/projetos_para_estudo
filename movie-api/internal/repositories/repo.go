@@ -13,6 +13,7 @@ type RepoInterface interface {
 	GetMovie(id uuid.UUID, imdbID string) (*models.Movie, error)
 	CreateUser(user models.User) (*models.User, error)
 	GetUser(login models.Login) (*models.User, error)
+	DeleteMovie(id uuid.UUID, imdbID string) error
 }
 
 type Repo struct {
@@ -75,6 +76,30 @@ func (r *Repo) GetMovie(id uuid.UUID, imdbID string) (*models.Movie, error) {
 	}
 
 	return &movie, nil
+}
+
+func (r *Repo) DeleteMovie(id uuid.UUID, imdbID string) error {
+	movie := models.Movie{}
+	user := models.User{}
+	userMovie := models.UserMovie{}
+
+	if err := r.db.Where("id = ?", id).First(&user).Error; err != nil {
+		return err
+	}
+
+	if err := r.db.Where("imdb_id = ?", imdbID).First(&movie).Error; err != nil {
+		return err
+	}
+
+	if err := r.db.Where("user_id = ? AND movie_id = ?", user.ID, movie.ID).First(&userMovie).Error; err != nil {
+		return err
+	}
+
+	if err := r.db.Model(&user).Association("Movie").Delete(&movie); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (r *Repo) CreateUser(user models.User) (*models.User, error) {

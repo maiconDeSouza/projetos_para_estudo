@@ -17,6 +17,7 @@ type ServicesMovieInterface interface {
 	SearchOMDB(q string) (*models.ResultSearchOMDB, error)
 	AllMovies(id uuid.UUID) ([]models.Movie, error)
 	Movie(id uuid.UUID, imdbID string) (*models.Movie, error)
+	DeleteMovie(id uuid.UUID, imdb string) error
 }
 
 type ServicesMovie struct {
@@ -99,4 +100,9 @@ func (s *ServicesMovie) SearchOMDB(q string) (*models.ResultSearchOMDB, error) {
 	}
 
 	return &list, nil
+}
+
+func (s *ServicesMovie) DeleteMovie(id uuid.UUID, imdb string) error {
+	err := s.repo.DeleteMovie(id, imdb)
+	return err
 }

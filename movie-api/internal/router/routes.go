@@ -30,4 +30,5 @@ func (r *Routes) InitRoutes() {
 	r.mux.HandleFunc(fmt.Sprintf("GET %s/movies/{imdbID}", r.versionAPI), middleware.AuthMiddleware(r.handlersMovie.Movie))
 	r.mux.HandleFunc(fmt.Sprintf("GET %s/movies/", r.versionAPI), middleware.AuthMiddleware(r.handlersMovie.SearchOMDB))
 	r.mux.HandleFunc(fmt.Sprintf("POST %s/movies", r.versionAPI), middleware.AuthMiddleware(r.handlersMovie.NewMovie))
+	r.mux.HandleFunc(fmt.Sprintf("DELETE %s/movies/{imdbID}", r.versionAPI), middleware.AuthMiddleware(r.handlersMovie.DeleteMovie))
 }

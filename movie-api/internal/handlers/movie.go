@@ -16,6 +16,7 @@ type HandlersMovieInterface interface {
 	SearchOMDB(w http.ResponseWriter, r *http.Request)
 	AllMovies(w http.ResponseWriter, r *http.Request)
 	Movie(w http.ResponseWriter, r *http.Request)
+	DeleteMovie(w http.ResponseWriter, r *http.Request)
 }
 
 type HandlersMovie struct {
@@ -108,4 +109,22 @@ func (h *HandlersMovie) SearchOMDB(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(list)
+}
+
+func (h *HandlersMovie) DeleteMovie(w http.ResponseWriter, r *http.Request) {
+	idStr := r.Context().Value("user_sub").(string)
+	id, err := uuid.Parse(idStr)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	imdbID := r.PathValue("imdbID")
+
+	if err := h.services.DeleteMovie(id, imdbID); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
 }
