@@ -34,14 +34,15 @@ func (r *Repo) CreateMovie(id uuid.UUID, movie models.Movie) error {
 
 	existingMovie := models.Movie{}
 	err = r.db.Where("imdb_id = ?", movie.ImdbID).First(&existingMovie).Error
+
 	if errors.Is(err, gorm.ErrRecordNotFound) {
 		if err = r.db.Create(&movie).Error; err != nil {
 			return err
 		}
-	}
-
-	if err != nil {
+	} else if err != nil {
 		return err
+	} else {
+		movie = existingMovie
 	}
 
 	err = r.db.Model(&user).Association("Movie").Append(&movie)
@@ -86,25 +87,19 @@ func (r *Repo) GetMovie(id uuid.UUID, imdbID string) (*models.Movie, error) {
 	return &movie, nil
 }
 
-func (r *Repo) DeleteMovie(id uuid.UUID, imdbID string) error {
-	movie := models.Movie{}
-	user := models.User{}
-	userMovie := models.UserMovie{}
-
-	if err := r.db.Where("id = ?", id).First(&user).Error; err != nil {
-		return err
-	}
-
+func (r *Repo) DeleteMovie(userID uuid.UUID, imdbID string) error {
+	var movie models.Movie
 	if err := r.db.Where("imdb_id = ?", imdbID).First(&movie).Error; err != nil {
-		return err
+		return err // Retorna erro se o filme nem existir no banco
 	}
 
-	if err := r.db.Where("user_id = ? AND movie_id = ?", user.ID, movie.ID).First(&userMovie).Error; err != nil {
-		return err
+	result := r.db.Where("user_id = ? AND movie_id = ?", userID, movie.ID).Delete(&models.UserMovie{})
+	if result.Error != nil {
+		return result.Error
 	}
 
-	if err := r.db.Model(&user).Association("Movie").Delete(&movie); err != nil {
-		return err
+	if result.RowsAffected == 0 {
+		return gorm.ErrRecordNotFound
 	}
 
 	return nil
