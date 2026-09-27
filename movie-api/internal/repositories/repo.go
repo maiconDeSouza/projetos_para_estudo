@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"errors"
 	"movies-api/internal/models"
 	"uuid"
 
@@ -31,7 +32,14 @@ func (r *Repo) CreateMovie(id uuid.UUID, movie models.Movie) error {
 		return err
 	}
 
-	err = r.db.Create(&movie).Error
+	existingMovie := models.Movie{}
+	err = r.db.Where("imdb_id = ?", movie.ImdbID).First(&existingMovie).Error
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		if err = r.db.Create(&movie).Error; err != nil {
+			return err
+		}
+	}
+
 	if err != nil {
 		return err
 	}

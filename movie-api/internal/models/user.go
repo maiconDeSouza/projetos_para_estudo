@@ -33,6 +33,6 @@ type TokenJTWResponse struct {
 }
 
 type UserMovie struct {
-	User_ID  uuid.UUID `gorm:"column:user_id"`
-	Movie_ID uuid.UUID `gorm:"column:movie_id"`
+	User_ID  uuid.UUID `gorm:"column:user_id;primaryKey"`
+	Movie_ID uuid.UUID `gorm:"column:movie_id;primaryKey"`
 }
