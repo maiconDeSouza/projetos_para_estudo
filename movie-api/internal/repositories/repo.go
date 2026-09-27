@@ -45,6 +45,13 @@ func (r *Repo) CreateMovie(id uuid.UUID, movie models.Movie) error {
 		movie = existingMovie
 	}
 
+	err = r.db.Where("user_id = ? AND movie_id = ?", user.ID, movie.ID).First(&models.UserMovie{}).Error
+	if err == nil {
+		return errors.New("filme já cadastrado na sua lista")
+	} else if !errors.Is(err, gorm.ErrRecordNotFound) {
+		return err
+	}
+
 	err = r.db.Model(&user).Association("Movie").Append(&movie)
 	if err != nil {
 		return err
