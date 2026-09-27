@@ -1,0 +1,99 @@
+package repositories
+
+import (
+	"movies-api/internal/models"
+	"uuid"
+
+	"gorm.io/gorm"
+)
+
+type RepoInterface interface {
+	CreateMovie(id uuid.UUID, movie models.Movie) error
+	GetAllMovies(id uuid.UUID) ([]models.Movie, error)
+	GetMovie(id uuid.UUID, imdbID string) (*models.Movie, error)
+	CreateUser(user models.User) (*models.User, error)
+	GetUser(login models.Login) (*models.User, error)
+}
+
+type Repo struct {
+	db *gorm.DB
+}
+
+func NewRepo(db *gorm.DB) *Repo {
+	return &Repo{db: db}
+}
+
+func (r *Repo) CreateMovie(id uuid.UUID, movie models.Movie) error {
+	user := models.User{}
+	err := r.db.Where("id = ?", id).First(&user).Error
+	if err != nil {
+		return err
+	}
+
+	err = r.db.Create(&movie).Error
+	if err != nil {
+		return err
+	}
+
+	err = r.db.Model(&user).Association("Movie").Append(&movie)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (r *Repo) GetAllMovies(id uuid.UUID) ([]models.Movie, error) {
+	movies := []models.Movie{}
+	user := models.User{}
+
+	err := r.db.Where("id = ?", id).First(&user).Error
+	if err != nil {
+		return nil, err
+	}
+
+	err = r.db.Model(&user).Association("Movie").Find(&movies)
+	if err != nil {
+		return nil, err
+	}
+
+	return movies, nil
+}
+
+func (r *Repo) GetMovie(id uuid.UUID, imdbID string) (*models.Movie, error) {
+	movie := models.Movie{}
+	user := models.User{}
+
+	err := r.db.Where("id = ?", id).First(&user).Error
+	if err != nil {
+		return nil, err
+	}
+
+	err = r.db.Model(&user).Where("imdb_id = ?", imdbID).Association("Movie").Find(&movie)
+	if err != nil {
+		return nil, err
+	}
+
+	return &movie, nil
+}
+
+func (r *Repo) CreateUser(user models.User) (*models.User, error) {
+	result := r.db.Create(&user)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return &user, nil
+}
+
+func (r *Repo) GetUser(login models.Login) (*models.User, error) {
+	user := models.User{}
+
+	err := r.db.Where("email = ?", login.Email).First(&user).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return &user, nil
+}

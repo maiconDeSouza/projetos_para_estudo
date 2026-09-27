@@ -27,9 +27,11 @@ func main() {
 
 	mux := config.InitMUX()
 	repo := repositories.NewRepo(db)
-	services := services.NewServices(repo)
-	handlers := handlers.NewHandlers(services)
-	router := router.NewRoutes(mux, handlers, os.Getenv("VERSION_API"))
+	servicesUser := services.NewServicesUser(repo)
+	handlersUser := handlers.NewHandlersUser(servicesUser)
+	servicesMovie := services.NewServicesMovie(repo)
+	handlersMovie := handlers.NewHandlersMovie(servicesMovie)
+	router := router.NewRoutes(mux, handlersMovie, handlersUser, os.Getenv("VERSION_API"))
 	router.InitRoutes()
 	port := os.Getenv("SERVER_PORT")
 

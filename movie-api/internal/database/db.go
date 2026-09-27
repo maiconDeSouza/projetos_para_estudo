@@ -15,8 +15,14 @@ func ConnectDB(dsn string) *gorm.DB {
 		log.Fatalf("❌ Falha ao conectar no banco de dados: %v", err)
 	}
 
+	user := models.User{}
+	err = user.AutoMigrateUser(db)
+	if err != nil {
+		log.Fatalf("❌ Falha ao migrar movie: %v", err)
+	}
+
 	movie := models.Movie{}
-	err = movie.AutoMigrate(db)
+	err = movie.AutoMigrateMovie(db)
 	if err != nil {
 		log.Fatalf("❌ Falha ao migrar movie: %v", err)
 	}

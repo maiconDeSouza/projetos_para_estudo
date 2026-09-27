@@ -9,26 +9,27 @@ import (
 	"net/url"
 	"os"
 	"time"
+	"uuid"
 )
 
-type ServicesInterface interface {
-	NewMovie(imdb models.ImdbIDRequest) (*models.Movie, error)
+type ServicesMovieInterface interface {
+	NewMovie(id uuid.UUID, imdb models.ImdbIDRequest) (*models.Movie, error)
 	SearchOMDB(q string) (*models.ResultSearchOMDB, error)
-	AllMovies() ([]models.Movie, error)
-	Movie(imdbID string) (*models.Movie, error)
+	AllMovies(id uuid.UUID) ([]models.Movie, error)
+	Movie(id uuid.UUID, imdbID string) (*models.Movie, error)
 }
 
-type Services struct {
+type ServicesMovie struct {
 	repo       repositories.RepoInterface
 	httpClient *http.Client
 }
 
-func NewServices(repo repositories.RepoInterface) *Services {
-	return &Services{repo: repo, httpClient: &http.Client{Timeout: time.Duration(10) * time.Second}}
+func NewServicesMovie(repo repositories.RepoInterface) *ServicesMovie {
+	return &ServicesMovie{repo: repo, httpClient: &http.Client{Timeout: time.Duration(10) * time.Second}}
 }
 
-func (s *Services) AllMovies() ([]models.Movie, error) {
-	movies, err := s.repo.GetAllMovies()
+func (s *ServicesMovie) AllMovies(id uuid.UUID) ([]models.Movie, error) {
+	movies, err := s.repo.GetAllMovies(id)
 	if err != nil {
 		return nil, err
 	}
@@ -36,8 +37,8 @@ func (s *Services) AllMovies() ([]models.Movie, error) {
 	return movies, nil
 }
 
-func (s *Services) Movie(imdbID string) (*models.Movie, error) {
-	movie, err := s.repo.GetMovie(imdbID)
+func (s *ServicesMovie) Movie(id uuid.UUID, imdbID string) (*models.Movie, error) {
+	movie, err := s.repo.GetMovie(id, imdbID)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +46,7 @@ func (s *Services) Movie(imdbID string) (*models.Movie, error) {
 	return movie, nil
 }
 
-func (s *Services) NewMovie(imdb models.ImdbIDRequest) (*models.Movie, error) {
+func (s *ServicesMovie) NewMovie(id uuid.UUID, imdb models.ImdbIDRequest) (*models.Movie, error) {
 	movieRequestOMDB := models.MovieRequestOMDB{}
 	url := fmt.Sprintf("http://www.omdbapi.com/?apikey=%s&i=%s", os.Getenv("OMDB_APIKEY"), imdb.ImdbID)
 
@@ -71,14 +72,14 @@ func (s *Services) NewMovie(imdb models.ImdbIDRequest) (*models.Movie, error) {
 		ImdbID:      movieRequestOMDB.ImdbID,
 	}
 
-	if err := s.repo.CreateMovie(newMovie); err != nil {
+	if err := s.repo.CreateMovie(id, newMovie); err != nil {
 		return nil, err
 	}
 
 	return &newMovie, nil
 }
 
-func (s *Services) SearchOMDB(q string) (*models.ResultSearchOMDB, error) {
+func (s *ServicesMovie) SearchOMDB(q string) (*models.ResultSearchOMDB, error) {
 	list := models.ResultSearchOMDB{}
 	search := url.PathEscape(q)
 	url := fmt.Sprintf("http://www.omdbapi.com/?apikey=%s&s=%s", os.Getenv("OMDB_APIKEY"), search)

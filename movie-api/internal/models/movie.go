@@ -18,7 +18,7 @@ type Movie struct {
 	UpdatedAt   time.Time `gorm:"autoUpdateTime" json:"updatedAt"`
 }
 
-func (m Movie) AutoMigrate(db *gorm.DB) error {
+func (m Movie) AutoMigrateMovie(db *gorm.DB) error {
 	return db.AutoMigrate(&m)
 }
 
