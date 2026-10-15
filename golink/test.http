@@ -1,0 +1,16 @@
+@base_url = http://127.0.0.1:1986
+
+### 1. Rota Teste
+GET {{base_url}}/ 
+
+### 2. Criar User
+POST {{base_url}}/admin 
+Content-Type: application/json
+
+{
+  "name": "Dante",
+  "email": "dante@vidaloka.com.br",
+  "age": 5,
+  "password": "senha123",
+  "repeatPassword": "senha123"
+}
