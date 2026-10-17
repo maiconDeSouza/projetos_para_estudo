@@ -32,6 +32,18 @@ type UserRequest struct {
 	RepeatPassword string `json:"repeatPassword" validate:"required,min=4,max=55"`
 }
 
+type Login struct {
+	Email    string `json:"email" validate:"required,email"`
+	Password string `json:"password" validate:"required,min=4,max=55"`
+}
+
+type LoginResponse struct {
+	ID    uuid.UUID `json:"id"`
+	Name  string    `json:"name"`
+	Admin bool      `json:"admin"`
+	Links []Link    `json:"links"`
+}
+
 type UserResponse struct {
 	ID    uuid.UUID `json:"id"`
 	Name  string    `json:"name"`

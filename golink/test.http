@@ -1,11 +1,14 @@
 @base_url = http://127.0.0.1:1986
 
 ### 1. Rota Teste
-GET {{base_url}}/ 
-
-### 2. Criar User
-POST {{base_url}}/admin 
+GET {{base_url}}/test 
 Content-Type: application/json
+Cookie: {{login.response.headers.Set-Cookie}}
+
+### 2. Criar User Admin
+POST {{base_url}}/auth/admin 
+Content-Type: application/json
+Cookie: {{login.response.headers.Set-Cookie}}
 
 {
   "name": "Dante",
@@ -13,4 +16,39 @@ Content-Type: application/json
   "age": 5,
   "password": "senha123",
   "repeatPassword": "senha123"
+}
+
+### 3. Criar User
+POST {{base_url}}/user 
+Content-Type: application/json
+
+{
+  "name": "Dona Maia",
+  "email": "dona@gmail.com.br",
+  "age": 7,
+  "password": "senha123",
+  "repeatPassword": "senha123"
+}
+
+### 4. Login
+# @name login
+POST {{base_url}}/auth/login 
+Content-Type: application/json
+
+{
+  "email": "dante@vidaloka.com.br",
+  "password": "senha123"
+}
+
+### 5. Get All Users
+GET {{base_url}}/auth/admin/all
+Cookie: {{login.response.headers.Set-Cookie}}
+
+### 6. Add Link Admin
+POST {{base_url}}/auth/admin/link
+Cookie: {{login.response.headers.Set-Cookie}}
+
+{
+  "title": "vidaloka",
+  "link": "https://go.dev/"
 }

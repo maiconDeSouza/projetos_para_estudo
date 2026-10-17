@@ -5,6 +5,7 @@ import (
 	"golink/internal/infra/db"
 	"golink/internal/infra/env"
 	"golink/internal/infra/server"
+	"golink/internal/middleware"
 	"golink/internal/repository"
 	"golink/internal/service"
 )
@@ -15,8 +16,9 @@ func main() {
 
 	repo := repository.NewRepository(collection)
 	service := service.NewService(repo, env)
+	middleware := middleware.NewMiddleware(env)
 	handler := handler.NewHandler(service, env)
 
-	server := server.NewServer(env, handler)
+	server := server.NewServer(env, handler, *middleware)
 	server.Run()
 }

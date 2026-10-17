@@ -106,6 +106,8 @@ github.com/gohugoio/hugo-goldmark-extensions/extras v0.7.0 h1:I/n6v7VImJ3aISLnn7
 github.com/gohugoio/hugo-goldmark-extensions/extras v0.7.0/go.mod h1:9LJNfKWFmhEJ7HW0in5znezMwH+FYMBIhNZ3VWtRcRs=
 github.com/gohugoio/hugo-goldmark-extensions/passthrough v0.5.0 h1:p13Q0DBCrBRpJGtbtlgkYNCs4TnIlZJh8vHgnAiofrI=
 github.com/gohugoio/hugo-goldmark-extensions/passthrough v0.5.0/go.mod h1:ob9PCHy/ocsQhTz68uxhyInaYCbbVNpOOrJkIoSeD+8=
+github.com/golang-jwt/jwt/v5 v5.3.0 h1:pv4AsKCKKZuqlgs5sUmn4x8UlGa0kEVt/puTpKx9vvo=
+github.com/golang-jwt/jwt/v5 v5.3.0/go.mod h1:fxCRLWMO43lRc8nhHWY6LGqRcf+1gQWArsqaEUEa5bE=
 github.com/golang/snappy v0.0.4 h1:yAGX7huGHXlcLOEtBnF4w7FQwA26wojNCwOYAEhLjQM=
 github.com/golang/snappy v0.0.4/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEWrmP2Q=
 github.com/google/go-cmp v0.3.1/go.mod h1:8QqcDgzrUqlUb/G2PQTWiueGozuR1884gddMywk6iLU=

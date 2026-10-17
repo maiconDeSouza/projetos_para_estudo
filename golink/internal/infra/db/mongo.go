@@ -40,12 +40,20 @@ func NewConnectMongo(env *env.ENV) *mongo.Collection {
 
 	collection := client.Database(env.MONGO_DB_NAME).Collection(env.MONGO_COLLECTION)
 
-	indexModel := mongo.IndexModel{
-		Keys:    bson.D{{Key: "email", Value: 1}},
-		Options: options.Index().SetUnique(true),
+	indexes := []mongo.IndexModel{
+		{
+			Keys:    bson.D{{Key: "email", Value: 1}},
+			Options: options.Index().SetUnique(true),
+		},
+		{
+			Keys: bson.D{{Key: "links.title", Value: 1}},
+			Options: options.Index().
+				SetUnique(true).
+				SetSparse(true),
+		},
 	}
 
-	_, err = collection.Indexes().CreateOne(ctx, indexModel)
+	_, err = collection.Indexes().CreateMany(ctx, indexes)
 	if err != nil {
 		log.Fatal("❌ Erro ao criar índice único para e-mail: ", err)
 	}

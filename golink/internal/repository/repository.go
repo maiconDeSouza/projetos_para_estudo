@@ -2,12 +2,18 @@ package repository
 
 import (
 	"golink/internal/domain"
+	"uuid"
 
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type RepositoryInterface interface {
 	Create(user *domain.User) error
+	FindByID(id uuid.UUID, user *domain.User) error
+	FindByEmail(email string, user *domain.User) error
+	FindAllUsers() ([]*domain.User, error)
+	PushLink(userID uuid.UUID, link domain.Link) error
+	GetLinkByTitle(title string) (*domain.Link, error)
 }
 
 type Repository struct {
