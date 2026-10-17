@@ -13,7 +13,8 @@ type RepositoryInterface interface {
 	FindByEmail(email string, user *domain.User) error
 	FindAllUsers() ([]*domain.User, error)
 	PushLink(userID uuid.UUID, link domain.Link) error
-	GetLinkByTitle(title string) (*domain.Link, error)
+	GetLinkByTitle(title string) (*LinkWithOwner, error)
+	UpdateUser(id uuid.UUID, user *domain.User) error
 }
 
 type Repository struct {

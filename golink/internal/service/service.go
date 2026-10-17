@@ -21,7 +21,7 @@ type ServiceInterface interface {
 	Login(login domain.Login) (*http.Cookie, *domain.LoginResponse, *errapp.ErrResponse)
 	GetAllUser(id uuid.UUID) ([]*domain.User, *errapp.ErrResponse)
 	AddLinkAdmin(userID uuid.UUID, linkResquest domain.LinkRequest) (*domain.UserResponse, *errapp.ErrResponse)
-	TitleLink(title string) (*domain.Link, *errapp.ErrResponse)
+	RedirectTitleLink(title string) (*domain.Link, *errapp.ErrResponse)
 }
 
 type Service struct {

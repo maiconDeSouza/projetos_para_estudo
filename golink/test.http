@@ -49,6 +49,6 @@ POST {{base_url}}/auth/admin/link
 Cookie: {{login.response.headers.Set-Cookie}}
 
 {
-  "title": "vidaloka",
-  "link": "https://go.dev/"
+  "title": "mongo",
+  "link": "https://www.mongodb.com/"
 }

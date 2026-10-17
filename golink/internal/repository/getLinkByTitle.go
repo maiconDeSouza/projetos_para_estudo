@@ -5,27 +5,36 @@ import (
 	"golink/internal/domain"
 	"golink/internal/infra/errapp"
 	"time"
+	"uuid"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func (r *Repository) GetLinkByTitle(title string) (*domain.Link, error) {
+// LinkWithOwner junta os dados do Link com o ID do utilizador que o criou
+type LinkWithOwner struct {
+	UserID uuid.UUID   `bson:"user_id"`
+	Data   domain.Link `bson:"data"` // 🟢 CORREÇÃO: Mudado de "links" para "data"
+}
+
+// GetLinkByTitle procura um link pelo título e retorna os dados do link e o ID do seu dono
+func (r *Repository) GetLinkByTitle(title string) (*LinkWithOwner, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	pipeline := mongo.Pipeline{
-		bson.D{{Key: "$unwind", Value: "$links"}},
+		bson.D{{Key: "unwind", Value: "links"}}, // 🟢 CORREÇÃO: Adicionado o  em unwind
 
 		bson.D{{Key: "$match", Value: bson.M{"links.title": title}}},
 
 		bson.D{{Key: "$project", Value: bson.M{
-			"_id":        "$links._id",
-			"title":      "$links.title",
-			"link":       "$links.link",
-			"created_at": "$links.created_at",
-			"update_at":  "$links.update_at",
-			"count":      "$links.count",
+			"user_id":         "$_id",
+			"data._id":        "$links._id",
+			"data.title":      "$links.title",
+			"data.link":       "$links.link",
+			"data.created_at": "$links.created_at",
+			"data.update_at":  "$links.update_at",
+			"data.count":      "$links.count",
 		}}},
 	}
 
@@ -36,11 +45,11 @@ func (r *Repository) GetLinkByTitle(title string) (*domain.Link, error) {
 	defer cursor.Close(ctx)
 
 	if cursor.Next(ctx) {
-		var link domain.Link
-		if err := cursor.Decode(&link); err != nil {
+		var result LinkWithOwner
+		if err := cursor.Decode(&result); err != nil {
 			return nil, err
 		}
-		return &link, nil
+		return &result, nil
 	}
 
 	return nil, errapp.ErrNoDocuments

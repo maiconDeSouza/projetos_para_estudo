@@ -20,6 +20,10 @@ func (s *Service) AddLinkAdmin(userID uuid.UUID, linkResquest domain.LinkRequest
 		return nil, errapp.NewUnauthorizedError("Não autorizado", nil)
 	}
 
+	if len(user.Links) >= 2 {
+		return nil, errapp.NewBadRequestError("O Máximo de links foi alcançado", nil)
+	}
+
 	link := domain.Link{
 		ID:    uuid.New(),
 		Title: linkResquest.Title,
